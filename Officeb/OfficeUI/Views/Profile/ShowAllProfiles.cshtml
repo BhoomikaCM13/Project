@@ -1,0 +1,36 @@
+﻿@model OfficeEntity.Profile
+@{
+    ViewData["Title"] = "~/Views/Shared/_Layout.cshtml";
+}
+<div class=" row" style="background-color:burlywood">
+    <div class="col-12">
+        <h3>Profiles</h3>
+        <hr />
+        <br />
+        <span style="color:cadetblue">Id   </span>
+        <span style="color:black">@Model.Id</span>
+        <br />
+        <span style="color:cadetblue">Email </span>
+        <span style="color:black">@Model.Email</span>
+        <br />
+        <span style="color:cadetblue">User Name  </span>
+
+        <span style="color:black">@Model.UserName</span>
+        <br />
+        <span style="color:cadetblue">Password  </span>
+
+        <span style="color:black">@Model.Password</span>
+        <br />
+        <span style="color:cadetblue">Name  </span>
+
+        <span style="color:black">@Model.Name</span>
+        <br />
+        <span style="color:cadetblue">position  </span>
+
+        <span style="color:black">@Model.Position</span>
+        <br />
+        <span style="color:cadetblue">Department  </span>
+
+        <span style="color:black">@Model.Department</span>
+    </div>
+</div>

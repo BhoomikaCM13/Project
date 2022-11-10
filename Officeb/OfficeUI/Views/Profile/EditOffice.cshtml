@@ -1,0 +1,61 @@
+﻿@model OfficeEntity.Profile
+@{
+    ViewData["Title"] = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Edit profile</h1>
+<br />
+            <span>Email  </span>
+<span>@Model.Email</span>
+<br/>
+            <span>User Name  </span>
+            
+            <span>@Model.UserName</span>
+
+<hr/>
+<form method="post" enctype="multipart/form-data">
+    <h2>Profile Entry</h2><hr />
+    <div class=" =form-group">
+        <label>position</label>
+        <input type="text" asp-for="Position" class="form-control" placeholder="enter position" required />
+    </div>
+    @*<div class=" =form-group">
+        <label>Id</label>
+        <input type="text" asp-for="Id" class="form-control" placeholder="enter Id" required />
+    </div>*@
+    <div class=" =form-group">
+        <label>Name</label>
+        <input type="text" asp-for="Name" class="form-control" placeholder="enter name" required />
+    </div>
+    <div class=" =form-group">
+        <label>Department</label>
+        <input type="text" asp-for="Department" class="form-control" placeholder="enter Department" required />
+    </div>
+    @*<div class=" =form-group">
+        <label>Movie Description</label>
+        <input type="text" asp-for="MovieDesc" class="form-control" placeholder="enter movie desc" required />
+    </div>*@
+    <input type="submit" value="Save" class="btn btn-outline-success" />
+    <a asp-controller="Profile" asp-action="ShowAllProfiles">
+        View Profile
+    </a><hr />
+  @*  @foreach(var profile in Model)
+    {
+        <a asp-controller="Profile" asp-action="EditOffice"
+       asp-route-Id="@profile."><span style="color:aqua">Edit</span></a>
+    }*@
+    <hr />
+</form>
+
+@if (ViewBag.status == "Ok")
+{
+    <div class="alert alert-success">
+        @ViewBag.message
+    </div>
+
+}
+else if (ViewBag.status == "Error")
+{
+    <div class="alert alert-danger">
+        @ViewBag.message
+    </div>
+}

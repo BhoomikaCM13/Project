@@ -1,0 +1,14 @@
+﻿@model IEnumerable<OfficeEntity.Profile>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <a asp-controller="Profile" asp-action="EditOffice">
+        <button type="button" class="btn btn-secondary bg-dark"> edit </button>
+    </a>
+</div>
+<div>
+    <a asp-controller="Profile" asp-action="Index2">
+        <button type="button" class="btn btn-secondary bg-dark"> log out </button>
+    </a>
+</div>
