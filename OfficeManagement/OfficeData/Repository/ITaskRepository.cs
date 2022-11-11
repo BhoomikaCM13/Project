@@ -8,7 +8,7 @@ namespace OfficeData.Repository
 {
     public interface ITaskRepository
     {
-        void AddTask(Tasks task);
+        string AddTask(Tasks task);
         void DeleteTask(int tid);
         void UpdateTask(Tasks task);
 

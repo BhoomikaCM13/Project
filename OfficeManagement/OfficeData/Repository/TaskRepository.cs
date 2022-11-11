@@ -17,12 +17,23 @@ namespace OfficeData.Repository
             _officeDbContext = officeDbContext;
         }
 
-        public void AddTask(Tasks task)
+        public string AddTask(Tasks task)
         {
+            List<Profile> list=new List<Profile>();
+            list=_officeDbContext.profiles.ToList();
             #region Adding details of task
             _officeDbContext.tasks.Add(task);
             _officeDbContext.SaveChanges();
             #endregion
+            foreach(var profile in list)
+            {
+                if (task.CreatedBy == profile.Name)
+                {
+                  return  profile.Name;
+                  break;
+                }
+            }
+            return "Error";
         }
 
         public void UpdateTask(Tasks task)

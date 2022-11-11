@@ -17,27 +17,27 @@ namespace OfficeApi.Controllers
             this.taskService = taskService;
         }
 
-        [HttpGet("GetTasks")]
+        [HttpGet("GetTask")]
         public IEnumerable<Tasks> GetTask()
         {
             return taskService.GetTasks();
         }
 
-        [HttpPost("AddTasks")]
+        [HttpPost("AddTask")]
         public IActionResult AddTask([FromBody] Tasks tasks)
         {
             taskService.AddTasks(tasks);
             return Ok("Task Added Successfully");
         }
 
-        [HttpDelete("DeleteTasks")]
+        [HttpDelete("DeleteTask")]
         public IActionResult DeleteTask(int tid)
         {
             taskService.DeleteTasks(tid);
             return Ok("Tasks Deleted Successfully");
         }
 
-        [HttpPut("UpdateTasks")]
+        [HttpPut("UpdateTask")]
         public IActionResult UpdateTask(Tasks task)
         {
             taskService.UpdateTasks(task);
