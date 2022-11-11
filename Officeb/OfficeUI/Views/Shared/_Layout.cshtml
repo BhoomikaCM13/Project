@@ -6,11 +6,11 @@
     <title>@ViewData["Title"] - OfficeUI</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://kit.fontawesome.com/bf21391385.js" crossorigin="anonymous"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css" integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     @*<div class='dashboard'>*@
-
         <div class="dashboard-nav">
     <ul class="page-sidebar-menu page-holder-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top:20px">
     @*<header>*@
@@ -18,37 +18,35 @@
             <div class="container">*@
             
         <nav class="dashboard-nav-list">
+
                 <div class="row">
-                    <div class="col-2">
-                        @*<div class="card">*@
-                        <img src="~/css/emoji image.png" class="mx-auto img-responsive img-thumbnail" alt="...">
-                        
-                    </div>
-                    <div class="col-10">
-                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-airplane"></i>OfficeBoard</a>
+                    <i class="fa-solid fa-face-laugh-wink" style="color:white"></i><h4 style="color:white">Office board</h4>
+                    
+                        </div>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-gauge-high" style="color:floralwhite"></i><span style="color:white">Dash Board</span></a>
+               
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button></div></div>
+                </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <i class="fa fa-home" style="color:white"></i>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="Login"><span style="color:white">Login</span></a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="Login"><i class=" fa-solid fa-right-to-bracket" style="color:floralwhite"></i><span style="color:white">Login</span></a>
                         </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark " asp-area="" asp-controller="Profile" asp-action="Register"><span style="color:white">Register</span></a>
+                            <a class="nav-link text-dark " asp-area="" asp-controller="Profile" asp-action="Register"><i class="fa-solid fa-user-plus" style="color:floralwhite"></i><span style="color:white">Register</span></a>
                             </li>
                         @*<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>*@
                     </ul>
-                </div>
+    </div> 
            @* </div>*@
-        </nav>
-            </ul>    @*</header>*@
+    </nav>
+    </ul> </div>   @*</header>*@
        @* </div>*@
-    </div>
+   
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
