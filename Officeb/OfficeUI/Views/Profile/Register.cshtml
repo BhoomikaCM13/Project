@@ -2,7 +2,9 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<form method="post">
+<h2>Register Page</h2>
+<hr />
+<form method="post"><center>
     <div class="form-group">
         <div class="text-center">
             <label for="Name">Name</label>
@@ -40,8 +42,7 @@
         </div>
         <input type="text" class="form-control" asp-for="UserName">
     </div>
-    <input type="submit" class="btn btn-primary" value="Register">
-    <button type="button" class="btn btn-secondary">Reset</button>
+    <input type="submit" class="btn btn-primary" value="Register"></center>
     <hr />
     @if (ViewBag.status == "Ok")
     {
@@ -55,6 +56,5 @@
             @ViewBag.message
         </div>
     }
-    <hr />
-    <a asp-controller="Profile" asp-action="Login">Login</a>
+    <center><div class="btn btn-secondary"><a asp-controller="Profile" asp-action="Login">Login</a></div></center>
 </form>

@@ -51,6 +51,10 @@ namespace OfficeUI.Controllers
         {
             return View();
         }
+        public IActionResult Index3()
+        {
+            return View();
+        }
         public IActionResult Register()
         {
             return View();
@@ -98,7 +102,7 @@ namespace OfficeUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         int loginID = JsonConvert.DeserializeObject<int>(result);
                         TempData["LoginID"]=loginID.ToString();
-                        return RedirectToAction("Index1", "Profile");
+                        return RedirectToAction("EditOffice", "Profile");
                     }
                     else
                     {

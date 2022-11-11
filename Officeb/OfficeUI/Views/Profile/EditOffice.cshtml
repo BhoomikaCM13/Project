@@ -1,19 +1,21 @@
 ﻿@model OfficeEntity.Profile
 @{
-    ViewData["Title"] = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-<h1>Edit profile</h1>
+<h1><span style="color:blue background-color:white">Edit User profile</style></h1>
+<hr/>
+
+<span style="color:darkslateblue">User Name  </span><space></space>
+
+<span class="form-control"  style="color:darkgoldenrod">@Model.UserName</span>
 <br />
-            <span>Email  </span>
-<span>@Model.Email</span>
-<br/>
-            <span>User Name  </span>
-            
-            <span>@Model.UserName</span>
+
+<span style="color:darkslateblue">Email  </span>
+<span class="form-control"  style="color:darkgoldenrod">@Model.Email</span>
 
 <hr/>
 <form method="post" enctype="multipart/form-data">
-    <h2>Profile Entry</h2><hr />
+   
     <div class=" =form-group">
         <label>position</label>
         <input type="text" asp-for="Position" class="form-control" placeholder="enter position" required />
@@ -34,17 +36,18 @@
         <label>Movie Description</label>
         <input type="text" asp-for="MovieDesc" class="form-control" placeholder="enter movie desc" required />
     </div>*@
-    <input type="submit" value="Save" class="btn btn-outline-success" />
-    <a asp-controller="Profile" asp-action="ShowAllProfiles">
+    <input type="submit" value="Save Changes" class="btn btn-outline-success" />
+    <div class="btn btn-outline-success"><a asp-controller="Profile" asp-action="ShowAllProfiles">
         View Profile
-    </a><hr />
+        </a>
+    </div></form>
   @*  @foreach(var profile in Model)
     {
         <a asp-controller="Profile" asp-action="EditOffice"
        asp-route-Id="@profile."><span style="color:aqua">Edit</span></a>
     }*@
-    <hr />
-</form>
+   
+
 
 @if (ViewBag.status == "Ok")
 {

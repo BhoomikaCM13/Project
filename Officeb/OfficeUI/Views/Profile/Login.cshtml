@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Login</h2>
+<h2>Login Page</h2>
 <hr />
 <form method="post">
     <div class="form-group">
@@ -13,12 +13,12 @@
     </div>
     <div class="form-group">
         <div class="text-center">
-            <label for="Password">Password</label>
+            <label for="Password"><i class="glyphicon glyphicon-user"></i>Password</label>
         </div>
         <input type="text" class="form-control" asp-for="Password">
     </div>
-    <input type="submit" class="btn btn-primary" value="Login" asp-route-Id="Id">
-    <button type="button" class="btn btn-secondary ">Reset</button>
+    <center><input type="submit" class="btn btn-primary" value="Login" asp-route-Id="Id"></center>
+    @*<button type="button" class="btn btn-secondary ">Reset</button>*@
     <hr />
     @if (ViewBag.status == "Ok")
     {
@@ -32,6 +32,5 @@
             @ViewBag.message
         </div>
     }
-    <hr />
-    <a asp-controller="Profile" asp-action="Register">Register</a>
+    <center><div class="btn btn-secondary"><a asp-controller="Profile" asp-action="Register">Register</a></div></center>
 </form>
