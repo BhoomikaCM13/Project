@@ -18,10 +18,10 @@ namespace OfficeUI.Controllers
         {
             _configuration = configuration;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
         [HttpGet]
         public async Task<IActionResult> ShowAllProfiles()
         {
@@ -30,7 +30,7 @@ namespace OfficeUI.Controllers
             {
                 int Id = Convert.ToInt32(TempData["LoginID"]);
                 TempData.Keep();
-                string endpoint = _configuration["WebApiBaseUrl"] + "Profile/GetProfileById?profileId=" + Id;
+                string endpoint = _configuration["WebApiBasedUrl"] + "Profile/GetProfileById?profileId=" + Id;
                 using (var response = await client.GetAsync(endpoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -66,7 +66,7 @@ namespace OfficeUI.Controllers
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(profile), Encoding.UTF8, "application/json");
-                string endPoint = _configuration["WebApiBaseUrl"] + "Profile/Register";
+                string endPoint = _configuration["WebApiBasedUrl"] + "Profile/Register";
                 using (var response = await client.PostAsync(endPoint, content))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -94,7 +94,7 @@ namespace OfficeUI.Controllers
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(profile), Encoding.UTF8, "application/json");
-                string endPoint = _configuration["WebApiBaseUrl"] + "Profile/Login";
+                string endPoint = _configuration["WebApiBasedUrl"] + "Profile/Login";
                 using (var response = await client.PostAsync(endPoint, content))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -102,6 +102,7 @@ namespace OfficeUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         int loginID = JsonConvert.DeserializeObject<int>(result);
                         TempData["LoginID"]=loginID.ToString();
+                        TempData.Keep();
                         return RedirectToAction("EditOffice", "Profile");
                     }
                     else
@@ -120,7 +121,7 @@ namespace OfficeUI.Controllers
             {
                 int Id = Convert.ToInt32(TempData["LoginID"]);
                 TempData.Keep();
-                string endpoint = _configuration["WebApiBaseUrl"] + "Profile/GetProfileById?profileId=" + Id;
+                string endpoint = _configuration["WebApiBasedUrl"] + "Profile/GetProfileById?profileId=" + Id;
                 using (var response = await client.GetAsync(endpoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -133,6 +134,7 @@ namespace OfficeUI.Controllers
             return View(profile);
 
         }
+      
 
         [HttpPost]
         public async Task<IActionResult> EditOffice(Profile profiles)
@@ -143,7 +145,7 @@ namespace OfficeUI.Controllers
             using (HttpClient client = new HttpClient())
             {
                 int Id = Convert.ToInt32(TempData["LoginID"]);
-                string endpoint = _configuration["WebApiBaseUrl"] + "Profile/GetProfileById?profileId=" + Id;
+                string endpoint = _configuration["WebApiBasedUrl"] + "Profile/GetProfileById?profileId=" + Id;
                 using (var response = await client.GetAsync(endpoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -163,7 +165,7 @@ namespace OfficeUI.Controllers
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(profiles), Encoding.UTF8, "application/json");
-                string endpoint = _configuration["WebApiBaseUrl"] + "Profile/UpdateProfile";
+                string endpoint = _configuration["WebApiBasedUrl"] + "Profile/UpdateProfile";
                 
                 using (var response = await client.PutAsync(endpoint, content))
                 {
@@ -182,7 +184,7 @@ namespace OfficeUI.Controllers
             }
             
 
-            return View();
+            return View(profile);
         }
     }
 }

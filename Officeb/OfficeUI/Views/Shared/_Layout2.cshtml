@@ -1,17 +1,56 @@
-﻿@model OfficeEntity.Profile
+﻿
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Index";
 }
+
 @*<h1>Index</h1>*@
 
 <div class='dashboard'>
-    
+    <div class="dashboard-nav">
+        <link rel="stylesheet" href="\css\dashboard.css">
+        <script src="\js\Dashboard.js"></script>
+        <script src="https://kit.fontawesome.com/bf21391385.js" crossorigin="anonymous"></script>
+        <header>
+            <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#"
+                                                                               class="brand-logo">
+                <i class="fas fa-anchor"></i> <span>OFFICE  BOARD</span>
+            </a>
+        </header>
+        <nav class="dashboard-nav-list">
+            <a href="#" class="dashboard-nav-item active">
+                <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
+            </a>
+            @* <a href="Register" class="dashboard-nav-item"><i class=""></i> Register </a>*@
+            <a class="dashboard-nav-item" asp-area="" asp-controller="Identity" asp-action="Register"> <i class="fa-solid fa-right-to-bracket"></i> Register</a>
+            <a class="dashboard-nav-item" asp-area="" asp-controller="Identity" asp-action="Login"> <i class="fa-solid fa-user-plus"></i> Login</a>
+            <@*div class='dashboard-nav-dropdown'>
+                   <a href="Login" class="dashboard-nav-item">
+                   <i class=""></i> Login
+                   </a>
+                   </div>*@
+        </nav>
+    </div>
+    @*<div class='dashboard-app'>
+    <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+    <div class='dashboard-content'>
+    <div class='container'>
+    <div class='card'>
+    <div class='card-header'>
+    <h1>Welcome back Jim</h1>
+    </div>
+    <div class='card-body'>
+    <p>Your account type is: Administrator</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>*@
+
     <!-- Topbar -->
     <div>
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between m-4">
-               
                 <h1 class="h3 mb-0 text-primary"><strong>Dashboard</strong></h1>
             </div>
         </nav>
@@ -203,4 +242,4 @@
 </div>
 
 
-/h1>
+ml>

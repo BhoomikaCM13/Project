@@ -1,0 +1,48 @@
+﻿@model OfficeEntity.Comment
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div>
+    <a asp-controller="Comment" asp-action="CreateComment">Edit Comment</a>
+    <hr />
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <h2>Comments</h2>
+    <div class=" form-group">
+        <label>Content</label>
+        <input type="text" asp-for="Content" class="form-control" placeholder="enter" required />
+    </div>
+
+    <div class=" form-group">
+        <label>Created On </label>
+        <input type="text" asp-for="CreatedOn" class="form-control" placeholder="enter" required />
+    </div>
+
+    <div class=" form-group">
+        <label>Task Id </label>
+        <input type="text" asp-for="TaskId" class="form-control" placeholder="enter" required />
+    </div>
+
+    <div class=" form-group">
+        <label>PId </label>
+        <input type="text" asp-for="PId" class="form-control" placeholder="enter" required />
+    </div>
+
+    <input type="submit" value="Save" class="btn btn-outline-success" />
+    <input type="button" value="Reset" class="btn btn-outline-secondary" />
+    <hr />
+    @if (ViewBag.status == "Ok")
+    {
+        <div class="alert alert-success">
+            @ViewBag.message
+        </div>
+    }
+    else if (ViewBag.status == "Error")
+    {
+        <div class="alert alert-danger">
+            @ViewBag.message
+        </div>
+    }
+</form>

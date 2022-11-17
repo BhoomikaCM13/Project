@@ -46,9 +46,13 @@ namespace ProfileAPI
 
             });
             services.AddTransient<Profileser, Profileser>();
-
+            services.AddTransient<TaskService,TaskService>();
+            services.AddTransient<ITaskRepository, TaskRepository>();
             services.AddTransient<Iprofile, Profilerep>();
-
+            services.AddTransient<CommentService, CommentService>();
+            services.AddTransient<ICommentRepository, CommentRepository>();
+            services.AddTransient<MessageService, MessageService>();
+            services.AddTransient<IMessageRepository, MessageRepository>();
             services.AddControllers();
         }
 

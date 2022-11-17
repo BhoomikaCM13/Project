@@ -23,9 +23,9 @@
             </li>*@
                 <i class="fa-solid fa-phone-volume"></i>
                 <div>
-                    <span style="color:white">
-                        <h6>office</h6>
-                <h3>BOARD</h3></span>
+                    <h6>
+                        <span style="color:white">
+                        office board</span></h6>
             </div>
             <hr/>
 
@@ -33,51 +33,69 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>*@
-                
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            </button>flex-sm-row-reversed-sm-inline-flex *@
+
+            <div class="navbar-collapse collapse d-sm-inline-flex">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark icon-beer" asp-area="" asp-controller="Profile" asp-action="Index1"><i class="fa-solid fa-gauge-high" style="color:floralwhite"></i><span style="color:white">DashBoard</span></a>
+                    <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="Index3"><i class="fa-solid fa-gauge-high" style="color:floralwhite"></i>&nbsp;<span style="color:white">DashBoard</span></a><hr color="white" />
                         </li>
-                        <h2><span style="color:azure">Messages</span></h2>
+                        <li><h2><span style="color:azure">Messages</span></h2></li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark icon-beer" asp-area="" asp-controller="Profile" asp-action="Index3"><i class="fa-sharp fa-solid fa-line-height" style="color:floralwhite"></i><span style="color:white">Messages Board</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark icon-beer" asp-area="" asp-controller="Profile" asp-action="Index1"><span style="color:white">Create Messages</span></a>
-                        </li>
-                        <h2><span style="color:azure">Tasks</span></h2>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark icon-beer" asp-area="" asp-controller="Profile" asp-action="Index1"><span style="color:white">Tasks Board</span></a>
+                            <a class="nav-link text-dark " asp-area="" asp-controller="Message" asp-action="Index"><i class="fa-solid fa-bars-staggered" style="color:white"></i>&nbsp;<span style="color:white">Messages Board</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark icon-beer" asp-area="" asp-controller="Profile" asp-action="Index1"><span style="color:white">Create Task</span></a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Message" asp-action="Create"><i class="fa-solid fa-circle-plus" style="color:white"></i>&nbsp;<span style="color:white">Create Messages</span></a>
+                            <hr color="white" />
                         </li>
-                        <hr />
-                        <h2><span style="color:azure">Account</span></h2>
+                        <li><h2><span style="color:azure">Tasks</span></h2></li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark icon-beer" asp-area="" asp-controller="Profile" asp-action="EditOffice"><span style="color:white">Edit</span></a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="Index"><i class="fa-solid fa-bars-staggered" style="color:white"></i>&nbsp;<span style="color:white">Tasks Board</span></a>
+                      @* <ul>
+                           <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Comment" asp-action="Index"><i class="fa-solid fa-bars-staggered" style="color:white"></i>&nbsp;<span style="color:white">Comments</span></a>
+                                </li>
+                        </ul>*@
+                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="TasksCreate"><i class="fa-solid fa-circle-plus" style="color:white"></i>&nbsp;<span style="color:white">Create Task</span></a><hr color="white" />
+                        </li>
+                        <li><h2><span style="color:azure">Account</span></h2></li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark " asp-area="" asp-controller="Profile" asp-action="EditOffice"><i class="fa-sharp fa-solid fa-user-pen" style="color:floralwhite"></i><i class="fa-light fa-list-timeline" style="color:floralwhite"></i>&nbsp;<span style="color:white">Edit</span></a>
                         </li>
                         <li class="nav-item">
-                            <i class="fas fa-home"></i>
-                            <a class="nav-link text-dark fas fa-home" asp-area="" asp-controller="Profile" asp-action="Index2"><span style="color:white">Logout</span></a>
+                            <a class="nav-link text-dark " asp-area="" asp-controller="Profile" asp-action="Index2"><i class=" fa-solid fa-right-to-bracket" style="color:floralwhite"></i>&nbsp;<span style="color:white">Logout</span></a><hr color="white" />
                         </li>
                         @*<li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>*@
                     </ul>
                 </div>
-                @* </div>
-                </nav>*@
+
+
+
+
+
+
+
+                @* </div>*@
+                </nav>
         </ul>    @*</header>*@
         @* </div>*@
     </div>
-    <div class="container">
+
+    <div class='dashboard-app'>
+        <div class="container">
+           
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+
+
+
+
 
 
     <footer class="border-top footer text-muted">
@@ -89,5 +107,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+    </div>
 </body>
 </html>

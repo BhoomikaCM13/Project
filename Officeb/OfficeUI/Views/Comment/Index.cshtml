@@ -1,0 +1,47 @@
+﻿@model IEnumerable<OfficeEntity.Comment>
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<div>
+    <hr />
+    <a asp-controller="Comment" asp-action="CreateComment">Add Comment</a>
+    <hr />
+</div>
+
+
+
+<div class="row">
+    <div class="col-12">
+        <h2>Comment</h2>
+        <hr />
+        <table class="table table-light table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Content</th>
+                    <th>CreatedOn</th>
+                    <th>TaskId</th>
+                    <th>CreatedBy</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var comment in Model)
+                {
+                    <tr>
+                        <td>@comment.Id</td>
+                        <td>@comment.Content</td>
+                        <td>@comment.CreatedOn</td>
+                        <td>@comment.TaskId</td>
+                        <td>@comment.Profile.Name</td>
+                        <td><a asp-controller="Comment" asp-action="EditComment" asp-route-Id="@comment.Id">Edit</a></td>
+                        <td><a asp-controller="Comment" asp-action="DeleteComment" asp-route-Id="@comment.Id">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

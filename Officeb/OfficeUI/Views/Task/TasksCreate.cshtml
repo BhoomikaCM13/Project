@@ -1,0 +1,100 @@
+﻿@model OfficeEntity.Tasks;
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div>
+    <a asp-controller="Task" asp-action="Index">Index</a>
+
+</div>
+
+@*<form method="post" enctype="multipart/form-data">
+    <h2>Create Task</h2><hr />
+
+    <div class="form-group">
+        <label>Task Title</label>
+        <input type="text" asp-for="Title" class="form-control"
+               placeholder="Task Title" required />
+    </div>
+    <div class="form-group">
+        <label>Task Description</label>
+        <input type="text" asp-for="Description" class="form-control"
+               placeholder="Task Description" required />
+    </div>
+    <div class="form-group">
+        <label>CreatedOn</label>
+        <input type="date" asp-for="CreatedOn" class="form-control"
+               placeholder="CreatedOn" required />
+    </div>
+    <div class="form-group">
+        <label>CreatedBy</label>
+        <input type="text" asp-for="ProfileId" class="form-control"
+               placeholder="CreatedBy" required />
+    </div>
+    <span style="color:darkslateblue">User Id  </span><space></space>
+
+    <span style="color:darkgoldenrod">@Model.ProfileId</span>
+    <div class="form-group">
+        <label>Task Status</label>
+        <input type="text" asp-for="Status" class="form-control"
+               placeholder="CreatedOn" required />
+    </div>
+    <input type="submit" value="Save" class="btn btn-outline-success" />
+    <input type="button" value="Reset" class="btn btn-outline-secondary" />
+    <hr />
+    @if (ViewBag.Status == "Ok")
+    {
+        <div class="alert alert-success">
+            @ViewBag.message;
+        </div>
+    }
+
+    else if (ViewBag.Status == "Error")
+    {
+        <div class="alert alert-danger">
+            @ViewBag.message;
+        </div>
+    }
+</form>*@
+<div class="container-fluid mt-4">
+    <div class="card o-hidden border-0 shadow-lg">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Create New Task</h1>
+                        </div>
+                        <form class="user" [formGroup]='taskForm' (ngSubmit)='create()'>
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" class="form-control" formControlName="Title">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Description</label>
+                                <ckeditor [editor]="Editor" formControlName="Description"></ckeditor>
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="submit"
+                                            class="btn btn-success btn-user btn-block my-4">
+                                        Create
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-outline-danger btn-user btn-block my-4"
+                                            routerLink="/tasks">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
