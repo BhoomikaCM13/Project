@@ -18,7 +18,11 @@ namespace OfficeEntity
 
         public DateTime CreatedOn { get; set; }
 
-        public int countcomment { get; set; }
+        public int countcommenttoday { get; set; }
+
+        public int countcommentmonth { get; set; }
+
+        public int countcommentyear { get; set; }
 
         [ForeignKey("Task")]
         public int TaskId { get; set; }

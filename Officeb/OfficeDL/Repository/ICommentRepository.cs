@@ -14,6 +14,6 @@ namespace OfficeDL.Repository
         Comment GetCommentById(int commentid);
         IEnumerable<Comment> GetComments();
 
-      List<Comment> GetCommentsByTaskId(int taskId);
+     Tasks GetCommentsByTaskId(int taskId);
     }
 }

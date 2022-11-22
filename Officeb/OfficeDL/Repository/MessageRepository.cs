@@ -28,7 +28,7 @@ namespace OfficeDL.Repository
         }
         public IEnumerable<Message> GetMessage()
         {
-            return _OfficeDbcontext.messages.Include(obj=>obj.Profile).ToList();
+            return _OfficeDbcontext.messages.Include(obj => obj.Profile).ToList();
         }
         public Message GetMessageById(int Messageid)
         {

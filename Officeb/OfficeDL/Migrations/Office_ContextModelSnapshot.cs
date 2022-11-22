@@ -40,7 +40,13 @@ namespace OfficeDL.Migrations
                     b.Property<int>("TaskId")
                         .HasColumnType("int");
 
-                    b.Property<int>("countcomment")
+                    b.Property<int>("countcommentmonth")
+                        .HasColumnType("int");
+
+                    b.Property<int>("countcommenttoday")
+                        .HasColumnType("int");
+
+                    b.Property<int>("countcommentyear")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -50,6 +56,45 @@ namespace OfficeDL.Migrations
                     b.HasIndex("TaskId");
 
                     b.ToTable("comments");
+                });
+
+            modelBuilder.Entity("OfficeEntity.Dashboard", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("GetMonthTask")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GetMonthcomment")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GetMonthmsg")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GetTodayTask")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GetTodaycomment")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GetTodaymsg")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GetYearTask")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GetYearcomment")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GetYearmsg")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("dashboards");
                 });
 
             modelBuilder.Entity("OfficeEntity.Message", b =>
@@ -74,9 +119,6 @@ namespace OfficeDL.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("countmessage")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -141,7 +183,13 @@ namespace OfficeDL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("counttask")
+                    b.Property<int>("countmonth")
+                        .HasColumnType("int");
+
+                    b.Property<int>("counttoday")
+                        .HasColumnType("int");
+
+                    b.Property<int>("countyear")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -160,7 +208,7 @@ namespace OfficeDL.Migrations
                         .IsRequired();
 
                     b.HasOne("OfficeEntity.Tasks", "Task")
-                        .WithMany()
+                        .WithMany("comments")
                         .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -190,6 +238,11 @@ namespace OfficeDL.Migrations
                         .IsRequired();
 
                     b.Navigation("profile");
+                });
+
+            modelBuilder.Entity("OfficeEntity.Tasks", b =>
+                {
+                    b.Navigation("comments");
                 });
 #pragma warning restore 612, 618
         }

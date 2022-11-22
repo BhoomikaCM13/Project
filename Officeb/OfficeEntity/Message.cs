@@ -22,8 +22,7 @@ namespace OfficeEntity
 
         public DateTime CreatedOn { get; set; }
 
-        public int countmessage { get; set; }
-
+       
         [Required]
         [ForeignKey("Profile")]
         public int PId { get; set; }

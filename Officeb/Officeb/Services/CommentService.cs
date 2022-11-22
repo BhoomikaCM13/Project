@@ -35,7 +35,7 @@ namespace Officeb.Services
         {
             return _commentRepository.GetComments();
         }
-        public IEnumerable<Comment> GetCommentsByTaskId(int taskId)
+        public Tasks GetCommentsByTaskId(int taskId)
         {
             return _commentRepository.GetCommentsByTaskId(taskId);
         }

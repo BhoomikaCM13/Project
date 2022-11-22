@@ -4,10 +4,10 @@
 }
 <div>
     <hr />
-    <a asp-controller="Comment" asp-action="Index">Comments</a>
+    <a asp-controller="Comment" asp-action="Index" >Comments</a>
     <hr />
 </div>
-<form method="post" enctype="multipart/form-data">
+@*<form method="post" enctype="multipart/form-data">
   
     <div class=" form-group">
         <label>Content</label>
@@ -25,8 +25,6 @@
         <label>PID</label>
         <input type="text" asp-for="PId" class="form-control" required />
     </div>
-
-
     <input type="submit" value="Save" class="btn btn-outline-success" />
     <input type="button" value="Reset" class="btn btn-outline-secondary" />
     <hr />
@@ -42,4 +40,64 @@
             @ViewBag.message
         </div>
     }
-</form>
+</form>*@
+<div class="container-fluid mt-4">
+    <div class="card o-hidden border-0 shadow-lg my-4">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="p-3">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Create New Comment</h1>
+                        </div>
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>Content</label>
+                                <textarea class="form-control" asp-for="Content" rows="8" placeholder="Enter Content"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>CreatedOn</label>
+                                <input type="date" asp-for="CreatedOn" class="form-control" placeholder="Enter CreatedOn" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Task Id</label>
+                                <input type="text" asp-for="TaskId" class="form-control" placeholder="Enter Task Id" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Profile Id</label>
+                                <input type="text" asp-for="PId" class="form-control" placeholder="Enter Profile Id" required />
+                            </div>
+                            <div class="form-group">
+                                <input hidden type="number" class="form-control" formControlName="TaskId">
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="submit" value="Create" class="btn btn-success btn-user btn-block my-4" />
+
+                                </div>
+                                <div class="col-6">
+
+                                    <input type="reset" value="Cancel" class="btn btn-outline-danger btn-user btn-block my-4" />
+                                </div>
+
+                            </div>
+                            @if (ViewBag.status == "Ok")
+                            {
+            <div class="alert alert-success">
+                                    @ViewBag.message
+            </div>
+                            }
+                            else if (ViewBag.status == "Error")
+                            {
+            <div class="alert alert-danger">
+                                    @ViewBag.message
+            </div>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

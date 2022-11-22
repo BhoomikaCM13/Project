@@ -30,7 +30,7 @@ namespace OfficeUI.Controllers
             {
                 int Id = Convert.ToInt32(TempData["LoginID"]);
                 TempData.Keep();
-                string endpoint = _configuration["WebApiBasedUrl"] + "Profile/GetProfileById?profileId=" + Id;
+                string endpoint = _configuration["WebApiBasedUrl"] + "Profile/GetProfileById?profileId="+Id;
                 using (var response = await client.GetAsync(endpoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -103,7 +103,7 @@ namespace OfficeUI.Controllers
                         int loginID = JsonConvert.DeserializeObject<int>(result);
                         TempData["LoginID"]=loginID.ToString();
                         TempData.Keep();
-                        return RedirectToAction("EditOffice", "Profile");
+                        return RedirectToAction("GetFullCount", "MessageCount");
                     }
                     else
                     {
@@ -145,6 +145,7 @@ namespace OfficeUI.Controllers
             using (HttpClient client = new HttpClient())
             {
                 int Id = Convert.ToInt32(TempData["LoginID"]);
+                TempData.Keep();
                 string endpoint = _configuration["WebApiBasedUrl"] + "Profile/GetProfileById?profileId=" + Id;
                 using (var response = await client.GetAsync(endpoint))
                 {
@@ -173,18 +174,19 @@ namespace OfficeUI.Controllers
                     {
                         ViewBag.status = "Ok";
                         ViewBag.message = "Office details updated successfully";
-
+                         
                     }
                     else
                     {
                         ViewBag.status = "Error";
-                        ViewBag.message = "wrong entity";
+                        ViewBag.message = "wrong entries";
                     }
                 }
             }
             
 
             return View(profile);
+        
         }
     }
 }

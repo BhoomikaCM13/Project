@@ -48,7 +48,10 @@
 </div>*@
 
 
+
+
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <script src="https://kit.fontawesome.com/bf21391385.js" crossorigin="anonymous"></script>
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between m-4">
     <h1 class="h3 mb-0 text-primary"><strong>Tasks Board</strong></h1>
@@ -69,8 +72,9 @@
                 </div>
                 @foreach(var items in Model)
                 {
-                    
-                <div class="card-body" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="toDoTasks"
+                    @if (items.Status.ToString() == "ToDo")
+                    {
+                        <div class="card-body" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="toDoTasks"
                      [cdkDropListConnectedTo]="[secondList, thirdList]" #firstList="cdkDropList"
                      (cdkDropListDropped)="drop($event, 0)">
                     
@@ -87,32 +91,33 @@
                                     Created By:
                                         <a routerLink="/profile/user/@items.profile.Name"><strong>@items.profile.Name</strong></a>
                                 </small> <br>
-                                    <small class="text-muted">
-                                        Comments: <strong>
+                                    @*<small class="text-muted">
+                                        Description: <strong>
                                             @items.Description
                                         </strong>
-                                    </small>
-                                    <small class="text-muted">
-                                        Comments: <strong>
+                                    </small>*@
+                                   @* <small class="text-muted">
+                                       Status: <strong>
                                             @items.Status
                                         </strong>
-                                    </small>
-                                    <small class="text-muted">
-                                        Comments: <strong>
+                                    </small>*@
+                                   @* <small class="text-muted">
+                                        Title: <strong>
                                             @items.Title
                                         </strong>
-                                    </small>
+                                    </small>*@
                             </p>
                             <!-- Circle Buttons (Small) -->
-                            <a routerLink="/tasks/{{task.id}}" class="btn btn-primary btn-circle btn-sm ml-4"
+                            @*<a routerLink="/tasks/{{task.id}}" class="btn btn-primary btn-circle btn-sm ml-4"
                                title="See Details">
                                 <fa-icon [icon]="faInfo" style="color: white;"></fa-icon>
-                            </a>
-                            <div *ngIf="currentUser.id == task.userId" style="display: inline;">
-                                    <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@items.Id>Edit</a>
-                                    <a asp-controller="Task" asp-action="DeleteTasks" asp-route-taskId=@items.Id>Delete</a>
-                            </div>
-                                <a asp-controller="Comment" asp-action="Index" asp-route-taskId=@items.Id>Comment</a>
+                            </a>*@
+                                    <div *ngIf="currentUser.id == message.userId" style="display: inline;">
+                                        <a asp-controller="Task" asp-action="Index1" asp-route-taskId=@items.Id><i class="fa-solid fa-circle-info" style="color:gray; height:2px "> </i> </a>
+                                        <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@items.Id> <i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a>&nbsp;
+                                        <a asp-controller="Task" asp-action="DeleteTasks" asp-route-taskId=@items.Id> <i class="fa-solid fa-trash" style="color:red"></i></a>
+                                                                  </div>
+                              @*  <a asp-controller="Comment" asp-action="Index" asp-route-taskId=@items.Id>Comment</a>*@
                             @*<a (click)="changeStatus(task.id, 1)" class="btn btn-secondary btn-circle ml-4"
                                title="Move to Doing">
                                 <fa-icon [icon]="faArrowRight" style="color: white;"></fa-icon>
@@ -121,9 +126,10 @@
                     </div>
                 </div>
                 }
+                }
             </div>
         </div>
-        
+       
         <!-- Second Column -->
         <div class="col-lg-4">
             <!-- Background Gradient Utilities -->
@@ -131,26 +137,36 @@
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-warning">Doing</h6>
                 </div>
+                  @foreach(var second in Model)
+                {
+                    @if (second.Status.ToString() == "Doing")
+                    {
                 <div class="card-body" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="doingTasks"
                      [cdkDropListConnectedTo]="[firstList, thirdList]" #secondList="cdkDropList"
                      (cdkDropListDropped)="drop($event, 1)">
                     <div class="card mb-4 py-3 border-left-warning pop" cdkDrag *ngFor="let task of doingTasks">
-                        <textarea hidden id="taskId">{{task.id}}</textarea>
+                        <textarea hidden id="taskId">@second.Id</textarea>
                         <div class="card-body text-center">
-                            <p><a routerLink="/tasks/{{task.id}}"><strong>{{task.title}}</strong></a></p>
+                            <p><a routerLink="/tasks/{{task.id}}"><strong>@second.Title</strong></a></p>
                             <p>
                                 <small class="text-muted">
                                     Created On:
-                                    <strong>{{task.createdOn| date:'dd.MM.yyyy'}}</strong>
+                                    <strong>@second.CreatedOn</strong>
                                 </small> |
                                 <small class="text-muted">
                                     Created By:
-                                    <a routerLink="/profile/user/{{task.userId}}"><strong>{{task.userName}}</strong></a>
+                                        <a routerLink="/profile/user/@second.profile.Name"><strong>@second.profile.Name</strong></a>
                                 </small> <br>
-                                <small class="text-muted">Comments: <strong>{{task.commentsCount}}</strong></small>
+                              @*  <small class="text-muted">Comments: <strong>@second.Description</strong></small>*@
                             </p>
                             <!-- Circle Buttons (Small) -->
-                            <a (click)="changeStatus(task.id, 0)" class="btn btn-secondary btn-circle ml-4"
+
+                                    <div *ngIf="currentUser.id == message.userId" style="display: inline;">
+                                        <a asp-controller="Task" asp-action="Index1" asp-route-taskId=@second.Id><i class="fa-solid fa-circle-info" style="color:gray; height:2px "> </i> </a>
+                                        <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@second.Id> <i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a> &nbsp;
+                                        <a asp-controller="Task" asp-action="DeleteTasks" asp-route-taskId=@second.Id> <i class="fa-solid fa-trash" style="color:red"></i></a>
+                                    </div>
+                            @*<a (click)="changeStatus(task.id, 0)" class="btn btn-secondary btn-circle ml-4"
                                title="Move to TO DO">
                                 <fa-icon [icon]="faArrowLeft" style="color: white;"></fa-icon>
                             </a>
@@ -171,12 +187,15 @@
                             <a (click)="changeStatus(task.id, 2)" class="btn btn-secondary btn-circle ml-4"
                                title="Move to DONE">
                                 <fa-icon [icon]="faArrowRight" style="color: white;"></fa-icon>
-                            </a>
+                            </a>*@
                         </div>
                     </div>
                 </div>
+                }
+                }
             </div>
         </div>
+       
 
         <!-- Third Column -->
         <div class="col-lg-4">
@@ -185,26 +204,37 @@
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-success">DONE</h6>
                 </div>
+               @foreach(var third in Model)
+               {
+                    @if (third.Status.ToString() == "Done")
+                    {
+               
                 <div class="card-body" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="doneTasks"
                      [cdkDropListConnectedTo]="[firstList, secondList]" #thirdList="cdkDropList"
                      (cdkDropListDropped)="drop($event, 2)">
                     <div class="card mb-4 py-3 border-left-success pop" cdkDrag *ngFor="let task of doneTasks">
-                        <textarea hidden id="taskId">{{task.id}}</textarea>
+                        <textarea hidden id="taskId">@third.Id</textarea>
                         <div class="card-body text-center">
-                            <p><a routerLink="/tasks/{{task.id}}"><strong>{{task.title}}</strong></a></p>
+                            <p><a routerLink="/tasks/{{task.id}}"><strong>@third.Title</strong></a></p>
                             <p>
                                 <small class="text-muted">
                                     Created On:
-                                    <strong>{{task.createdOn| date:'dd.MM.yyyy'}}</strong>
+                                    <strong>@third.CreatedOn</strong>
                                 </small> |
                                 <small class="text-muted">
                                     Created By:
-                                    <a routerLink="/profile/user/{{task.userId}}"><strong>{{task.userName}}</strong></a>
+                                        <a routerLink="/profile/user/@third.profile.Name"><strong>@third.profile.Name</strong></a>
                                 </small> <br>
-                                <small class="text-muted">Comments: <strong>{{task.commentsCount}}</strong></small>
+                               @* <small class="text-muted">Comments: <strong>@third.Description</strong></small>*@
                             </p>
                             <!-- Circle Buttons (Small) -->
-                            <a (click)="changeStatus(task.id, 1)" class="btn btn-secondary btn-circle ml-4"
+
+                                    <div *ngIf="currentUser.id == message.userId" style="display: inline;">
+                                        <a asp-controller="Task" asp-action="Index1" asp-route-taskId=@third.Id><i class="fa-solid fa-circle-info" style="color:gray; height:2px "> </i> </a>
+                                        <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@third.Id> <i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a>&nbsp;
+                                        <a asp-controller="Task" asp-action="DeleteTasks" asp-route-taskId=@third.Id> <i class="fa-solid fa-trash" style="color:red"></i></a>
+                                    </div>
+                           @* <a (click)="changeStatus(task.id, 1)" class="btn btn-secondary btn-circle ml-4"
                                title="Move to Doing">
                                 <fa-icon [icon]="faArrowLeft" style="color: white;"></fa-icon>
                             </a>
@@ -220,11 +250,13 @@
                                 <a (click)="confirmDelete(task.title, task.id)"
                                    class="btn btn-danger btn-circle btn-sm ml-4" title="Delete">
                                     <fa-icon [icon]="faTrash" style="color: white;"></fa-icon>
-                                </a>
+                                </a>*@
                             </div>
                         </div>
                     </div>
-                </div>
+               
+                }
+                }
             </div>
         </div>
     </div>

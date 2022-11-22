@@ -40,19 +40,25 @@ namespace OfficeDL.Repository
                     _OfficeDbcontext.SaveChanges();
                 }
 
-        public List<Comment> GetCommentsByTaskId(int taskId)
+        public Tasks GetCommentsByTaskId(int taskId)
         {
-            List<Comment> comments = _OfficeDbcontext.comments.Include(obj => obj.Task).Include(obj=>obj.Profile).ToList();
-            List<Comment> result = new List<Comment>();
-            foreach(var comment in comments)
+            var result = _OfficeDbcontext.tasks.Include(obj => obj.comments).Where(obj => obj.Id == taskId).ToList();
 
-            {
-                if( comment.TaskId== taskId)
-                {
-                    result.Add(comment);
-                }
-            }
-            return result;
+            //var result1 = _OfficeDbcontext.tasks.ToList().Where(obj => obj.Id == taskId).ToList();
+            //var result2=_OfficeDbcontext.comments.ToList().Where(obj=>obj.TaskId==taskId).ToList();
+            //List<Comment> comments = _OfficeDbcontext.comments.Include(obj => obj.Task).Include(obj=>obj.Profile).ToList();
+            //List<Comment> result = new List<Comment>();
+            //foreach(var comment in comments)
+
+            //{
+            //    if( comment.TaskId== taskId)
+            //    {
+            //        result.Add(comment);
+            //    }
+            ////}
+            //if (result.Count == 0)
+            //    return null;
+            return result[0];
         }
     }
         }

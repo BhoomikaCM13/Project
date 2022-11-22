@@ -28,14 +28,16 @@ namespace OfficeEntity
 
         public DateTime CreatedOn { get; set; }
 
-        public int counttask { get; set; }  
+        public int counttoday { get; set; }
 
+        public int countmonth { get; set; }
 
-        
+        public int countyear { get; set; }
         [ForeignKey("Profile")]
         public int ProfileId { get; set; }
 
         public Profile profile { get; set; }
-        
+
+        public ICollection<Comment> comments { get; set; }
     }
 }

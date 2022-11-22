@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OfficeDL.Repository
 {
@@ -41,7 +42,16 @@ namespace OfficeDL.Repository
 
         public Tasks GetTaskById(int tid)
         {
-            return _officeDbContext.tasks.Find(tid);
+            /*return _officeDbContext.tasks.Find(tid);*/
+            var tasks= _officeDbContext.tasks.Include(obj => obj.profile).ToList();
+            foreach (var model in tasks)
+            {
+                if (model.Id == tid)
+                {
+                    return model;
+                }
+            }
+            return null;
         }
 
 
@@ -50,8 +60,21 @@ namespace OfficeDL.Repository
             return _officeDbContext.tasks.Include(obj=>obj.profile).ToList();
         }
 
+        ////.Include(obj => obj.Task)
+        //public List<Task> GetTasksByTaskId(int taskId)
+        //{
+        //    List<Task> tasks = _officeDbContext.tasks.Include(obj => obj.Profile).ToList();
+        //    List<Task> result = new List<Task>();
+        //    foreach (var comment in tasks)
 
-        
+        //    {
+        //        if (comment.Id == taskId)
+        //        {
+        //            result.Add(comment);
+        //        }
+        //    }
+        //    return result;
+        //}
     }
 
 }

@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,8 +45,47 @@ namespace OfficeUI.Controllers
             }
             return View(taskresult);
         }
+        [HttpGet]
+        public async Task<IActionResult> Index1(int taskId)
+        {
+            Tasks tasks = null;
+            using (HttpClient client = new HttpClient())
+            {
+                string endPoint = _configuration["WebApiBasedUrl"] + "Task/GetTaskById?tid=" + taskId;
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        tasks = JsonConvert.DeserializeObject<Tasks>(result);
+                    }
+                }
+            }
+              
+            return View(tasks);
+        }
 
-     
+        //[HttpGet]
+        //public async Task<IActionResult> Index1()
+        //{
+        //    IEnumerable<Tasks> taskresult = null;
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        string endPoint = _configuration["WebApiBasedUrl"] + "Task/GetTask";
+        //        using (var response = await client.GetAsync(endPoint))
+        //        {
+        //            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        //            {
+        //                var result = await response.Content.ReadAsStringAsync();
+        //                taskresult = JsonConvert.DeserializeObject<IEnumerable<Tasks>>(result);
+
+
+        //            }
+        //        }
+        //    }
+        //    return View(taskresult);
+        //}
+
         public async Task<IActionResult> TasksCreate()
         {
             /*Profile profile = new Profile();
@@ -64,8 +104,6 @@ namespace OfficeUI.Controllers
             }*/
           Tasks tasks = new Tasks();
             tasks.ProfileId = Convert.ToInt32(TempData["LoginID"]);
-
-
             return View(tasks);
         }
         
@@ -117,11 +155,12 @@ namespace OfficeUI.Controllers
             return View(tasks);
         }
         [HttpPost]
-        public async Task<IActionResult> EditTasks(Tasks tasks)
+        public async Task<IActionResult> EditTasks(Tasks task)
         {
+           
             using (HttpClient client = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(tasks), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(task), Encoding.UTF8, "application/json");
                 string endPoint = _configuration["WebApiBasedUrl"] + "Task/UpdateTask";
                 using (var response = await client.PutAsync(endPoint, content))
                 {
@@ -156,7 +195,7 @@ namespace OfficeUI.Controllers
                     }
                 }
             }
-            return View(tasks);
+            return View();
         }
 
         [HttpPost]

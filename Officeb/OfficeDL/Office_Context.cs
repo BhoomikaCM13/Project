@@ -15,14 +15,16 @@ namespace OfficeDL
         {
 
         }
-       
+
         public DbSet<Profile> profile { get; set; }
         public DbSet<Comment> comments { get; set; }
         public DbSet<Tasks> tasks { get; set; }
         public DbSet<Message> messages { get; set; }
+
+        public DbSet<Dashboard> dashboards { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
-            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2235;Initial Catalog = final;Integrated Security = True;");
+            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2235;Initial Catalog = final1;Integrated Security = True;");
         }
     }
 }

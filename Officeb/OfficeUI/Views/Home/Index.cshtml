@@ -1,17 +1,14 @@
-﻿@model OfficeEntity.Profile
+﻿@model OfficeEntity.Dashboard;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*<h1>Index</h1>*@
-
 <div class='dashboard'>
-    
-    <!-- Topbar -->
+
     <div>
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between m-4">
-               
+
                 <h1 class="h3 mb-0 text-primary"><strong>Dashboard</strong></h1>
             </div>
         </nav>
@@ -31,7 +28,9 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Messages</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.todayMessagesCount}}</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetTodaymsg</div>
+
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                     </div>
                                     <div class="col-auto">
                                         <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
@@ -49,7 +48,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tasks</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.todayTasksCount}}</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetTodayTask</div>
                                     </div>
                                     <div class="col-auto">
                                         <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
@@ -91,7 +90,21 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Messages</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.monthMessagesCount}}</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetMonthmsg</div>
+                                        @*<table class="table table-light table-bordered table-hover">
+                                        @*<thead>
+                                        <tr>
+                                        <th>Count</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <tr>
+                                        <td><b>@Model.GetMonthmsg</b></td>
+
+
+                                        </table>*@
                                     </div>
                                     <div class="col-auto">
                                         <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
@@ -109,7 +122,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tasks</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.monthTasksCount}}</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetMonthTask</div>
                                     </div>
                                     <div class="col-auto">
                                         <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
@@ -151,7 +164,22 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Messages</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.yearMessagesCount}}</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetYearmsg</div>
+                                        @*<table class="table table-light table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                        <th></th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <tr>
+                                        <td>@Model.GetYearmsg</td>
+
+
+                                        </table>
+                                        *@
                                     </div>
                                     <div class="col-auto">
                                         <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
@@ -169,7 +197,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tasks</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.yearTasksCount}}</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetYearTask</div>
                                     </div>
                                     <div class="col-auto">
                                         <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
@@ -200,7 +228,9 @@
             </div>
         </div>
     </div>
+
 </div>
 
 
-/h1>
+
+

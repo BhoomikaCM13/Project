@@ -45,7 +45,7 @@ namespace ProfileAPI.Controllers
         }
 
         [HttpGet("GetCommentsByTaskId")]
-        public IEnumerable<Comment> GetCommentsByTaskId(int taskId)
+        public Tasks GetCommentsByTaskId(int taskId)
         {
           return  _commentservice.GetCommentsByTaskId(taskId);
         }

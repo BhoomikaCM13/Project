@@ -26,7 +26,7 @@ namespace OfficeUI.Controllers
             IEnumerable<Comment> result = null;
             using (HttpClient client = new HttpClient())
             {
-                    string endPoint = configuration["WebApiBasedUrl"] + "Comment/GetCommentsByTaskId?taskId=" +taskId;
+                string endPoint = configuration["WebApiBasedUrl"] + "Comment/GetCommentsByTaskId?taskId=" + taskId;
                     using (var response = await client.GetAsync(endPoint))
                     {
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)

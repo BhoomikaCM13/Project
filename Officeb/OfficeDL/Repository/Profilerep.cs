@@ -47,7 +47,10 @@ namespace OfficeDL.Repository
         }
         public Profile GetProfileById(int profileId)
         {
-            return _officecontext.profile.Find(profileId);
+            //return _officecontext.profile.Find(profileId);
+            var result = _officecontext.profile.ToList();
+            var profile=result.Where(obj=>obj.Id==profileId).FirstOrDefault();
+            return profile;
         }
         public IEnumerable<Profile> GetProfiles()
         {

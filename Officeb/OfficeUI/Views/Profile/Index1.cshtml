@@ -1,5 +1,237 @@
-﻿@model OfficeEntity.Profile
+﻿@model OfficeEntity.Dashboard;
 @{
-    Layout = "~/Views/Shared/_Layout1.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>loading</h1><i class="glyphicon glyphicon-user"></i> 
+<div class='dashboard'>
+
+    <div>
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between m-4">
+
+                <h1 class="h3 mb-0 text-primary"><strong>Dashboard</strong></h1>
+            </div>
+        </nav>
+        <!-- End of Topbar -->
+        <!-- Begin Page Content -->
+        <div class="container-fluid mt-4">
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between ml-4 mb-3">
+                <h1 class="h3 mb-0 text-gray-800">Today</h1>
+            </div>
+            <div class="row">
+                <!-- Messages Card -->
+                <div class="col-xl-3 col-md-6 ml-4 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <a routerLink="/messages">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Messages</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetTodaymsg</div>
+
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Tasks Card -->
+                <div class="col-xl-3 col-md-6 ml-4 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <a routerLink="/tasks">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tasks</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetTodayTask</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Comments Card -->
+                <div class="col-xl-3 col-md-6 ml-4 mb-4">
+                    <div class="card border-left-secondary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                        Tasks Comments
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.todayCommentsCount}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between ml-4 mb-3">
+                <h1 class="h3 mb-0 text-gray-800">This Month</h1>
+            </div>
+            <div class="row">
+                <!-- Messages Card -->
+                <div class="col-xl-3 col-md-6 ml-4 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <a routerLink="/messages">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Messages</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetMonthmsg</div>
+                                        @*<table class="table table-light table-bordered table-hover">
+                                        @*<thead>
+                                        <tr>
+                                        <th>Count</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <tr>
+                                        <td><b>@Model.GetMonthmsg</b></td>
+
+
+                                        </table>*@
+                                    </div>
+                                    <div class="col-auto">
+                                        <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Tasks Card -->
+                <div class="col-xl-3 col-md-6 ml-4 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <a routerLink="/tasks">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tasks</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetMonthTask</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Comments Card -->
+                <div class="col-xl-3 col-md-6 ml-4 mb-4">
+                    <div class="card border-left-secondary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                        Tasks Comments
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.monthCommentsCount}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between ml-4 mb-3">
+                <h1 class="h3 mb-0 text-gray-800">This Year</h1>
+            </div>
+            <div class="row">
+                <!-- Messages Card -->
+                <div class="col-xl-3 col-md-6 ml-4 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <a routerLink="/messages">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Messages</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetYearmsg</div>
+                                        @*<table class="table table-light table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                        <th></th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <tr>
+                                        <td>@Model.GetYearmsg</td>
+
+
+                                        </table>
+                                        *@
+                                    </div>
+                                    <div class="col-auto">
+                                        <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Tasks Card -->
+                <div class="col-xl-3 col-md-6 ml-4 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <a routerLink="/tasks">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tasks</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetYearTask</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Comments Card -->
+                <div class="col-xl-3 col-md-6 ml-4 mb-4">
+                    <div class="card border-left-secondary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                        Tasks Comments
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.yearCommentsCount}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+1>loading</h1><i class="glyphicon glyphicon-user"></i> 

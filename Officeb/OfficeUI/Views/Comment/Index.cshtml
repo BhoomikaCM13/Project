@@ -8,6 +8,55 @@
     <hr />
 </div>
 
+@*<!-- Content Row -->
+<div class="row">
+    <div class="col-lg-3 text-center">
+        <h1 class="h3 text-primary"><strong>Comments:</strong></h1>
+    </div>
+    <!-- Border Left Utilities -->
+    <div class="col-lg-8">
+        <div *ngFor="let comment of comments|slice:0:show">
+            <div class="card mb-4 py-3 border-left-primary">
+                <div class="card-body">
+                    @foreach(var item in Model)
+                    {
+                    <p>@item.Content</p>
+                    <p>
+                        <small class="text-muted">
+                            Author:
+                            <a routerLink="/profile/user/{{comment.userId}}"><strong>@item.Profile.Name</strong></a>
+                        </small> |
+                        <small class="text-muted">
+                            Created On:
+                            <strong>@item.CreatedOn</strong>
+                        </small>
+                    </p>
+                    <!-- Circle Buttons (Small) -->
+                    <div *ngIf="currentUser.id == comment.userId" style="display: inline;">
+                        <a (click)="editComment(comment.id)" class="btn btn-warning btn-circle btn-sm ml-2 mt-2"
+                           title="Edit">
+                            <fa-icon [icon]="faEdit" style="color: white;"></fa-icon>
+                        </a>
+                        <a (click)="confirmDeleteComment(comment.id)"
+                           class="btn btn-danger btn-circle btn-sm ml-2 mt-2" title="Delete">
+                            <fa-icon [icon]="faTrash" style="color: white;"></fa-icon>
+                        </a>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="mb-4">
+            <a *ngIf="show<comments.length" (click)="show = show + 3" class="btn btn-primary btn-icon-split">
+                <span class="icon text-white-50">
+                    <fa-icon [icon]="faArrowDown"></fa-icon>
+                </span>
+                <span class="text" style="color: white;">Load More</span>
+            </a>
+        </div>
+    </div>
+</div>*@
+
 
 
 <div class="row">
@@ -28,7 +77,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var comment in Model)
+             @*   @foreach (var comment in Model)
                 {
                     <tr>
                         <td>@comment.Id</td>
@@ -38,9 +87,10 @@
                         <td>@comment.Profile.Name</td>
                         <td><a asp-controller="Comment" asp-action="EditComment" asp-route-Id="@comment.Id">Edit</a></td>
                         <td><a asp-controller="Comment" asp-action="DeleteComment" asp-route-Id="@comment.Id">Delete</a></td>
+                        <td><a asp-controller="Comment" asp-action="Index" asp-route-taskId="@comment.TaskId">Comment</a></td>
                     </tr>
                 }
-            </tbody>
+            </tbody>*@
         </table>
     </div>
 </div>
