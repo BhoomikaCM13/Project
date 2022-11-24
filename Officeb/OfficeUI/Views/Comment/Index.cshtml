@@ -3,9 +3,7 @@
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 <div>
-    <hr />
-    <a asp-controller="Comment" asp-action="CreateComment">Add Comment</a>
-    <hr />
+   
 </div>
 
 @*<!-- Content Row -->
@@ -69,7 +67,7 @@
                     <th>Id</th>
                     <th>Content</th>
                     <th>CreatedOn</th>
-                    <th>TaskId</th>
+                    <th>taskId</th>
                     <th>CreatedBy</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -77,20 +75,20 @@
                 </tr>
             </thead>
             <tbody>
-             @*   @foreach (var comment in Model)
+             @*  @foreach (var comment in Model)
                 {
                     <tr>
                         <td>@comment.Id</td>
                         <td>@comment.Content</td>
                         <td>@comment.CreatedOn</td>
-                        <td>@comment.TaskId</td>
+                        <td>@comment.taskId</td>
                         <td>@comment.Profile.Name</td>
                         <td><a asp-controller="Comment" asp-action="EditComment" asp-route-Id="@comment.Id">Edit</a></td>
                         <td><a asp-controller="Comment" asp-action="DeleteComment" asp-route-Id="@comment.Id">Delete</a></td>
                         <td><a asp-controller="Comment" asp-action="Index" asp-route-taskId="@comment.TaskId">Comment</a></td>
                     </tr>
-                }
-            </tbody>*@
+                }*@
+            </tbody>
         </table>
     </div>
 </div>

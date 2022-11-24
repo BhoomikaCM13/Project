@@ -2,7 +2,57 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-<div class=" row" >
+
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between m-4">
+        <h1 class="h3 mb-0 text-primary"><strong>User Information</strong></h1>
+    </div>
+</nav>
+<!-- End of Topbar -->
+<!-- Begin Page Content -->
+<div class="container-fluid mt-4">
+    <div class="col-xl-6 col-md-6 mb-4 ml-4">
+        <div class="card border-left-secondary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+
+                        <p class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            Username: <span class="my-3 font-weight-bold text-gray-500" style="color:black">@Model.UserName</span>
+                        </p>
+                        @*<div class="row">
+                            <div class="col-6">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">User Name</div>
+                            </div><div class="col-6">*@
+                        @*<div class="h5 my-3 font-weight-bold text-gray-800">@Model.UserName</div>*@
+                            </div>
+                        </div>
+                        <p class="text-sm">
+                            Name: <strong>@Model.Name</strong><br>
+                            Email: <strong>@Model.Email</strong><br>
+                            Position: <strong>@Model.Position</strong><br>
+                            Department: <strong>@Model.Department</strong>
+                        </p>
+                        <!-- Circle Buttons (Small) -->
+                        <div *ngIf="currentUser?.id == profile?.userId">
+                            <div><a asp-controller="Profile" asp-action="EditOffice"><i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a></div>
+
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <fa-icon [icon]="faUserTag" class="fa-10x text-gray-300"></fa-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@*<div class=" row" >
     <div class="col-12">
         <h3>user Profile</h3>
         <hr />
@@ -32,4 +82,4 @@
 
         <span style="color:black">@Model.Department</span>
     </div>
-</div>
+</div>*@

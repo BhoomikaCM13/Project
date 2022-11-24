@@ -72,6 +72,27 @@ namespace OfficeUI.Controllers
             message1.GetYearTask = tasks2;
 
 
+            List<Comment> comment = new List<Comment>();
+
+            comment = db.comments.ToList();
+
+
+
+            var commentMonth = (from row in comment
+                                where row.CreatedOn.Month == System.DateTime.UtcNow.Month
+                                select row).Count();
+            message1.GetMonthcomment = commentMonth;
+
+            var commentToday = (from row in comment
+                                where row.CreatedOn.Date == System.DateTime.Today
+                                select row).Count();
+            message1.GetTodaycomment = commentToday;
+
+
+            var commentYear = (from row in comment
+                               where row.CreatedOn.Year == System.DateTime.UtcNow.Year
+                               select row).Count();
+            message1.GetYearcomment = commentYear;
 
 
             return View(message1);

@@ -22,9 +22,10 @@ namespace OfficeDL
         public DbSet<Message> messages { get; set; }
 
         public DbSet<Dashboard> dashboards { get; set; }
+        public DbSet<TaskBoard> taskboards { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
-            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2235;Initial Catalog = final1;Integrated Security = True;");
+            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2235;Initial Catalog = final5;Integrated Security = True;");
         }
     }
 }

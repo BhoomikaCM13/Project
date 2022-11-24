@@ -34,7 +34,8 @@
     }
     <center><div class="btn btn-secondary"><a asp-controller="Profile" asp-action="Register">Register</a></div></center>
 </form>*@
-<div class="row justify-content-center">
+
+    <div class="row justify-content-center">
     <div class="col-xl-10 col-lg-12 col-md-9">
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
@@ -45,7 +46,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Welcome</h1>
                             </div>
-                            <form method="post">
+             <form method="post">           
     <div class="form-group">
         <div class="text-center">
             <label for="Email">Email</label>
@@ -56,7 +57,7 @@
         <div class="text-center">
             <label for="Password"><i class="glyphicon glyphicon-user"></i>Password</label>
         </div>
-        <input type="password" class="form-control" asp-for="Password">
+        <input type="text" class="form-control" asp-for="Password">
     </div>
     <center><input type="submit" class="btn btn-primary" value="Login" asp-route-Id="Id"></center>
     <hr />
@@ -73,7 +74,7 @@
         </div>
     }
                                 <center><h5>Don't have an account?</h5><div class="btn btn-outline-secondary"><a asp-controller="Profile" asp-action="Register">Register</a></div></center>
-</form>
+                            </form>
 
                         </div>
                     </div>
@@ -82,3 +83,4 @@
         </div>
     </div>
 </div>
+

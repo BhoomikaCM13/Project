@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using OfficeEntity;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -20,13 +21,13 @@ namespace OfficeUI.Controllers
         }
        
         [HttpGet]
-        public async Task<IActionResult> Index(int taskId)
+        public async Task<IActionResult> Index()
         {
           
             IEnumerable<Comment> result = null;
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = configuration["WebApiBasedUrl"] + "Comment/GetCommentsByTaskId?taskId=" + taskId;
+                string endPoint = configuration["WebApiBasedUrl"] + "Comment/GetComments";
                     using (var response = await client.GetAsync(endPoint))
                     {
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -49,6 +50,13 @@ namespace OfficeUI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateComment(Comment comment)
         {
+            int ProfileId = Convert.ToInt32(TempData["LoginID"]);
+            TempData.Keep();
+            comment.PId = ProfileId;
+            comment.CreatedOn = DateTime.UtcNow;
+            int taskId_ = Convert.ToInt32(TempData["TaskId"]);
+            TempData.Keep();
+            comment.taskId = taskId_;
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
@@ -82,6 +90,13 @@ namespace OfficeUI.Controllers
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         comment = JsonConvert.DeserializeObject<Comment>(result);
+
+                        //Get temporary coomentid from  tempdata
+                        int commentId = comment.Id;
+                        TempData["_commentid"] = commentId;
+                        TempData.Keep();
+
+
                     }
                 }
             }
@@ -91,6 +106,16 @@ namespace OfficeUI.Controllers
         [HttpPost]
         public async Task<IActionResult> EditComment(Comment comment)
         {
+            int ProfileId = Convert.ToInt32(TempData["LoginID"]);
+            TempData.Keep();
+            int commentid_ = Convert.ToInt32(TempData["_commentid"]);
+            TempData.Keep();
+            comment.PId = ProfileId;
+            comment.CreatedOn = DateTime.UtcNow;
+            comment.Id = commentid_;
+            int taskId_ = Convert.ToInt32(TempData["TaskId"]);
+            TempData.Keep();
+            comment.taskId= taskId_;
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
@@ -114,40 +139,43 @@ namespace OfficeUI.Controllers
                 return View();
             }
         
-        public async Task<IActionResult> DeleteComment(int Id)
-        {
-            Comment comment = null;
-            using (HttpClient client = new HttpClient())
-            {
-                string endPoint = configuration["WebApiBasedUrl"] + "Comment/GetCommentById?commentId=" + Id;
-                using (var response = await client.GetAsync(endPoint))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        var result = await response.Content.ReadAsStringAsync();
-                        comment = JsonConvert.DeserializeObject<Comment>(result);
-                    }
-                }
-            }
-            return View(comment);
-        }
+        //public async Task<IActionResult> DeleteComment(int Id)
+        //{
+        //    Comment comment = null;
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        string endPoint = configuration["WebApiBasedUrl"] + "Comment/GetCommentById?commentId=" + Id;
+        //        using (var response = await client.GetAsync(endPoint))
+        //        {
+        //            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        //            {
+        //                var result = await response.Content.ReadAsStringAsync();
+        //                comment = JsonConvert.DeserializeObject<Comment>(result);
+        //            }
+        //        }
+        //    }
+        //    return View(comment);
+        //}
 
 
-        [HttpPost]
-        public async Task<IActionResult> DeleteComment(Comment comment)
+    
+        public async Task<IActionResult> DeleteComment(int commentid)
         {
+
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
 
             {
               
-                    string endPoint = configuration["WebApiBasedUrl"] + "Comment/DeleteComment?commentId=" + comment.Id;
+                    string endPoint = configuration["WebApiBasedUrl"] + "Comment/DeleteComment?commentId=" + commentid;
                     using (var response = await client.DeleteAsync(endPoint))
                     {
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
                         {
                             ViewBag.status = "Ok";
                             ViewBag.message = "Done";
+                            return RedirectToAction("Index", "Task");
+
                         }
                         else
                         {

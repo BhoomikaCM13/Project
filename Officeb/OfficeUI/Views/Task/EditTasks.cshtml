@@ -3,11 +3,6 @@
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
-<div>
-    <a asp-controller="Task" asp-action="Index">Index</a>
-
-</div>
-
 <!-- Begin Page Content -->
 <div class="container-fluid mt-4">
     <div class="card o-hidden border-0 shadow-lg">
@@ -21,8 +16,7 @@
                             <p class="mb-4">
                                 <small>
                                     Created On: <strong>
-                                        
-                                            <input type="date" asp-for="CreatedOn" class="form-control"/>
+                                        <span>@DateTime.Now</span>
                                     </strong>
                                 </small>
                             </p>
@@ -41,22 +35,11 @@
                            
                             <div class="form-group">
                                 <label for="Status">Status</label>
-                                @*<input type="text" asp-for="Status" class="form-control" required />*@
                                 <select class="form-control" asp-for="Status">
                                     <option value="1">ToDo</option>
                                     <option value="2">Doing</option>
                                     <option value="3">Done</option>
                                 </select>
-                            </div>
-                           <div class="form-group">
-        <label>Profile Id</label>
-        <input type="text" asp-for="ProfileId"  class="form-control"
-               placeholder="createdby" required />
-    </div>
-                            <div class="form-group">
-                                <label>Task Id</label>
-                                <input type="text" asp-for="Id" class="form-control"
-                                       placeholder="task id" required />
                             </div>
                             <div class="row">
                               
@@ -65,10 +48,6 @@
 
                                     </div>
                                     
-                                       @* <div class="col-6">
-                                            <input type="reset" value="Cancel" class="btn btn-success btn-user btn-block my-4" />
-
-                                        </div>*@
                             </div>
                             @if (ViewBag.Status == "Ok")
                             {
@@ -89,54 +68,3 @@
         </div>
     </div>
 </div>
-@*<form method="post" enctype="multipart/form-data">
-    <h2>Edit Task</h2><hr />
-    <div class="form-group">
-        <label>Task Id</label>
-        <input type="text" asp-for="Id" class="form-control"
-               placeholder="Task Id" required />
-    </div>
-    <div class="form-group">
-        <label>Task Title</label>
-        <input type="text" asp-for="Title" class="form-control"
-               placeholder="Task Title" required />
-    </div>
-    <div class="form-group">
-        <label>Task Description</label>
-        <input type="text" asp-for="Description" class="form-control"
-               placeholder="Task Description" required />
-    </div>
-    <div class="form-group">
-        <label>CreatedOn</label>
-        <input type="text" asp-for="CreatedOn" class="form-control"
-               placeholder="CreatedOn" required />
-    </div>
-    <div class="form-group">
-        <label>CreatedBy</label>
-        <input type="text" asp-for="ProfileId"  class="form-control"
-               placeholder="CreatedBy" required />
-    </div>
-    <div class="form-group">
-        <label>Task Status</label>
-        <input type="text" asp-for="Status" class="form-control"
-               placeholder="Status" required />
-    </div>
-    <input type="submit" value="Save" class="btn btn-outline-success" />
-    <input type="button" value="Reset" class="btn btn-outline-secondary" />
-    <hr />
-    @if (ViewBag.Status == "Ok")
-    {
-        <div class="alert alert-success">
-            @ViewBag.message;
-        </div>
-    }
-
-    else if (ViewBag.Status == "Error")
-    {
-        <div class="alert alert-danger">
-            @ViewBag.message;
-        </div>
-    }
-</form>*@
-
-

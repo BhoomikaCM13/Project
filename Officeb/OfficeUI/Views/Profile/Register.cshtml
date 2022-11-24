@@ -91,7 +91,7 @@
                                             <div class="text-center">
                                                 <label for="Password">Password</label>
                                             </div>
-                                            <input type="password" class="form-control" asp-for="Password">
+                                            <input type="text" class="form-control" asp-for="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="text-center">
@@ -99,11 +99,25 @@
                                             </div>
                                             <input type="text" class="form-control" asp-for="Position">
                                         </div>
-                                        <div class="form-group">
+                                        @*<div class="form-group">
                                             <div class="text-center">
                                                 <label for="Department">Department</label>
                                             </div>
                                             <input type="text" class="form-control" asp-for="Department">
+                                        </div>*@
+                                        <div class=" =form-group">
+                                            <label>Department</label>
+                                            <select class="form-control" title="Choose" asp-for="Department">
+                                                <option disabled>Choose</option>
+                                                <option value="Production">Production</option>
+                                                <option value="Research and Development">Research and Development</option>
+                                                <option value="Testing and Maintainance">Testing and Maintainance</option>
+                                                <option value="Sales">Sales</option>
+                                                <option value="Marketing">Marketing</option>
+                                                <option value="Human Resources">Human Resources</option>
+                                                <option value="Accounting">Accounting</option>
+                                                <option value="Others">Others</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <div class="text-center">

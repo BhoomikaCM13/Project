@@ -18,10 +18,7 @@ namespace OfficeUI.Controllers
         {
             _configuration = configuration;
         }
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+        
         [HttpGet]
         public async Task<IActionResult> ShowAllProfiles()
         {
@@ -43,15 +40,7 @@ namespace OfficeUI.Controllers
             return View(profile);
 
         }
-        public IActionResult Index1()
-        {
-            return View();
-        }
         public IActionResult Index2()
-        {
-            return View();
-        }
-        public IActionResult Index3()
         {
             return View();
         }
@@ -101,22 +90,27 @@ namespace OfficeUI.Controllers
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         int loginID = JsonConvert.DeserializeObject<int>(result);
-                        TempData["LoginID"]=loginID.ToString();
-                        TempData.Keep();
-                        return RedirectToAction("GetFullCount", "MessageCount");
-                    }
-                    else
-                    {
-                        ViewBag.status = "Error";
-                        ViewBag.message = "Wrong credentials!";
+                        if (loginID == -1)
+                        {
+                            ViewBag.status = "Error";
+                            ViewBag.message = "Invalid credentials!!";
+                        }
+                        else
+                        {
+                            TempData["LoginID"] = loginID.ToString();
+                            TempData.Keep();
+                            return RedirectToAction("GetFullCount", "MessageCount");
+                        }
+
                     }
                 }
             }
+            
             return View();
         }
         public async Task<IActionResult> EditOffice()
         {
-            Profile profile = null;
+            Profile profile = new Profile();
             using (HttpClient client = new HttpClient())
             {
                 int Id = Convert.ToInt32(TempData["LoginID"]);
@@ -134,7 +128,9 @@ namespace OfficeUI.Controllers
             return View(profile);
 
         }
-      
+
+
+
 
         [HttpPost]
         public async Task<IActionResult> EditOffice(Profile profiles)

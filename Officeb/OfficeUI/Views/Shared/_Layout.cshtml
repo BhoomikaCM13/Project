@@ -11,7 +11,8 @@
 </head>
 <body>
     @*<div class='dashboard'>*@
-        <div class="dashboard-nav">
+    <div class="dashboard-nav">
+    <div class="dashboard-nav mobile-show ">
     <ul class="page-sidebar-menu page-holder-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top:20px">
     @*<header>*@
         @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -23,7 +24,7 @@
                     <i class="fa-solid fa-face-laugh-wink" style="color:white"></i>&nbsp;<h4 style="color:white">Office board</h4>
                     
                         </div>
-                <a class="nav-link text-dark" asp-area="" asp-controller="MessageCount" asp-action="GetFullCount1"><i class="fa-solid fa-gauge-high" style="color:floralwhite"></i>&nbsp;<span style="color:white">Dash Board</span></a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-gauge-high" style="color:floralwhite"></i>&nbsp;<span style="color:white">Dash Board</span></a>
                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -37,28 +38,26 @@
                             <li class="nav-item">
                             <a class="nav-link text-dark " asp-area="" asp-controller="Profile" asp-action="Register"><i class="fa-solid fa-user-plus" style="color:floralwhite"></i>&nbsp;<span style="color:white">Register</span></a>
                             </li>
-                        @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>*@
+                    
                     </ul>
     </div>
                 <div class="row" style="color:white">
 
-                    <a class="nav-link text-dark disabled" asp-area="" asp-controller="Profile" asp-action="Login"><i class="fa-solid fa-chevron-left" style="color:white"></i></a>
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="Login"><i class="fa-solid fa-chevron-right" style="color:white"></i></a>
+                    <a class="nav-link text-dark disabled"  asp-area="" asp-controller="Profile" asp-action="Login"><i class="fa-solid fa-chevron-left" style="color:white"></i></a>
+                    <a class="nav-link text-dark"  asp-area="" asp-controller="Profile" asp-action="Login"><i class="fa-solid fa-chevron-right" style="color:white"></i></a>
                 </div>
 
 
 
+@*                <a href="c:\mvcasp\officeb\officeui\views\shared\_layout.cshtml">c:\mvcasp\officeb\officeui\views\shared\_layout.cshtml</a>
+*@
 
 
-
-           @* </div>*@
     </nav>
-    </ul> </div>   @*</header>*@
-       @* </div>*@
+    </ul> </div>   </div>
+ 
     <div class='dashboard-app'>
-       @* <header class='dashboard-toolbar'><a href="" class="menu-toggle"><i class="fas fa-bars"></i></a></header>*@
+        <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
         <div class='dashboard-content'>
     <div class="container">
         <main role="main" class="pb-3">
@@ -75,6 +74,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
-    </div></div>
+    </div></div></div>
 </body>
 </html>

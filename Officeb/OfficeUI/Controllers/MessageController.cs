@@ -78,6 +78,11 @@ namespace OfficeUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Message message)
         {
+           
+            int Id = Convert.ToInt32(TempData["LoginID"]);
+            TempData.Keep();
+            message.PId= Id;
+            message.CreatedOn= DateTime.UtcNow;
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
@@ -111,6 +116,9 @@ namespace OfficeUI.Controllers
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         message = JsonConvert.DeserializeObject<Message>(result);
+                        int MESSAGEID = message.Id;
+                        TempData["messageId"] = MESSAGEID;
+                        TempData.Keep();
                     }
                 }
             }
@@ -123,6 +131,15 @@ namespace OfficeUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Message message)
         {
+
+            int Id = Convert.ToInt32(TempData["LoginID"]);
+            TempData.Keep();
+            int messageId_ = Convert.ToInt32(TempData["messageId"]);
+            TempData.Keep();
+            message.PId = Id;
+            message.CreatedOn = DateTime.UtcNow;
+            message.Id = messageId_;
+
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
@@ -144,33 +161,32 @@ namespace OfficeUI.Controllers
             }
             return View();
         }
+        //public async Task<IActionResult> Delete(int Id)
+        //{
+        //    Message message = null;
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        string endPoint = _configuration["WebApiBasedUrl"] + "Message/GetMessageById?MessageId=" + Id;
+        //        using (var response = await client.GetAsync(endPoint))
+        //        {
+        //            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        //            {
+        //                var result = await response.Content.ReadAsStringAsync();
+        //                message = JsonConvert.DeserializeObject<Message>(result);
+        //            }
+        //        }
+        //    }
+        //    return View(message);
+        //}
+
+
+
         public async Task<IActionResult> Delete(int Id)
         {
-            Message message = null;
+            //ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBasedUrl"] + "Message/GetMessageById?MessageId=" + Id;
-                using (var response = await client.GetAsync(endPoint))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        var result = await response.Content.ReadAsStringAsync();
-                        message = JsonConvert.DeserializeObject<Message>(result);
-                    }
-                }
-            }
-            return View(message);
-        }
-
-
-
-        [HttpPost]
-        public async Task<IActionResult> Delete(Message message)
-        {
-            ViewBag.status = "";
-            using (HttpClient client = new HttpClient())
-            {
-                string endPoint = _configuration["WebApiBasedUrl"] + "Message/DeleteMessage?MessageId=" + message.Id;
+                string endPoint = _configuration["WebApiBasedUrl"] + "Message/DeleteMessage?MessageId=" + Id;
 
 
 
@@ -180,6 +196,7 @@ namespace OfficeUI.Controllers
                     {
                         ViewBag.status = "Ok";
                         ViewBag.message = "Message details deleted sucessfully!!";
+                        return RedirectToAction("Index", "Message");
                     }
                     else
                     {

@@ -44,11 +44,11 @@ namespace ProfileAPI.Controllers
             return Ok("comment updated successfully");
         }
 
-        [HttpGet("GetCommentsByTaskId")]
-        public Tasks GetCommentsByTaskId(int taskId)
-        {
-          return  _commentservice.GetCommentsByTaskId(taskId);
-        }
+        //[HttpGet("GetCommentsByTaskId")]
+        //public Tasks GetCommentsByTaskId(int taskId)
+        //{
+        //  return  _commentservice.GetCommentsByTaskId(taskId);
+        //}
     }
 }
 

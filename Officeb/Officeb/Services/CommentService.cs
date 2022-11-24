@@ -35,9 +35,9 @@ namespace Officeb.Services
         {
             return _commentRepository.GetComments();
         }
-        public Tasks GetCommentsByTaskId(int taskId)
-        {
-            return _commentRepository.GetCommentsByTaskId(taskId);
-        }
+        //public Tasks GetCommentsByTaskId(int taskId)
+        //{
+        //    return _commentRepository.GetCommentsByTaskId(taskId);
+        //}
     }
 }

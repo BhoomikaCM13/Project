@@ -3,52 +3,6 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-@*<div>
-    <hr />
-    <a asp-controller="Task" asp-action="TasksCreate">Create Task</a>
-    <hr />
-</div>
-<div class="row">
-    <div class="col-12 ">
-        <h3>Tasks</h3>
-        <hr />
-        <table class="table table-light table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Task Id</th>
-                    <th>Task Title</th>
-                    <th>Task Description</th>
-                    <th>CreatedBy</th>
-                    <th>CreatedOn</th>
-                    <th>Task Status</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                    <th>Comments</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var task in Model)
-                {
-                    <tr>
-                        <td>@task.Id</td>
-                        <td>@task.Title</td>
-                        <td>@task.Description</td>
-                        <td>@task.profile.Name</td>
-                        <td>@task.CreatedOn</td>
-                        <td>@task.Status</td>
-                        <td><a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@task.Id>Edit</a></td>
-                        <td><a asp-controller="Task" asp-action="DeleteTasks" asp-route-taskId=@task.Id>Delete</a></td>
-                        <td><a asp-controller="Comment" asp-action="Index" asp-route-taskId=@task.Id>Comment</a></td>
-                        <td><a asp-controller="Task" asp-action="GetTodayCount" asp-route-taskId=@task.Id>Count</a></td>
-                    </tr>
-                }
-        </table>
-    </div>
-
-</div>*@
-
-
-
 
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
     <script src="https://kit.fontawesome.com/bf21391385.js" crossorigin="anonymous"></script>
@@ -91,38 +45,14 @@
                                     Created By:
                                         <a routerLink="/profile/user/@items.profile.Name"><strong>@items.profile.Name</strong></a>
                                 </small> <br>
-                                    @*<small class="text-muted">
-                                        Description: <strong>
-                                            @items.Description
-                                        </strong>
-                                    </small>*@
-                                   @* <small class="text-muted">
-                                       Status: <strong>
-                                            @items.Status
-                                        </strong>
-                                    </small>*@
-                                   @* <small class="text-muted">
-                                        Title: <strong>
-                                            @items.Title
-                                        </strong>
-                                    </small>*@
                             </p>
-                            <!-- Circle Buttons (Small) -->
-                            @*<a routerLink="/tasks/{{task.id}}" class="btn btn-primary btn-circle btn-sm ml-4"
-                               title="See Details">
-                                <fa-icon [icon]="faInfo" style="color: white;"></fa-icon>
-                            </a>*@
                                     <div *ngIf="currentUser.id == message.userId" style="display: inline;">
-                                        <a asp-controller="Task" asp-action="Index1" asp-route-taskId=@items.Id><i class="fa-solid fa-circle-info" style="color:gray; height:2px "> </i> </a>
+                                        <a asp-controller="TaskBoard" asp-action="Index" asp-route-taskId=@items.Id><i class="fa-solid fa-circle-info" style="color:gray; height:2px "> </i> </a>
                                         <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@items.Id> <i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a>&nbsp;
-                                        <a asp-controller="Task" asp-action="DeleteTasks" asp-route-taskId=@items.Id> <i class="fa-solid fa-trash" style="color:red"></i></a>
-                                                                  </div>
-                              @*  <a asp-controller="Comment" asp-action="Index" asp-route-taskId=@items.Id>Comment</a>*@
-                            @*<a (click)="changeStatus(task.id, 1)" class="btn btn-secondary btn-circle ml-4"
-                               title="Move to Doing">
-                                <fa-icon [icon]="faArrowRight" style="color: white;"></fa-icon>
-                            </a>*@
-                        </div>
+                                        <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@items.Id> <i class="fa-solid fa-trash" style="color:red"></i></a>
+                                      
+
+                        </div></div>
                     </div>
                 </div>
                 }
@@ -157,37 +87,16 @@
                                     Created By:
                                         <a routerLink="/profile/user/@second.profile.Name"><strong>@second.profile.Name</strong></a>
                                 </small> <br>
-                              @*  <small class="text-muted">Comments: <strong>@second.Description</strong></small>*@
+                             
                             </p>
                             <!-- Circle Buttons (Small) -->
 
                                     <div *ngIf="currentUser.id == message.userId" style="display: inline;">
-                                        <a asp-controller="Task" asp-action="Index1" asp-route-taskId=@second.Id><i class="fa-solid fa-circle-info" style="color:gray; height:2px "> </i> </a>
+                                        <a asp-controller="TaskBoard" asp-action="Index" asp-route-taskId=@second.Id><i class="fa-solid fa-circle-info" style="color:gray; height:2px "> </i> </a>
                                         <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@second.Id> <i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a> &nbsp;
-                                        <a asp-controller="Task" asp-action="DeleteTasks" asp-route-taskId=@second.Id> <i class="fa-solid fa-trash" style="color:red"></i></a>
+                                        <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@second.Id> <i class="fa-solid fa-trash" style="color:red"></i></a>
                                     </div>
-                            @*<a (click)="changeStatus(task.id, 0)" class="btn btn-secondary btn-circle ml-4"
-                               title="Move to TO DO">
-                                <fa-icon [icon]="faArrowLeft" style="color: white;"></fa-icon>
-                            </a>
-                            <a routerLink="/tasks/{{task.id}}" class="btn btn-primary btn-circle btn-sm ml-4"
-                               title="See Details">
-                                <fa-icon [icon]="faInfo" style="color: white;"></fa-icon>
-                            </a>
-                            <div *ngIf="currentUser.id == task.userId" style="display: inline;">
-                                <a (click)="editTask(task.id)" class="btn btn-warning btn-circle btn-sm ml-4"
-                                   title="Edit">
-                                    <fa-icon [icon]="faEdit" style="color: white;"></fa-icon>
-                                </a>
-                                <a (click)="confirmDelete(task.title, task.id)"
-                                   class="btn btn-danger btn-circle btn-sm ml-4" title="Delete">
-                                    <fa-icon [icon]="faTrash" style="color: white;"></fa-icon>
-                                </a>
-                            </div>
-                            <a (click)="changeStatus(task.id, 2)" class="btn btn-secondary btn-circle ml-4"
-                               title="Move to DONE">
-                                <fa-icon [icon]="faArrowRight" style="color: white;"></fa-icon>
-                            </a>*@
+                           
                         </div>
                     </div>
                 </div>
@@ -225,32 +134,17 @@
                                     Created By:
                                         <a routerLink="/profile/user/@third.profile.Name"><strong>@third.profile.Name</strong></a>
                                 </small> <br>
-                               @* <small class="text-muted">Comments: <strong>@third.Description</strong></small>*@
+                             
                             </p>
                             <!-- Circle Buttons (Small) -->
 
                                     <div *ngIf="currentUser.id == message.userId" style="display: inline;">
-                                        <a asp-controller="Task" asp-action="Index1" asp-route-taskId=@third.Id><i class="fa-solid fa-circle-info" style="color:gray; height:2px "> </i> </a>
+                                        <a asp-controller="TaskBoard" asp-action="Index" asp-route-taskId=@third.Id><i class="fa-solid fa-circle-info" style="color:gray; height:2px "> </i> </a>
                                         <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@third.Id> <i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a>&nbsp;
-                                        <a asp-controller="Task" asp-action="DeleteTasks" asp-route-taskId=@third.Id> <i class="fa-solid fa-trash" style="color:red"></i></a>
-                                    </div>
-                           @* <a (click)="changeStatus(task.id, 1)" class="btn btn-secondary btn-circle ml-4"
-                               title="Move to Doing">
-                                <fa-icon [icon]="faArrowLeft" style="color: white;"></fa-icon>
-                            </a>
-                            <a routerLink="/tasks/{{task.id}}" class="btn btn-primary btn-circle btn-sm ml-4"
-                               title="See Details">
-                                <fa-icon [icon]="faInfo" style="color: white;"></fa-icon>
-                            </a>
-                            <div *ngIf="currentUser.id == task.userId" style="display: inline;">
-                                <a (click)="editTask(task.id)" class="btn btn-warning btn-circle btn-sm ml-4"
-                                   title="Edit">
-                                    <fa-icon [icon]="faEdit" style="color: white;"></fa-icon>
-                                </a>
-                                <a (click)="confirmDelete(task.title, task.id)"
-                                   class="btn btn-danger btn-circle btn-sm ml-4" title="Delete">
-                                    <fa-icon [icon]="faTrash" style="color: white;"></fa-icon>
-                                </a>*@
+                                         
+                                        <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@third.Id> <i class="fa-solid fa-trash" style="color:red"></i></a>
+                               </div>
+                          
                             </div>
                         </div>
                     </div>
@@ -261,3 +155,15 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    function Myfunction(){
+    
+        let val = confirm("Do you want to delete the task?");
+        if (val == false) {
+            return event.preventDefault();
+        }
+   
+    }
+</script>

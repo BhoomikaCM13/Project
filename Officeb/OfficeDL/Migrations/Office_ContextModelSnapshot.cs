@@ -37,23 +37,19 @@ namespace OfficeDL.Migrations
                     b.Property<int>("PId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TaskId")
+                    b.Property<int?>("TaskBoardId")
                         .HasColumnType("int");
 
-                    b.Property<int>("countcommentmonth")
-                        .HasColumnType("int");
-
-                    b.Property<int>("countcommenttoday")
-                        .HasColumnType("int");
-
-                    b.Property<int>("countcommentyear")
+                    b.Property<int>("taskId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PId");
 
-                    b.HasIndex("TaskId");
+                    b.HasIndex("TaskBoardId");
+
+                    b.HasIndex("taskId");
 
                     b.ToTable("comments");
                 });
@@ -157,6 +153,26 @@ namespace OfficeDL.Migrations
                     b.ToTable("profile");
                 });
 
+            modelBuilder.Entity("OfficeEntity.TaskBoard", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("_taskId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("countMessage")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("_taskId");
+
+                    b.ToTable("taskboards");
+                });
+
             modelBuilder.Entity("OfficeEntity.Tasks", b =>
                 {
                     b.Property<int>("Id")
@@ -183,15 +199,6 @@ namespace OfficeDL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("countmonth")
-                        .HasColumnType("int");
-
-                    b.Property<int>("counttoday")
-                        .HasColumnType("int");
-
-                    b.Property<int>("countyear")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ProfileId");
@@ -207,15 +214,19 @@ namespace OfficeDL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OfficeEntity.Tasks", "Task")
+                    b.HasOne("OfficeEntity.TaskBoard", null)
                         .WithMany("comments")
-                        .HasForeignKey("TaskId")
+                        .HasForeignKey("TaskBoardId");
+
+                    b.HasOne("OfficeEntity.Tasks", "task")
+                        .WithMany()
+                        .HasForeignKey("taskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Profile");
 
-                    b.Navigation("Task");
+                    b.Navigation("task");
                 });
 
             modelBuilder.Entity("OfficeEntity.Message", b =>
@@ -229,6 +240,15 @@ namespace OfficeDL.Migrations
                     b.Navigation("Profile");
                 });
 
+            modelBuilder.Entity("OfficeEntity.TaskBoard", b =>
+                {
+                    b.HasOne("OfficeEntity.Tasks", "_task")
+                        .WithMany()
+                        .HasForeignKey("_taskId");
+
+                    b.Navigation("_task");
+                });
+
             modelBuilder.Entity("OfficeEntity.Tasks", b =>
                 {
                     b.HasOne("OfficeEntity.Profile", "profile")
@@ -240,7 +260,7 @@ namespace OfficeDL.Migrations
                     b.Navigation("profile");
                 });
 
-            modelBuilder.Entity("OfficeEntity.Tasks", b =>
+            modelBuilder.Entity("OfficeEntity.TaskBoard", b =>
                 {
                     b.Navigation("comments");
                 });

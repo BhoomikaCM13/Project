@@ -13,7 +13,6 @@ namespace OfficeDL.Repository
         void DeleteComment(int commentid);
         Comment GetCommentById(int commentid);
         IEnumerable<Comment> GetComments();
-
-     Tasks GetCommentsByTaskId(int taskId);
+        //Tasks GetCommentsByTaskId(int taskId);
     }
 }

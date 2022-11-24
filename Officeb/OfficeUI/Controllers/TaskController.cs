@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using Newtonsoft.Json;
 using OfficeDL;
 using OfficeEntity;
@@ -30,7 +31,7 @@ namespace OfficeUI.Controllers
         {
             IEnumerable<Tasks> taskresult = null;
             using (HttpClient client = new HttpClient())
-            {
+            { 
                 string endPoint = _configuration["WebApiBasedUrl"] + "Task/GetTask";
                 using (var response = await client.GetAsync(endPoint))
                 {
@@ -45,76 +46,45 @@ namespace OfficeUI.Controllers
             }
             return View(taskresult);
         }
-        [HttpGet]
-        public async Task<IActionResult> Index1(int taskId)
-        {
-            Tasks tasks = null;
-            using (HttpClient client = new HttpClient())
-            {
-                string endPoint = _configuration["WebApiBasedUrl"] + "Task/GetTaskById?tid=" + taskId;
-                using (var response = await client.GetAsync(endPoint))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        var result = await response.Content.ReadAsStringAsync();
-                        tasks = JsonConvert.DeserializeObject<Tasks>(result);
-                    }
-                }
-            }
-              
-            return View(tasks);
-        }
 
         //[HttpGet]
-        //public async Task<IActionResult> Index1()
+        //public async Task<IActionResult> Index1(int taskId)
         //{
-        //    IEnumerable<Tasks> taskresult = null;
+        //    Tasks tasks = null;
         //    using (HttpClient client = new HttpClient())
         //    {
-        //        string endPoint = _configuration["WebApiBasedUrl"] + "Task/GetTask";
+        //        string endPoint = _configuration["WebApiBasedUrl"] + "Task/GetTaskById?tid=" + taskId;
         //        using (var response = await client.GetAsync(endPoint))
         //        {
         //            if (response.StatusCode == System.Net.HttpStatusCode.OK)
         //            {
         //                var result = await response.Content.ReadAsStringAsync();
-        //                taskresult = JsonConvert.DeserializeObject<IEnumerable<Tasks>>(result);
-
-
+        //                tasks = JsonConvert.DeserializeObject<Tasks>(result);
         //            }
         //        }
         //    }
-        //    return View(taskresult);
+              
+        //    return View(tasks);
         //}
 
         public async Task<IActionResult> TasksCreate()
         {
-            /*Profile profile = new Profile();
-            using (HttpClient client = new HttpClient())
-            {
-                int Id = Convert.ToInt32(TempData["LoginID"]);
-                string endpoint = _configuration["WebApiBasedUrl"] + "Profile/GetProfileById?profileId=" + Id;
-                using (var response = await client.GetAsync(endpoint))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        var result = await response.Content.ReadAsStringAsync();
-                        profile = JsonConvert.DeserializeObject<Profile>(result);
-                    }
-                }
-            }*/
-          Tasks tasks = new Tasks();
-            tasks.ProfileId = Convert.ToInt32(TempData["LoginID"]);
-            return View(tasks);
+            return View( );
         }
-        
+
 
         [HttpPost]
 
-        public async Task<IActionResult> TasksCreate(Tasks Task)
+        public async Task<IActionResult> TasksCreate(Tasks Tasks)
         {
+
+            int Id = Convert.ToInt32(TempData["LoginID"]);
+            TempData.Keep();
+            Tasks.ProfileId = Id;
+            Tasks.CreatedOn = DateTime.UtcNow;
             using (HttpClient client = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(Task), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(Tasks), Encoding.UTF8, "application/json");
                 string endPoint = _configuration["WebApiBasedUrl"] + "Task/AddTask";
                 using (var response = await client.PostAsync(endPoint, content))
 
@@ -140,6 +110,7 @@ namespace OfficeUI.Controllers
         public async Task<IActionResult> EditTasks(int taskId)
         {
             Tasks tasks = null;
+          
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBasedUrl"] + "Task/GetTaskById?tid=" + taskId;
@@ -149,15 +120,29 @@ namespace OfficeUI.Controllers
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         tasks = JsonConvert.DeserializeObject<Tasks>(result);
+
+                        //Get temporary taskid from  tempdata
+                        int TASKID = tasks.Id;
+                        TempData["TaskId"] = TASKID;
+                        TempData.Keep();
                     }
                 }
             }
+           
             return View(tasks);
         }
         [HttpPost]
         public async Task<IActionResult> EditTasks(Tasks task)
         {
-           
+
+            int Id = Convert.ToInt32(TempData["LoginID"]);
+            TempData.Keep();
+            int taskId_ = Convert.ToInt32(TempData["TaskId"]);
+            TempData.Keep();
+            task.ProfileId = Id;
+            task.CreatedOn = DateTime.UtcNow;
+            task.Id = taskId_;
+
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(task), Encoding.UTF8, "application/json");
@@ -179,7 +164,7 @@ namespace OfficeUI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> DeleteTasks(int taskId)
+        /*public async Task<IActionResult> DeleteTasks(int taskId)
         {
             Tasks tasks = null;
             using (HttpClient client = new HttpClient())
@@ -192,25 +177,32 @@ namespace OfficeUI.Controllers
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         tasks = JsonConvert.DeserializeObject<Tasks>(result);
+
+
+                        //Get temporary taskid from  tempdata
+                        int TASKID_ = tasks.Id;
+                        TempData["TaskId_"] = TASKID_;
+                        TempData.Keep();
                     }
                 }
             }
             return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> DeleteTasks(Tasks task)
+        }*/
+        public async Task<IActionResult> DeleteTasks(int taskId)
         {
-
+            /*int taskId_ = Convert.ToInt32(TempData["TaskId_"]);
+            TempData.Keep();
+            task.Id = taskId_;*/
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBasedUrl"] + "Task/DeleteTask?tid=" + task.Id;
+                string endPoint = _configuration["WebApiBasedUrl"] + "Task/DeleteTask?tid="+ taskId;
                 using (var response = await client.DeleteAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         ViewBag.status = "Ok";
                         ViewBag.message = "Tasks details deleted successfully";
+                        return RedirectToAction("Index", "Task");
                     }
                     else
                     {
@@ -222,20 +214,5 @@ namespace OfficeUI.Controllers
             }
             return View();
         }
-
-        //public ActionResult GetTodayCount()
-        //{
-
-        //    var count = (from row in db.tasks
-        //                 where row.CreatedOn.Date == DateTime.UtcNow.Date
-        //                 select row).Count();
-        //    ViewBag.ItemCount = count;
-        //    return View(count);
-        //}
-       
-
 }
 }
-
-
-

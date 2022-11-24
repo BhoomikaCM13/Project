@@ -2,51 +2,78 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-<h1 style="background-color:white "><span style="color:blue ">Edit User profile</span></h1>
-<hr/>
-<center><i class="fa-solid fa-user-pen" style="color:black"></i></center>
-<hr />
-<span style="color:darkslateblue">User Name  </span><space></space>
 
-<span  style="color:darkgoldenrod">@Model.UserName</span>
-<br />
-
-<span style="color:darkslateblue">Email  </span>
-<span style="color:darkgoldenrod">@Model.Email</span>
-
-
-<form method="post" enctype="multipart/form-data">
-   
-    <div class=" =form-group">
-        <hr color="white"/><label>position</label>
-        <input type="text" asp-for="Position" class="form-control" placeholder="enter position" required />
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between m-4">
+        <h1 class="h3 mb-0 text-primary"><strong>Edit User Profile</strong></h1>
     </div>
-    @*<div class=" =form-group">
-        <label>Id</label>
-        <input type="text" asp-for="Id" class="form-control" placeholder="enter Id" required />
-    </div>*@
-    <div class=" =form-group">
-        <label>Name</label>
-        <input type="text" asp-for="Name" class="form-control" placeholder="enter name" required />
+</nav>
+<!-- End of Topbar -->
+<!-- Begin Page Content -->
+<div class="container-fluid mt-4">
+    <div class="row ">
+        <div class="col-lg-6">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900">
+                    <fa-icon [icon]="faUserEdit"></fa-icon>
+                </h1>
+            </div>
+            <hr>
+            <div class="form-group row mt-3">
+                <label class="col-sm-3 col-form-label text-left">UserName</label>
+                <div class="col-sm-9 text-left">
+                    <div class="mt-2"><strong>@Model.UserName</strong></div>
+                </div>
+                <label class="col-sm-3 col-form-label text-left">Email</label>
+                <div class="col-sm-9 text-left">
+                    <div class="mt-2"><strong>@Model.Email</strong></div>
+                </div>
+            </div>
+            <hr>
+            <center><i class="fa-solid fa-user-pen" style="color:black"></i></center>
+            <hr>
+            <form method="post" class="user" [formGroup]='profileForm'>
+                <div class=" =form-group">
+                    <hr color="white" /><label>Position</label>
+                    <input type="text" asp-for="Position" class="form-control" placeholder="enter position" required />
+                </div>
+
+                <div class=" =form-group">
+                    <label>Name</label>
+                    <input type="text" asp-for="Name" class="form-control" placeholder="enter name" required />
+                </div>
+
+             @*   <div class=" =form-group">
+                    <label>Department</label>
+                    <input type="text" asp-for="Department" class="form-control" placeholder="enter Department" required />
+                </div>*@
+
+              <div class=" =form-group">
+                    <label>Department</label>
+                        <select class="form-control" asp-for="Department">
+                            <option disabled>Choose</option>
+                         <option value="Production">Production</option>
+                        <option value="Research and Development">Research and Development</option>
+                        <option value="Testing and Maintainance">Testing and Maintainance</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Human Resources">Human Resources</option>
+                        <option value="Accounting">Accounting</option>
+                         <option value="Others" >Others</option>
+                        </select>
+                    </div>
+                <br />
+                
+                <input type="submit" value="save changes" class="btn btn-outline-success" title="save" /> @*<i class="fa-solid fa-floppy-disk"></i>*@
+
+                <div class="btn btn-outline-success"><a asp-controller="Profile" asp-action="ShowAllProfiles"><i class="fa-solid fa-eye" title="View Profile"></i></a></div>
+            </form>
+           
+        </div>
     </div>
-    <div class=" =form-group">
-        <label>Department</label>
-        <input type="text" asp-for="Department" class="form-control" placeholder="enter Department" required /><hr color="white" />
-    </div>
-    @*<div class=" =form-group">
-        <label>Movie Description</label>
-        <input type="text" asp-for="MovieDesc" class="form-control" placeholder="enter movie desc" required />
-    </div>*@
-    
-        <input type="submit" value="Save changes" class="btn btn-outline-success" /> <i class="fa-solid fa-floppy-disk"></i>
-     
-    <div class="btn btn-outline-success"><a asp-controller="Profile" asp-action="ShowAllProfiles"><i class="fa-solid fa-eye"></i>View Profile</a></div></form>
-  @*  @foreach(var profile in Model)
-    {
-        <a asp-controller="Profile" asp-action="EditOffice"
-       asp-route-Id="@profile."><span style="color:aqua">Edit</span></a>
-    }*@
-   
+</div>
+
 @if (ViewBag.status == "Ok")
 {
     <div class="alert alert-success">

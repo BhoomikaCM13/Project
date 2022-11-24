@@ -23,6 +23,7 @@ namespace OfficeDL.Repository
                 profile = result[0];
             }*//*
             return result.;*/
+            Profile pro = null;
             List<Profile> list = new List<Profile>();
             list = _officecontext.profile.ToList();
             foreach(var profile in list)
@@ -31,6 +32,8 @@ namespace OfficeDL.Repository
                 {
                     return profile.Id;
                 }
+
+                
             }
             return -1;
         }

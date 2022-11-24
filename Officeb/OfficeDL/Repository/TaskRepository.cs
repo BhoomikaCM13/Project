@@ -35,8 +35,8 @@ namespace OfficeDL.Repository
 
         public void DeleteTask(int tid)
         {
-            var task1 = _officeDbContext.tasks.Find(tid);
-            _officeDbContext.tasks.Remove(task1);
+            var task = _officeDbContext.tasks.Find(tid);
+            _officeDbContext.tasks.Remove(task);
             _officeDbContext.SaveChanges();
         }
 
