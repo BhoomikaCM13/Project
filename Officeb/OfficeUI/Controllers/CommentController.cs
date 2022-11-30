@@ -19,7 +19,6 @@ namespace OfficeUI.Controllers
         {
             this.configuration = configuration;
         }
-       
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -47,37 +46,37 @@ namespace OfficeUI.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateComment(Comment comment)
-        {
-            int ProfileId = Convert.ToInt32(TempData["LoginID"]);
-            TempData.Keep();
-            comment.PId = ProfileId;
-            comment.CreatedOn = DateTime.UtcNow;
-            int taskId_ = Convert.ToInt32(TempData["TaskId"]);
-            TempData.Keep();
-            comment.taskId = taskId_;
-            ViewBag.status = "";
-            using (HttpClient client = new HttpClient())
-            {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(comment), Encoding.UTF8, "application/json");
-                string endPoint = configuration["WebApiBasedUrl"] + "Comment/AddComment";
-                using (var response = await client.PostAsync(endPoint, content))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        ViewBag.status = "Ok";
-                        ViewBag.message = "Comment Added Successfully";
-                    }
-                    else
-                    {
-                        ViewBag.status = "Error";
-                        ViewBag.message = "Oops!";
-                    }
-                }
-            }
-            return View();
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> CreateComment(Comment comment)
+        //{
+        //    int ProfileId = Convert.ToInt32(TempData["LoginID"]);
+        //    TempData.Keep();
+        //    comment.PId = ProfileId;
+        //    comment.CreatedOn = DateTime.UtcNow;
+        //    int taskId_ = Convert.ToInt32(TempData["taskId"]);
+        //    TempData.Keep();
+        //    comment.taskId = taskId_;
+        //    ViewBag.status = "";
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        StringContent content = new StringContent(JsonConvert.SerializeObject(comment), Encoding.UTF8, "application/json");
+        //        string endPoint = configuration["WebApiBasedUrl"] + "Comment/AddComment";
+        //        using (var response = await client.PostAsync(endPoint, content))
+        //        {
+        //            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        //            {
+        //                ViewBag.status = "Ok";
+        //                ViewBag.message = "Comment Added Successfully";
+        //            }
+        //            else
+        //            {
+        //                ViewBag.status = "Error";
+        //                ViewBag.message = "Oops!";
+        //            }
+        //        }
+        //    }
+        //    return View();
+        //}
         public async Task<IActionResult> EditComment(int Id)
         {
             Comment comment = null;
@@ -111,11 +110,11 @@ namespace OfficeUI.Controllers
             int commentid_ = Convert.ToInt32(TempData["_commentid"]);
             TempData.Keep();
             comment.PId = ProfileId;
-            comment.CreatedOn = DateTime.UtcNow;
+            comment.CreatedOn = DateTime.Now;
             comment.Id = commentid_;
-            int taskId_ = Convert.ToInt32(TempData["TaskId"]);
+            int taskId_ = Convert.ToInt32(TempData["taskId_"]);
             TempData.Keep();
-            comment.taskId= taskId_;
+            comment.taskId = taskId_;
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
@@ -161,6 +160,7 @@ namespace OfficeUI.Controllers
     
         public async Task<IActionResult> DeleteComment(int commentid)
         {
+            TempData.Keep();
 
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
@@ -174,7 +174,7 @@ namespace OfficeUI.Controllers
                         {
                             ViewBag.status = "Ok";
                             ViewBag.message = "Done";
-                            return RedirectToAction("Index", "Task");
+                            return RedirectToAction("Index", "TaskBoard");
 
                         }
                         else

@@ -1,65 +1,121 @@
 ﻿@model OfficeEntity.Profile
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-@*<h2>Register Page</h2>
-<hr />
-<form method="post"><center>
-    <div class="form-group">
-        <div class="text-center">
-            <label for="Name">Name</label>
-        </div>
-        <input type="text" class="form-control" asp-for="Name">
-    </div>
 
-    <div class="form-group">
-        <div class="text-center">
-            <label for="Email">Email</label>
+<section id="1" >
+    <div class="row d-flex justify-content-center align-items-center h-75" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
+            <div class="col">
+                <div class="card card-registration my-4">
+                    <div class="row g-0">
+                        <div class="col-xl-6 d-none d-xl-block">
+                        <img src="https://static.vecteezy.com/system/resources/previews/000/202/129/original/flat-office-desk-vector.jpg"
+                                 alt="Sample photo" class="img-fluid"
+                                 style="border-top-left-radius: .1rem; border-bottom-left-radius: .1rem; " />
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card-body p-md-5 text-black">
+                                <center>
+                                <h3 class="mb-5 text-uppercase">Create an Account</h3>
+                            </center>
+                                 <form method="post">
+                                    <center>
+                                        <div class="form-group">
+                                            <div class="text-center">
+                                                <label for="Name">Name</label>
+                                            </div>
+                                            <input type="text" class="form-control" asp-for="Name" placeholder="Enter Your Name">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="text-center">
+                                                <label for="Email">Email</label>
+                                            </div>
+                                        <input type="email" class="form-control" asp-for="Email" placeholder="Enter Your Email">
+                                        </div>
+                                    <div class="form-group">
+                                        <div class="text-center">
+                                            <label for="UserName">UserName</label>
+                                        </div>
+                                        <input type="text" class="form-control" asp-for="UserName" placeholder="Enter Your UserName">
+                                    </div>
+
+                                        <div class="form-group">
+                                            <div class="text-center">
+                                                <label for="Password">Password</label>
+                                            </div>
+                                            <input type="password" class="form-control" asp-for="Password" placeholder="Enter Your Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="text-center">
+                                                <label for="Position">Position</label>
+                                            </div>
+                                            <input type="text" class="form-control" asp-for="Position" placeholder="Enter Your Position">
+                                        </div>
+
+                                        <div class=" =form-group">
+                                            <label>Department</label>
+                                            <select class="form-control" title="Choose" asp-for="Department" >
+                                                <option value="1">Choose</option>
+                                                <option value="Production">Production</option>
+                                                <option value="Research and Development">Research and Development</option>
+                                                <option value="Testing and Maintainance">Testing and Maintainance</option>
+                                                <option value="Sales">Sales</option>
+                                                <option value="Marketing">Marketing</option>
+                                                <option value="Human Resources">Human Resources</option>
+                                                <option value="Accounting">Accounting</option>
+                                                <option value="Others">Others</option>
+                                            </select>
+                                        </div>
+                                 <br />
+                                    <input type="submit" class="btn" value="Register" style="background-color:mediumslateblue; color:white">
+                                    </center>
+
+                                        @if (ViewBag.status == "Ok")
+                                        {
+                                            <div class="alert alert-success">
+                                                @ViewBag.message
+                                            </div>
+                                        }
+                                        else if (ViewBag.status == "Error")
+                                        {
+                                            <div class="alert alert-danger">
+                                                @ViewBag.message
+                                            </div>
+                                        }
+                               
+                                </form>
+                                <div class="text-center">
+                                    <span>Already have an account? </span>
+                                    <a class="small" asp-controller="Profile" asp-action="Login" routerLink="/auth/login"><i class="fa-sharp fa-solid fa-right-to-bracket" title="Login"></i></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <input type="email" class="form-control" asp-for="Email">
-    </div>
-    <div class="form-group">
-        <div class="text-center">
-            <label for="Password">Password</label>
-        </div>
-        <input type="password" class="form-control" asp-for="Password">
-    </div>
-    <div class="form-group">
-        <div class="text-center">
-            <label for="Position">Position</label>
-        </div>
-        <input type="text" class="form-control" asp-for="Position">
-    </div>
-    <div class="form-group">
-        <div class="text-center">
-            <label for="Department">Department</label>
-        </div>
-        <input type="text" class="form-control" asp-for="Department">
-    </div>
-    <div class="form-group">
-        <div class="text-center">
-            <label for="UserName">UserName</label>
-        </div>
-        <input type="text" class="form-control" asp-for="UserName">
-    </div>
-    <input type="submit" class="btn btn-primary" value="Register"></center>
-    <hr />
-    @if (ViewBag.status == "Ok")
-    {
-        <div class="alert alert-success">
-            @ViewBag.message
-        </div>
-    }
-    else if (ViewBag.status == "Error")
-    {
-        <div class="alert alert-danger">
-            @ViewBag.message
-        </div>
-    }
-    <center><div class="btn btn-secondary"><a asp-controller="Profile" asp-action="Login">Login</a></div></center>
-</form>
-*@
-<div class="container-fluid mt-4">
+   
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div  class="container-fluid mt-4" >
+    <div class="overflow-hidden">
     <!-- Outer Row -->
     <div class="row justify-content-center">
         <div class="col-xl-10 col-lg-12 col-md-9">
@@ -91,7 +147,7 @@
                                             <div class="text-center">
                                                 <label for="Password">Password</label>
                                             </div>
-                                            <input type="text" class="form-control" asp-for="Password">
+                                            <input type="password" class="form-control" asp-for="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="text-center">
@@ -99,16 +155,11 @@
                                             </div>
                                             <input type="text" class="form-control" asp-for="Position">
                                         </div>
-                                        @*<div class="form-group">
-                                            <div class="text-center">
-                                                <label for="Department">Department</label>
-                                            </div>
-                                            <input type="text" class="form-control" asp-for="Department">
-                                        </div>*@
+                                        
                                         <div class=" =form-group">
                                             <label>Department</label>
-                                            <select class="form-control" title="Choose" asp-for="Department">
-                                                <option disabled>Choose</option>
+                                            <select class="form-control" title="Choose" asp-for="Department">   
+                                                <option value="1">   </option>
                                                 <option value="Production">Production</option>
                                                 <option value="Research and Development">Research and Development</option>
                                                 <option value="Testing and Maintainance">Testing and Maintainance</option>
@@ -119,6 +170,7 @@
                                                 <option value="Others">Others</option>
                                             </select>
                                         </div>
+
                                         <div class="form-group">
                                             <div class="text-center">
                                                 <label for="UserName">UserName</label>
@@ -127,7 +179,7 @@
                                         </div>
                                         <input type="submit" class="btn btn-primary" value="Register">
                                     </center>
-                                    <hr />
+                                  
                                     @if (ViewBag.status == "Ok")
                                     {
                                         <div class="alert alert-success">
@@ -140,13 +192,11 @@
                                             @ViewBag.message
                                         </div>
                                     }
-                                   @* <center><div class="btn btn-secondary"><a asp-controller="Profile" asp-action="Login">Login</a></div></center>*@
+                                  
                                 </form>
-                                <hr>
                                 <div class="text-center">
-                                    <a class="small" routerLink="/auth/login">Already have an account? Login!</a>
-                                    <center><div class="btn btn-outline-secondary"><a asp-controller="Profile" asp-action="Login">Login</a></div></center>
-                                </div>
+                                    <span>Already have an account? </span>
+                                    <a class="small" asp-controller="Profile" asp-action="Login" routerLink="/auth/login"><i class="fa-sharp fa-solid fa-right-to-bracket" title="Login"></i></a>
                             </div>
                         </div>
                     </div>
@@ -154,4 +204,5 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
+</div>*@

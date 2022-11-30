@@ -46,27 +46,6 @@ namespace OfficeUI.Controllers
             }
             return View(taskresult);
         }
-
-        //[HttpGet]
-        //public async Task<IActionResult> Index1(int taskId)
-        //{
-        //    Tasks tasks = null;
-        //    using (HttpClient client = new HttpClient())
-        //    {
-        //        string endPoint = _configuration["WebApiBasedUrl"] + "Task/GetTaskById?tid=" + taskId;
-        //        using (var response = await client.GetAsync(endPoint))
-        //        {
-        //            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-        //            {
-        //                var result = await response.Content.ReadAsStringAsync();
-        //                tasks = JsonConvert.DeserializeObject<Tasks>(result);
-        //            }
-        //        }
-        //    }
-              
-        //    return View(tasks);
-        //}
-
         public async Task<IActionResult> TasksCreate()
         {
             return View( );
@@ -81,7 +60,7 @@ namespace OfficeUI.Controllers
             int Id = Convert.ToInt32(TempData["LoginID"]);
             TempData.Keep();
             Tasks.ProfileId = Id;
-            Tasks.CreatedOn = DateTime.UtcNow;
+            Tasks.CreatedOn = DateTime.Now;
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(Tasks), Encoding.UTF8, "application/json");
@@ -140,7 +119,7 @@ namespace OfficeUI.Controllers
             int taskId_ = Convert.ToInt32(TempData["TaskId"]);
             TempData.Keep();
             task.ProfileId = Id;
-            task.CreatedOn = DateTime.UtcNow;
+            task.CreatedOn = DateTime.Now;
             task.Id = taskId_;
 
             using (HttpClient client = new HttpClient())
@@ -163,31 +142,6 @@ namespace OfficeUI.Controllers
             }
             return View();
         }
-
-        /*public async Task<IActionResult> DeleteTasks(int taskId)
-        {
-            Tasks tasks = null;
-            using (HttpClient client = new HttpClient())
-            {
-                string endPoint = _configuration["WebApiBasedUrl"] + "Task/GetTaskById?tid=" + taskId;
-
-                using (var response = await client.GetAsync(endPoint))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        var result = await response.Content.ReadAsStringAsync();
-                        tasks = JsonConvert.DeserializeObject<Tasks>(result);
-
-
-                        //Get temporary taskid from  tempdata
-                        int TASKID_ = tasks.Id;
-                        TempData["TaskId_"] = TASKID_;
-                        TempData.Keep();
-                    }
-                }
-            }
-            return View();
-        }*/
         public async Task<IActionResult> DeleteTasks(int taskId)
         {
             /*int taskId_ = Convert.ToInt32(TempData["TaskId_"]);

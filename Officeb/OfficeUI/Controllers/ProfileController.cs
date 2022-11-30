@@ -99,7 +99,7 @@ namespace OfficeUI.Controllers
                         {
                             TempData["LoginID"] = loginID.ToString();
                             TempData.Keep();
-                            return RedirectToAction("GetFullCount", "MessageCount");
+                            return RedirectToAction("GetFullCount", "Count");
                         }
 
                     }

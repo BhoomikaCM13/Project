@@ -7,6 +7,7 @@ using OfficeDL;
 using OfficeEntity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Net.Http;
@@ -27,32 +28,31 @@ namespace OfficeUI.Controllers
         {
             _configuration = configuration;
         }
-
+        [HttpPost]
         public ActionResult Index(string searchtitle)
         {
+
             var projects = from pr in db.messages.
-                           Include(obj=>obj.Profile
-                           )
+                           Include(obj => obj.Profile
+                           )/*.Take(2)*/
                            select pr;
 
             if (!String.IsNullOrEmpty(searchtitle))
             {
                 projects = projects.Where(c => c.Title.Contains(searchtitle));
             }
+
+
             return View(projects); 
-           
 
         }
-
-
-
-      
-
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+           
             IEnumerable<Message> messageresult = null;
+            
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBasedUrl"] + "Message/GetMessages";
@@ -63,18 +63,42 @@ namespace OfficeUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         messageresult = JsonConvert.DeserializeObject<IEnumerable<Message>>(result);
                     }
+                    TempData["countofmessage"] = messageresult.Count();
+
                 }
             }
-            return View(messageresult);
+            List<Message> messages = new List<Message>();
+
+            int i = 0;
+
+            foreach (var message in messageresult)
+            {
+                if (i < 2)
+                {
+                    i += 1;
+                    messages.Add(message);
+                }
+            }
+            return View(messages);
         }
-
-  
-       
-
+        //[HttpPost]
+        public ActionResult Index1(int a)
+        {
+            TempData["load"] = 2;
+            int num = Convert.ToInt32(TempData["load"]) + Convert.ToInt32(TempData["countofmessage"])-2;
+            TempData.Keep();
+            var projects = from pr in db.messages.
+                           Include(obj => obj.Profile
+                           ).Take(num)
+                           select pr;
+            TempData["load"] = num;
+            return View(projects);
+        }
         public IActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Create(Message message)
         {
@@ -82,7 +106,7 @@ namespace OfficeUI.Controllers
             int Id = Convert.ToInt32(TempData["LoginID"]);
             TempData.Keep();
             message.PId= Id;
-            message.CreatedOn= DateTime.UtcNow;
+            message.CreatedOn= DateTime.Now;
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
@@ -137,7 +161,7 @@ namespace OfficeUI.Controllers
             int messageId_ = Convert.ToInt32(TempData["messageId"]);
             TempData.Keep();
             message.PId = Id;
-            message.CreatedOn = DateTime.UtcNow;
+            message.CreatedOn = DateTime.Now;
             message.Id = messageId_;
 
             ViewBag.status = "";

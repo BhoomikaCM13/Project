@@ -160,7 +160,14 @@ namespace OfficeDL.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("_comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("_taskId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("comment_Id")
                         .HasColumnType("int");
 
                     b.Property<int>("countMessage")
@@ -169,6 +176,8 @@ namespace OfficeDL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("_taskId");
+
+                    b.HasIndex("comment_Id");
 
                     b.ToTable("taskboards");
                 });
@@ -246,7 +255,13 @@ namespace OfficeDL.Migrations
                         .WithMany()
                         .HasForeignKey("_taskId");
 
+                    b.HasOne("OfficeEntity.Comment", "comment_")
+                        .WithMany()
+                        .HasForeignKey("comment_Id");
+
                     b.Navigation("_task");
+
+                    b.Navigation("comment_");
                 });
 
             modelBuilder.Entity("OfficeEntity.Tasks", b =>

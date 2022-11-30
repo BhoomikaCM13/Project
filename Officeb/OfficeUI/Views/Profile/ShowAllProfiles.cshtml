@@ -2,16 +2,16 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-
+@*
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between m-4">
         <h1 class="h3 mb-0 text-primary"><strong>User Information</strong></h1>
     </div>
-</nav>
+</nav>*@
 <!-- End of Topbar -->
 <!-- Begin Page Content -->
-<div class="container-fluid mt-4">
+@*<div class="container-fluid mt-4">
     <div class="col-xl-6 col-md-6 mb-4 ml-4">
         <div class="card border-left-secondary shadow h-100 py-2">
             <div class="card-body">
@@ -21,11 +21,7 @@
                         <p class="text-xs font-weight-bold text-info text-uppercase mb-1">
                             Username: <span class="my-3 font-weight-bold text-gray-500" style="color:black">@Model.UserName</span>
                         </p>
-                        @*<div class="row">
-                            <div class="col-6">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">User Name</div>
-                            </div><div class="col-6">*@
-                        @*<div class="h5 my-3 font-weight-bold text-gray-800">@Model.UserName</div>*@
+                      
                             </div>
                         </div>
                         <p class="text-sm">
@@ -47,7 +43,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 
 
@@ -83,3 +79,34 @@
         <span style="color:black">@Model.Department</span>
     </div>
 </div>*@
+        <div class="container mt-4 mb-4 p-3 d-flex justify-content-center" >
+    <div class="card p-4" style="background-color:lavender; box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .1)">
+                <div class=" image d-flex flex-column justify-content-center align-items-center">
+             <img src="https://cdn0.iconfinder.com/data/icons/office-and-employment-vol-2-1/32/222_office_employee_man_woman_lady_team_person_people-512.png" height="100" width="100" />
+                <br />
+                       <strong>User Profile</strong>
+                     <hr />
+                <span style="color:black">@Model.Name</span>
+            <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                <span style="color:cadetblue">User Name:</span>
+                <span style="color:black">@Model.UserName</span></div>
+                        <div class="d-flex flex-row justify-content-center align-items-center mt-3">
+                <span style="color:cadetblue">Email: </span>
+                <span style="color:black">@Model.Email</span>
+            </div>
+                            <div class="text mt-3">
+                <span style="color:cadetblue">Position:</span>
+
+                <span style="color:black">@Model.Position</span>
+            </div>
+
+            <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
+                <span style="color:cadetblue">Department:</span>
+
+                <span style="color:black">@Model.Department</span>
+            </div>
+
+            <div><a asp-controller="Profile" asp-action="EditOffice"><i class="fa-solid fa-pen-to-square" title="Edit Profile" style="color:purple"></i></a></div>
+</div>
+</div>
+</div>

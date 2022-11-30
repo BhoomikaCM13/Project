@@ -3,13 +3,18 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-
+@*
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
     <script src="https://kit.fontawesome.com/bf21391385.js" crossorigin="anonymous"></script>
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between m-4">
     <h1 class="h3 mb-0 text-primary"><strong>Tasks Board</strong></h1>
 </div>
+</nav>*@
+<nav>
+    <div class="header text-uppercase" style="color:White ; text-decoration-style:solid">
+        <h1>Task Board</h1>
+    </div>
 </nav>
 <!-- End of Topbar -->
 <!-- Begin Page Content -->
@@ -65,7 +70,7 @@
             <!-- Background Gradient Utilities -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-warning">Doing</h6>
+                    <h6 class="m-0 font-weight-bold text-warning">DOING</h6>
                 </div>
                   @foreach(var second in Model)
                 {

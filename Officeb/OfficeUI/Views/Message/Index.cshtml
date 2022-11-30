@@ -2,22 +2,27 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" >
-    <script src="https://kit.fontawesome.com/bf21391385.js" crossorigin="anonymous"></script>
-    <!-- Page Heading -->
-    
-        <div class="d-sm-flex align-items-center justify-content-between m-4">
-       
-        <h1  class="h3 mb-0 text-primary font-weight-bolder">Messages Board</h1>
+
+<nav>
+    <div class="header text-uppercase" style="color:White ; text-decoration-style:solid">
+        <h1>Message Board</h1>
     </div>
 </nav>
+<asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
+
 @using (Html.BeginForm())
 {
     <p>
-                 Title &nbsp;@Html.TextBox("searchtitle")
-        <input type="submit" value="search" />
-        
-      
+        <form method="post">
+            Title &nbsp;@Html.TextBox("searchtitle")
+            <input type="submit" value="search" />
+        @*<asp:UpdatePanel ID="panel1" runat="server"><ContentTemplate>
+               
+
+                    @*onclick="myobject"
+            </ContentTemplate>
+        </asp:UpdatePanel>*@
+        </form>
     </p>
 }
     @foreach (var message in Model)
@@ -32,7 +37,7 @@
                             <h6 class="m-0 font-weight-bold text-primary" style="display: inline;">@message.Title</h6>
                             &nbsp;
                 <!-- Circle Buttons (Small) -->
-                <div *ngIf="currentUser.id == message.userId" style="display: inline;">
+                <div style="display: inline;">
                             <a asp-controller="Message" asp-action="Edit" asp-route-Id=@message.Id><i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a>&nbsp;
                             <a asp-controller="Message" onclick="MyDelete()" asp-action="Delete" asp-route-Id=@message.Id><i class="fa-solid fa-trash" style="color:red"></i></a>
                         </div>
@@ -50,7 +55,7 @@
                     </small> |
                     <small class="text-muted">
                         Author:
-                            <a routerLink="/profile/user/{{message.userId}}"><strong>@message.Profile.Name</strong></a>
+                            <a><strong>@message.Profile.Name</strong></a>
                     </small>
                 </p>
             </div>
@@ -59,15 +64,15 @@
                
         </div>
     }
+
 <div class="mb-4 ml-4">
-    <a *ngIf="show<((messages|filter:filterTerm).length)" (click)="show = show + 4"
-       class="btn btn-primary btn-icon-split">
-        <span class="icon text-white-50">
-            <fa-icon [icon]="faArrowDown"></fa-icon>
-        </span>
-        <span class="text" style="color: white;">Load More</span>
+     <form method="post">
+    <a>
+        <a asp-controller="message" asp-action="index1" class="btn btn-danger">Load All</a>
     </a>
+     </form>
 </div>
+
 
 
 <script>
@@ -78,4 +83,8 @@
             return event.preventDefault();
         }
     }
+
+    @*function myobject(){
+        document.getElementById("myobject").clientWidth="400";
+    }*@
 </script>

@@ -25,7 +25,7 @@ namespace OfficeDL
         public DbSet<TaskBoard> taskboards { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
-            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2235;Initial Catalog = final5;Integrated Security = True;");
+            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2235;Initial Catalog = finalend;Integrated Security = True;");
         }
     }
 }

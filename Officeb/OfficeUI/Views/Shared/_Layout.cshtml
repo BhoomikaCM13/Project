@@ -12,7 +12,7 @@
 <body>
     @*<div class='dashboard'>*@
     <div class="dashboard-nav">
-    <div class="dashboard-nav mobile-show ">
+    @*<div class="dashboard-nav mobile-show ">*@
     <ul class="page-sidebar-menu page-holder-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top:20px">
     @*<header>*@
         @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -54,11 +54,11 @@
 
 
     </nav>
-    </ul> </div>   </div>
+    </ul> </div>
  
     <div class='dashboard-app'>
-        <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
-        <div class='dashboard-content'>
+        <header class='dashboard-toolbar'><a href="" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+        @*<div class='dashboard-content'>*@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -74,6 +74,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
-    </div></div></div>
+    </div></div>
 </body>
 </html>

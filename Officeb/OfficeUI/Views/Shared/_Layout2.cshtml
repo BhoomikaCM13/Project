@@ -1,245 +1,64 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
-}
+﻿<!DOCTYPE html>
+<link href="~/css/site.css" rel="stylesheet" />
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OfficeUI</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://kit.fontawesome.com/bf21391385.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css" integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-@*<h1>Index</h1>*@
-
-<div class='dashboard'>
-    <div class="dashboard-nav">
-        <link rel="stylesheet" href="\css\dashboard.css">
-        <script src="\js\Dashboard.js"></script>
-        <script src="https://kit.fontawesome.com/bf21391385.js" crossorigin="anonymous"></script>
-        <header>
+</head>
+<body style="background-color:lavender">
+   
+        <div class="dashboard-nav" style="background-color:rebeccapurple">
+        <header >
             <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#"
                                                                                class="brand-logo">
-                <i class="fas fa-anchor"></i> <span>OFFICE  BOARD</span>
+                <div class="nav-item-divider"></div>
+                <i class="fa-solid fa-briefcase" style="color:white" ></i><span>The Office</span>
             </a>
         </header>
+  
         <nav class="dashboard-nav-list">
-            <a href="#" class="dashboard-nav-item active">
-                <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
-            </a>
-            @* <a href="Register" class="dashboard-nav-item"><i class=""></i> Register </a>*@
-            <a class="dashboard-nav-item" asp-area="" asp-controller="Identity" asp-action="Register"> <i class="fa-solid fa-right-to-bracket"></i> Register</a>
-            <a class="dashboard-nav-item" asp-area="" asp-controller="Identity" asp-action="Login"> <i class="fa-solid fa-user-plus"></i> Login</a>
-            <@*div class='dashboard-nav-dropdown'>
-                   <a href="Login" class="dashboard-nav-item">
-                   <i class=""></i> Login
-                   </a>
-                   </div>*@
-        </nav>
-    </div>
-    @*<div class='dashboard-app'>
-    <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
-    <div class='dashboard-content'>
-    <div class='container'>
-    <div class='card'>
-    <div class='card-header'>
-    <h1>Welcome back Jim</h1>
-    </div>
-    <div class='card-body'>
-    <p>Your account type is: Administrator</p>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>*@
+            
+                <a class="nav-link text-dark dashboard-nav-item" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-gauge-high" style="color:floralwhite"></i>&nbsp;<span style="color:white">Dash Board</span></a>
+            <div class="nav-item-divider"></div>
+                    <div class="nav-item">
+                <a class="nav-link text-dark dashboard-nav-item" asp-area="" asp-controller="Profile" asp-action="Login"><i class=" fa-solid fa-right-to-bracket" style="color:floralwhite"></i>&nbsp;<span style="color:white">Login</span></a>
+                    </div>
+         
+            <div class="nav-item">
+                <a class="nav-link text-dark dashboard-nav-item" asp-area="" asp-controller="Profile" asp-action="Register"><i class="fa-solid fa-user-plus" style="color:floralwhite"></i>&nbsp;<span style="color:white">Register</span></a>
+                </div>
 
-    <!-- Topbar -->
-    <div>
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-            <!-- Page Heading -->
-            <div class="d-sm-flex align-items-center justify-content-between m-4">
-                <h1 class="h3 mb-0 text-primary"><strong>Dashboard</strong></h1>
-            </div>
         </nav>
-        <!-- End of Topbar -->
-        <!-- Begin Page Content -->
-        <div class="container-fluid mt-4">
-            <!-- Page Heading -->
-            <div class="d-sm-flex align-items-center justify-content-between ml-4 mb-3">
-                <h1 class="h3 mb-0 text-gray-800">Today</h1>
-            </div>
-            <div class="row">
-                <!-- Messages Card -->
-                <div class="col-xl-3 col-md-6 ml-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <a routerLink="/messages">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Messages</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.todayMessagesCount}}</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <!-- Tasks Card -->
-                <div class="col-xl-3 col-md-6 ml-4 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
-                        <a routerLink="/tasks">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tasks</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.todayTasksCount}}</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <!-- Comments Card -->
-                <div class="col-xl-3 col-md-6 ml-4 mb-4">
-                    <div class="card border-left-secondary shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
-                                        Tasks Comments
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.todayCommentsCount}}</div>
-                                </div>
-                                <div class="col-auto">
-                                    <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Page Heading -->
-            <div class="d-sm-flex align-items-center justify-content-between ml-4 mb-3">
-                <h1 class="h3 mb-0 text-gray-800">This Month</h1>
-            </div>
-            <div class="row">
-                <!-- Messages Card -->
-                <div class="col-xl-3 col-md-6 ml-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <a routerLink="/messages">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Messages</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.monthMessagesCount}}</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <!-- Tasks Card -->
-                <div class="col-xl-3 col-md-6 ml-4 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
-                        <a routerLink="/tasks">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tasks</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.monthTasksCount}}</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <!-- Comments Card -->
-                <div class="col-xl-3 col-md-6 ml-4 mb-4">
-                    <div class="card border-left-secondary shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
-                                        Tasks Comments
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.monthCommentsCount}}</div>
-                                </div>
-                                <div class="col-auto">
-                                    <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Page Heading -->
-            <div class="d-sm-flex align-items-center justify-content-between ml-4 mb-3">
-                <h1 class="h3 mb-0 text-gray-800">This Year</h1>
-            </div>
-            <div class="row">
-                <!-- Messages Card -->
-                <div class="col-xl-3 col-md-6 ml-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <a routerLink="/messages">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Messages</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.yearMessagesCount}}</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <!-- Tasks Card -->
-                <div class="col-xl-3 col-md-6 ml-4 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
-                        <a routerLink="/tasks">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tasks</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.yearTasksCount}}</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <!-- Comments Card -->
-                <div class="col-xl-3 col-md-6 ml-4 mb-4">
-                    <div class="card border-left-secondary shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
-                                        Tasks Comments
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{model?.yearCommentsCount}}</div>
-                                </div>
-                                <div class="col-auto">
-                                    <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
+        
+
+    <div class='dashboard-app'>
+        
+        <header class='dashboard-toolbar' style="background-color:lavender"><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+       
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+
         </div>
     </div>
-</div>
 
-
-ml>
+           @* <footer class="border-top footer text-muted">
+                <div class="container">
+                    <center> &copy; 2022 - OfficeUI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></center>
+                </div>
+            </footer>*@
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+            @RenderSection("Scripts", required: false)
+    
+</body>
+</html>
