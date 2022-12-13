@@ -3,78 +3,65 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-<!-- Topbar -->
-@*<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between m-4">
-        <h1 class="h3 mb-0 text-primary"><strong>Task Details</strong></h1>
+<div class="row responsive">
+    <div style="align-items:end" class="col-2" >
+        <a asp-controller="Task" asp-action="Index" class="btn  btn-user btn-block my-4"><i class="fa-solid fa-arrow-left" style="color:darkslateblue">&nbsp back</i></a>
+       
     </div>
-</nav>*@
+</div>
 
+<!-- Topbar -->
 <nav>
     <div class="header text-uppercase" style="color:White ; text-decoration-style:solid">
         <h1>TASK DETAILS</h1>
     </div>
 </nav>
 <!-- End of Topbar -->
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Content Row -->
     <div class="row">
         <div class="card col-xxl-12 col-xl-12 col-lg-12  border-primary">
               <div class="card-header">
-                    <p class="text-lg" style="display: inline;"><strong>@Model._task.Title</strong></p>
+                    <p class="text-lg" style="display: inline;"><strong>@Model.task.title</strong></p>
                     <!-- Circle Buttons (Small) -->
-                    <div *ngIf="currentUser?.id == task?.userId" style="display: inline;">
-                        <a asp-controller="Task" asp-action="EditTasks" asp-route-Id="@Model._task.Id"><i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a>
-                        <a asp-controller="Task" asp-action="DeleteTasks" asp-route-Id="@Model._task.Id"><i class="fa-solid fa-trash" style="color:red"></i></a>
-                    </div>
-                </div>
+                  @*  <div  style="display: inline;">
+                        
+                        <a asp-controller="Task" asp-action="EditTasks" asp-route-Id="@Model.task.id"><i class="fa-solid fa-pen-to-square" style="color:mediumorchid" title="Edit"></i></a>
+                        <a asp-controller="Task" asp-action="DeleteTasks" asp-route-Id="@Model.task.id"><i class="fa-solid fa-trash" style="color:red" title="Delete"></i></a>
+                    </div>*@
+              </div>
                 <div class="card-body">
-                    <p class="text-lg" style="display: inline;"><strong>@Model._task.Description</strong></p>
+                    <p class="text-lg" style="display: inline;"><strong>@Model.task.description</strong></p>
                     <hr>
                     <p>
                         <small class="text-muted">
                             Status:
-                            <strong>@Model._task.Status</strong>
+                            <strong>@Model.task.status</strong>
                         </small>
                     </p>
                     <p>
                         <small class="text-muted">
                             Created On:
-                            <strong>@Model._task.CreatedOn</strong>
+                            <strong>@Model.task.createdOn</strong>
                         </small> |
                         <small class="text-muted">
                             Created By:
-                            <a routerLink="/profile/user/{{task?.userId}}"><strong>@Model._task.profile.Name</strong></a>
+                            <a routerLink="/profile/user/{{task?.userId}}"><strong>@Model.task.profile.name</strong></a>
                         </small> <br>
                         <small class="text-muted">Comments: <strong>@Model.countMessage</strong></small>
                         <br /> 
                         Add Comments:
-                    <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal" >
-                        <i class="fa-solid fa-circle-plus" style="color:mediumslateblue" title="Add Comments"></i>
-                    </button>
+                        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal" >
+                          <i class="fa-solid fa-circle-plus" style="color:mediumslateblue" title="Add Comments"></i>
+                        </button>
                     </p>
                 </div>
-            </div>
+        </div>
     </div>
 </div>
-@*<div class="row mb-4">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-8">
-        <!-- Open Modal -->
-        @*<button style="Background-color:forestgreen">
-        <i class="fa-solid fa-plus" style="color:black;"></i>
-        <a asp-controller="Comment" asp-action="CreateComment"><span style="color:black ;">Add Comment</span> </a>
-        </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Add Comment
-        </button>
-    </div>
-</div>*@
 
-<!-- COMMENTS BY TASK -->
-<!-- Begin Page Content -->
 <hr />
 
 <div class="container-fluid comments" >
@@ -84,73 +71,39 @@
     </div>
     <div class="row">
 
-       @* <div class="col-lg-3 text-center">
-        <h1 class="h3 text-primary"><strong>Comments:</strong></h1>
-        </div>*@
-        @foreach (var item in Model.comments)
+        @foreach (var item in Model.commentsList)
         {
             <!-- Border Left Utilities -->
             <div class="col-lg-8">
-                <div *ngFor="let comment of comments|slice:0:show">
+                <div>
                     <div class="card mb-4 py-3 border-left-primary">
                         <div class="card-body">
-                            <p>@item.Content</p>
+                            <p>@item.content</p>
                             <p>
                                 <small class="text-muted">
                                     Author:
-                                    <a routerLink="/profile/user/{{comment.userId}}"><strong>@item.Profile.Name</strong></a>
+                                    <a><strong>@item.profile.name</strong></a>
                                 </small> |
                                 <small class="text-muted">
                                     Created On:
-                                    <strong>@item.CreatedOn</strong>
-                                </small>
-                                @* <small class="text-muted">
-                            id
-                            <strong>@item.Id</strong>
-                            </small>
-                            <small class="text-muted">
-                            tid
-                            <strong>@item.taskId</strong>
-                            </small>*@
+                                    <strong>@item.createdOn</strong>
+                                </small>                                
                             </p>
-                            <!-- Circle Buttons (Small) -->
-                            <a asp-controller="Comment" asp-action="EditComment" asp-route-Id="@item.Id"><i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a>
-                            <a asp-controller="Comment" onclick="Myfunction()" asp-action="DeleteComment" asp-route-commentid="@item.Id"><i class="fa-solid fa-trash" style="color:red"></i></a>
+                            @if (item.profileId == Convert.ToInt32(TempData["LoginID"]))
+                            {
+                                TempData.Keep();
+                                <a asp-controller="Comment" asp-action="EditComment" asp-route-Id="@item.id"><i class="fa-solid fa-pen-to-square" style="color:mediumorchid" title="Edit"></i></a>
+                                <a asp-controller="Comment" onclick="Myfunction()" asp-action="DeleteComment" asp-route-commentid="@item.id"><i class="fa-solid fa-trash" style="color:darkmagenta" title="Delete"></i></a>
+                            }
                         </div>
                     </div>
                 </div>
-                @* <div class="mb-4">
-            <a *ngIf="show<comments.length" (click)="show = show + 3" class="btn btn-primary btn-icon-split">
-            <span class="icon text-white-50">
-            <fa-icon [icon]="faArrowDown"></fa-icon>
-            </span>
-            @* <span class="text" style="color: white;">Load More</span>
-            </a>
-            </div>*@
-
             </div>
-        }
-
-        @*<div class="mb-4 ml-4">
-            <form method="post">
-                <a>
-                    <input type="submit" value="load more" />
-                </a>
-            </form>
-        </div>*@
-        
-        
-
+        }     
     </div>
     
 </div>
-<div class="mb-4 ml-4">
-    <form method="post">
-        <a>
-            <a asp-controller="TaskBoard" asp-action="Index1" class="btn btn-danger">Load</a>
-        </a>
-    </form>
-</div>
+
 
 
 
@@ -161,7 +114,6 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
                         Comments
-
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
                         <span aria-hidden="true">&times;</span>
@@ -171,17 +123,12 @@
                     <form method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Content</label>
-                            <textarea class="form-control" asp-for="_comment" rows="8" placeholder="Enter Content"></textarea>
+                            <textarea class="form-control" asp-for="comment" rows="8" placeholder="Enter Content"></textarea>
                         </div>
 
-
-
-                        @*   <div class="form-group">
-                        <input hidden type="number" class="form-control" formControlName="TaskId">
-                        </div>*@
                         <div class="row">
                             <div class="col-6">
-                                <input type="submit" value="Create" onclick="Myfunction2()" class="btn btn-success btn-user btn-block my-4" />
+                                <input type="submit" value="Create" onclick="Myfunction2()" class="btn btn-user btn-block my-4"  style="background-color:mediumslateblue; color:white" >
                             </div>
                             <div class="col-6">
                                 <input type="reset" value="Cancel" class="btn btn-outline-danger btn-user btn-block my-4" />
@@ -204,14 +151,7 @@
             </div>
         </div>
     </div>
-@*
-<div class="mb-4 ml-4">
-     <form method="get">
-    <a>
-        <a asp-controller="Message" asp-action="Index1" class="btn btn-danger">Load</a>
-    </a>
-     </form>
-</div>*@
+
 <script>
     function Myfunction() {
         let val = confirm("Do you want to delete the comment?");
@@ -220,6 +160,6 @@
         }
     }
     function Myfunction2(){
-        alert("Commnet added successfully!!");
+        alert("Comment added successfully!!");
     }
 </script>

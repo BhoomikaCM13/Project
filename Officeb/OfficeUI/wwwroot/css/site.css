@@ -97,7 +97,16 @@ h1, .h1 {
     flex: 1 1 auto;
     padding: 1.25rem;
 }
-
+.qw {
+    --slope: (var(--max-font-size) - var(--min-font-size)) /(var(--typography-max-screen) - var(--typography-min-screen));
+    --intersection: ((-1 * var(--typography-min-screen)) * var(--slope) + var(--min-font-size));
+    --font-size: clamp(var(--min-font-size) * 1rem,var(--intersection) * 1rem + var(--slope) * 100vw,var(--max-font-size) * 1rem);
+    font-family: var(--font-family,var(--font-family-body));
+    font-size: var(--font-size);
+    font-weight: var(--font-weight,400);
+    letter-spacing: var(--letter-spacing);
+    line-height: var(--line-height);
+}
 .card-header {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
@@ -113,6 +122,7 @@ h1, .h1 {
     display: flex;
     min-height: 100vh;
 }
+
 
 .dashboard-app {
     display: -webkit-box;
@@ -366,7 +376,7 @@ h1, .h1 {
 
 .dashboard-toolbar {
     min-height: 84px;
-    background-color: #dfdfdf;
+    background-color: lavender;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -548,4 +558,8 @@ body {
     height: 60vh;
     margin-bottom: 0;
 }
+
+
+
+
 

@@ -2,14 +2,16 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
+
 <!-- Topbar -->
 <nav>
     <div class="header text-uppercase" style="color:White ; text-decoration-style:solid">
         <h1>Dashboard</h1>
     </div>
 </nav>
-
 <!-- End of Topbar -->
+
+
 <!-- Begin Page Content -->
 <div class="container-fluid mt-4">
 
@@ -26,7 +28,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:rebeccapurple">Messages &nbsp;<i class="fa-solid fa-message" style="color:mediumslateblue"></i></div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetTodaymsg</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getTodayMessage</div>
                             </div>
                             <div class="col-auto">
                                 <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
@@ -44,7 +46,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:rebeccapurple">Tasks &nbsp;<i class="fa-solid fa-list-check" style="color:mediumslateblue"></i></div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetTodayTask</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getTodayTask</div>
                             </div>
                             <div class="col-auto">
                                 <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
@@ -64,7 +66,7 @@
                                 Task Comments
                                 <i class="fa-solid fa-comments" style="color:mediumslateblue"></i>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetTodaycomment</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getTodayComment</div>
                         </div>
                         <div class="col-auto">
                             <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>
@@ -87,7 +89,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:rebeccapurple">Messages &nbsp;<i class="fa-solid fa-message" style="color:mediumslateblue"></i></div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetMonthmsg</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getMonthMessage</div>
                             </div>
                             <div class="col-auto">
                                 <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
@@ -105,7 +107,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:rebeccapurple">Tasks &nbsp;<i class="fa-solid fa-list-check" style="color:mediumslateblue"></i></div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetMonthTask</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getMonthTask</div>
                             </div>
                             <div class="col-auto">
                                 <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
@@ -125,7 +127,7 @@
                                 Tasks Comments
                                 <i class="fa-solid fa-comments" style="color:mediumslateblue"></i>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetMonthcomment</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getMonthComment</div>
                         </div>
                         <div class="col-auto">
                             <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>
@@ -148,7 +150,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:rebeccapurple">Messages &nbsp;<i class="fa-solid fa-message" style="color:mediumslateblue"></i></div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetYearmsg</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getYearMessage</div>
                             </div>
                             <div class="col-auto">
                                 <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
@@ -166,7 +168,7 @@
                         <div class="row no-gutters align-items-center" style="text-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
                             <div class="col mr-2" >
                                 <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:rebeccapurple">Tasks &nbsp;<i class="fa-solid fa-list-check" style="color:mediumslateblue"></i></div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetYearTask</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getYearTask</div>
                             </div>
                             <div class="col-auto">
                                 <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
@@ -186,7 +188,7 @@
                                 Tasks Comments
                                 <i class="fa-solid fa-comments" style="color:mediumslateblue"></i>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetYearcomment</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getYearComment</div>
                         </div>
                         <div class="col-auto">
                             <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>

@@ -7,11 +7,12 @@ namespace OfficeDL.Repository
 {
     public interface IMessageRepository
     {
+        //Method Definition's for MessageEntity
         void AddMessage(Message message);
         void UpdateMessage(Message message);
-        void DeleteMessage(int messageid);
-        Message GetMessageById(int Messageid);
-        IEnumerable<Message> GetMessage();
+        void DeleteMessage(int messageId);
+        Message GetMessageById(int messageId);
+        IEnumerable<Message> GetMessages();
 
 
     }

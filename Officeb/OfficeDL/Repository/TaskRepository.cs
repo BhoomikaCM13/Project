@@ -20,7 +20,7 @@ namespace OfficeDL.Repository
         public void AddTask(Tasks task)
         {
            
-            #region Adding details of task
+            #region ADD TASK
             _officeDbContext.tasks.Add(task);
             _officeDbContext.SaveChanges();
             #endregion
@@ -29,52 +29,43 @@ namespace OfficeDL.Repository
 
         public void UpdateTask(Tasks task)
         {
+            #region EDIT TASK
             _officeDbContext.Entry(task).State = EntityState.Modified;
             _officeDbContext.SaveChanges();
+            #endregion
         }
 
-        public void DeleteTask(int tid)
+        public void DeleteTask(int taskId)
         {
-            var task = _officeDbContext.tasks.Find(tid);
+            #region DELETE TASK 
+            var task = _officeDbContext.tasks.Find(taskId);
             _officeDbContext.tasks.Remove(task);
             _officeDbContext.SaveChanges();
+            #endregion
         }
 
-        public Tasks GetTaskById(int tid)
+        public Tasks GetTaskById(int taskId)
         {
-            /*return _officeDbContext.tasks.Find(tid);*/
-            var tasks= _officeDbContext.tasks.Include(obj => obj.profile).ToList();
+            #region GET TASK BY ID
+            var tasks = _officeDbContext.tasks.Include(obj => obj.profile).ToList();
             foreach (var model in tasks)
             {
-                if (model.Id == tid)
+                if (model.id == taskId)
                 {
                     return model;
                 }
             }
             return null;
+            #endregion
         }
 
 
         public IEnumerable<Tasks> GetAllTasks()
         {
+            #region GET ALL TASKS WITH PROFILE PROPERTY
             return _officeDbContext.tasks.Include(obj=>obj.profile).ToList();
+            #endregion
         }
-
-        ////.Include(obj => obj.Task)
-        //public List<Task> GetTasksByTaskId(int taskId)
-        //{
-        //    List<Task> tasks = _officeDbContext.tasks.Include(obj => obj.Profile).ToList();
-        //    List<Task> result = new List<Task>();
-        //    foreach (var comment in tasks)
-
-        //    {
-        //        if (comment.Id == taskId)
-        //        {
-        //            result.Add(comment);
-        //        }
-        //    }
-        //    return result;
-        //}
     }
 
 }

@@ -3,44 +3,10 @@
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
-@*<div>
-    <a asp-controller="Task" asp-action="Index">Index</a>
-
-</div>*@
 
 <form enctype="multipart/form-data">
     <h2>Delete Task</h2><hr />
-    @*<div class="form-group">
-        <label>Task Id</label>
-        <input type="text" asp-for="Id" class="form-control"
-               placeholder="Task Id" required />
-    </div>*@
-
-    <!-- Button trigger modal -->
-    @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        delete
-    </button>*@
- @*   <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">delete</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Do you want to delete
-                </div>
-                <div class="modal-footer">
-                    <input type="submit" value="Delete" class="btn btn-outline-success" />
-                </div>
-            </div>
-        </div>
-    </div>*@
-   @* <input type="submit" value="Delete" class="btn btn-outline-success" />*@
-
+ 
     <hr />
     @if (ViewBag.Status == "Ok")
     {

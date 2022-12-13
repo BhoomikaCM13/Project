@@ -5,36 +5,38 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Officeb.Services
+namespace OfficeBusiness.Services
 {
     public class MessageService
     {
-        IMessageRepository _MessageRepository;
-        public MessageService(IMessageRepository MessageRepository)
+        IMessageRepository _messageRepository;
+        public MessageService(IMessageRepository messageRepository)
         {
-            _MessageRepository = MessageRepository;
+            _messageRepository = messageRepository;
         }
-        public void AddMessage(Message Message)
+
+        // CRUD Service Operations for Message:
+        public void AddMessage(Message message)
         {
-            _MessageRepository.AddMessage(Message);
+            _messageRepository.AddMessage(message);
         }
-        public void UpdateMessage(Message Message)
+        public void UpdateMessage(Message message)
         {
-            _MessageRepository.UpdateMessage(Message);
+            _messageRepository.UpdateMessage(message);
         }
-        public void DeleteMessage(int MessageId)
+        public void DeleteMessage(int messageId)
         {
-            _MessageRepository.DeleteMessage(MessageId);
+            _messageRepository.DeleteMessage(messageId);
         }
         //get movie by id
-        public Message GetMessageById(int MessageId)
+        public Message GetMessageById(int messageId)
         {
-            return _MessageRepository.GetMessageById(MessageId);
+            return _messageRepository.GetMessageById(messageId);
         }
         //get movies
         public IEnumerable<Message> GetMessages()
         {
-            return _MessageRepository.GetMessage();
+            return _messageRepository.GetMessages();
         }
 
         

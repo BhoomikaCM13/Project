@@ -1,54 +1,63 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Officeb.Services;
+using OfficeBusiness.Services;
+using OfficeDL.Repository;
 using OfficeEntity;
+using System;
 using System.Collections.Generic;
 
-namespace ProfileAPI.Controllers
+namespace OfficeAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class CommentController : ControllerBase
     {
-        private CommentService _commentservice;
-        public CommentController(CommentService commentservice)
+        private CommentService _commentService;
+
+        public CommentController(CommentService commentService)
         {
-            _commentservice = commentservice;
+            _commentService = commentService;
         }
+
         [HttpGet("GetComments")]
         public IEnumerable<Comment> GetComments()
         {
-            return _commentservice.GetComments();
+            #region Get Comment :
+            return _commentService.GetComments();
+            #endregion
         }
         [HttpGet("GetCommentById")]
         public Comment GetCommentById(int commentId)
         {
-            return _commentservice.GetCommentById(commentId);
+            #region Get Comment By Id:
+            return _commentService.GetCommentById(commentId);
+            #endregion
+
         }
         [HttpPost("AddComment")]
         public IActionResult AddComment([FromBody] Comment comment)
         {
-            _commentservice.AddComment(comment);
+            #region Add Comment
+            _commentService.AddComment(comment);
             return Ok("comment created successfully");
+            #endregion
         }
         [HttpDelete("DeleteComment")]
         public IActionResult DeleteComment(int commentId)
         {
-            _commentservice.DeleteComment(commentId);
+            #region Delete Comment
+            _commentService.DeleteComment(commentId);
             return Ok("Comment deleted successfully!!!");
+            #endregion
         }
         [HttpPut("UpdateComment")]
         public IActionResult UpdateComment([FromBody] Comment comment)
         {
-            _commentservice.UpdateComment(comment);
+            #region Edit comment 
+            _commentService.UpdateComment(comment);
             return Ok("comment updated successfully");
+            #endregion
         }
-
-        //[HttpGet("GetCommentsByTaskId")]
-        //public Tasks GetCommentsByTaskId(int taskId)
-        //{
-        //  return  _commentservice.GetCommentsByTaskId(taskId);
-        //}
     }
 }
 

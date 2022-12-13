@@ -2,111 +2,33 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-@*
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between m-4">
-        <h1 class="h3 mb-0 text-primary"><strong>User Information</strong></h1>
-    </div>
-</nav>*@
-<!-- End of Topbar -->
+
 <!-- Begin Page Content -->
-@*<div class="container-fluid mt-4">
-    <div class="col-xl-6 col-md-6 mb-4 ml-4">
-        <div class="card border-left-secondary shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-
-                        <p class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                            Username: <span class="my-3 font-weight-bold text-gray-500" style="color:black">@Model.UserName</span>
-                        </p>
-                      
-                            </div>
-                        </div>
-                        <p class="text-sm">
-                            Name: <strong>@Model.Name</strong><br>
-                            Email: <strong>@Model.Email</strong><br>
-                            Position: <strong>@Model.Position</strong><br>
-                            Department: <strong>@Model.Department</strong>
-                        </p>
-                        <!-- Circle Buttons (Small) -->
-                        <div *ngIf="currentUser?.id == profile?.userId">
-                            <div><a asp-controller="Profile" asp-action="EditOffice"><i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a></div>
-
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <fa-icon [icon]="faUserTag" class="fa-10x text-gray-300"></fa-icon>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
-
-
-
-
-@*<div class=" row" >
-    <div class="col-12">
-        <h3>user Profile</h3>
-        <hr />
-        <span style="color:cadetblue">Id   </span>
-        <span style="color:black">@Model.Id</span>
-        <br />
-        <span style="color:cadetblue">Email </span>
-        <span style="color:black">@Model.Email</span>
-        <br />
-        <span style="color:cadetblue">User Name  </span>
-
-        <span style="color:black">@Model.UserName</span>
-        <br />
-        <span style="color:cadetblue">Password  </span>
-
-        <span style="color:black">@Model.Password</span>
-        <br />
-        <span style="color:cadetblue">Name  </span>
-
-        <span style="color:black">@Model.Name</span>
-        <br />
-        <span style="color:cadetblue">position  </span>
-
-        <span style="color:black">@Model.Position</span>
-        <br />
-        <span style="color:cadetblue">Department  </span>
-
-        <span style="color:black">@Model.Department</span>
-    </div>
-</div>*@
-        <div class="container mt-4 mb-4 p-3 d-flex justify-content-center" >
+ <div class="container mt-4 mb-4 p-3 d-flex justify-content-center" >
     <div class="card p-4" style="background-color:lavender; box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .1)">
-                <div class=" image d-flex flex-column justify-content-center align-items-center">
+         <div class=" image d-flex flex-column justify-content-center align-items-center">
              <img src="https://cdn0.iconfinder.com/data/icons/office-and-employment-vol-2-1/32/222_office_employee_man_woman_lady_team_person_people-512.png" height="100" width="100" />
                 <br />
                        <strong>User Profile</strong>
-                     <hr />
-                <span style="color:black">@Model.Name</span>
+                 <hr />
+                <span style="color:black">@Model.name</span>
             <div class="d-flex flex-row justify-content-center align-items-center gap-2">
                 <span style="color:cadetblue">User Name:</span>
-                <span style="color:black">@Model.UserName</span></div>
-                        <div class="d-flex flex-row justify-content-center align-items-center mt-3">
+                <span style="color:black">@Model.userName</span>
+            </div>
+            <div class="d-flex flex-row justify-content-center align-items-center mt-3">
                 <span style="color:cadetblue">Email: </span>
-                <span style="color:black">@Model.Email</span>
+                <span style="color:black">@Model.email</span>
             </div>
-                            <div class="text mt-3">
+            <div class="text mt-3">
                 <span style="color:cadetblue">Position:</span>
-
-                <span style="color:black">@Model.Position</span>
+                <span style="color:black">@Model.position</span>
             </div>
-
             <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
                 <span style="color:cadetblue">Department:</span>
-
-                <span style="color:black">@Model.Department</span>
+                <span style="color:black">@Model.department</span>
             </div>
-
-            <div><a asp-controller="Profile" asp-action="EditOffice"><i class="fa-solid fa-pen-to-square" title="Edit Profile" style="color:purple"></i></a></div>
-</div>
-</div>
+            <div><a asp-controller="Profile" asp-action="EditProfile"><i class="fa-solid fa-pen-to-square" title="Edit Profile" style="color:purple"></i></a></div>
+         </div>
+    </div>
 </div>

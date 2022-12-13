@@ -10,13 +10,13 @@ namespace OfficeEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int id { get; set; }
 
         [Required]
         [MaxLength(1000, ErrorMessage = "MaxContentLength")]
-        public string Content { get; set; }
+        public string content { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        public DateTime createdOn { get; set; }
 
         [Required]
         [ForeignKey("Tasks")]
@@ -27,9 +27,10 @@ namespace OfficeEntity
 
         [Required]
         [ForeignKey("Profile")]
-        public int PId { get; set; }
+        public int profileId { get; set; }
 
-        public Profile Profile { get; set; }
+        public Profile profile { get; set; }
+
 
     }
 }

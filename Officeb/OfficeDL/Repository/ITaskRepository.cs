@@ -7,8 +7,9 @@ namespace OfficeDL.Repository
 {
    public interface ITaskRepository
     {
+        //Method Definition's for TaskEntity
         void AddTask(Tasks task);
-        void DeleteTask(int tid);
+        void DeleteTask(int taskId);
         void UpdateTask(Tasks task);
        
         Tasks GetTaskById(int id);

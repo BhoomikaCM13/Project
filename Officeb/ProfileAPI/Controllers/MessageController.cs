@@ -1,49 +1,59 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Officeb.Services;
+using OfficeBusiness.Services;
 using OfficeEntity;
 using System.Collections.Generic;
 
-namespace ProfileAPI.Controllers
+namespace OfficeAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class MessageController : ControllerBase
     {
-        private MessageService _Messageservice;
-        public MessageController(MessageService Messageservice)
+        private MessageService _messageService;
+        public MessageController(MessageService messageService)
         {
-            _Messageservice = Messageservice;
+            _messageService = messageService;
         }
         [HttpGet("GetMessages")]
         public IEnumerable<Message> GetMessages()
         {
-            return _Messageservice.GetMessages();
+            #region Get Message
+            return _messageService.GetMessages();
+            #endregion
         }
         [HttpGet("GetMessageById")]
-        public Message GetMessageById(int MessageId)
+        public Message GetMessageById(int messageId)
         {
-            return _Messageservice.GetMessageById(MessageId);
+            #region Get Message By Id:
+            return _messageService.GetMessageById(messageId);
+            #endregion
         }
         [HttpPost("AddMessage")]
-        public IActionResult AddMessage([FromBody] Message Message)
+        public IActionResult AddMessage([FromBody] Message message)
         {
-            _Messageservice.AddMessage(Message);
+            #region Add Message:
+            _messageService.AddMessage(message);
             return Ok("Message created successfully");
+            #endregion
         }
         [HttpDelete("DeleteMessage")]
-        public IActionResult DeleteMessage(int MessageId)
+        public IActionResult DeleteMessage(int messageId)
         {
-            _Messageservice.DeleteMessage(MessageId);
+            #region Delete Message
+            _messageService.DeleteMessage(messageId);
             return Ok("Message deleted successfully!!!");
+            #endregion
         }
         [HttpPut("UpdateMessage")]
-        public IActionResult UpdateMessage([FromBody] Message Message)
+        public IActionResult UpdateMessage([FromBody] Message message)
         {
-            _Messageservice.UpdateMessage(Message);
+            #region Edit Message
+            _messageService.UpdateMessage(message);
             return Ok("Message updated successfully");
+            #endregion
         }
 
-        
+
     }
 }

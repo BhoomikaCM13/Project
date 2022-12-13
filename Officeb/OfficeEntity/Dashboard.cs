@@ -10,19 +10,24 @@ namespace OfficeEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; } 
+        public int id { get; set; } 
       
-        public int GetTodaymsg { get; set; }
-        public int GetMonthmsg { get; set; }
-        public int GetYearmsg { get; set; }
-        public int GetTodayTask { get; set; }
-        public int GetMonthTask { get; set; }
-        public int GetYearTask { get; set; }
+        public int getTodayMessage { get; set; }
 
-        public int GetTodaycomment { get; set; }
-        public int GetMonthcomment { get; set; }
-        public int GetYearcomment { get; set; }
+        public int getMonthMessage { get; set; }
 
+        public int getYearMessage { get; set; }
 
+        public int getTodayTask { get; set; }
+
+        public int getMonthTask { get; set; }
+
+        public int getYearTask { get; set; }
+
+        public int getTodayComment { get; set; }
+
+        public int getMonthComment { get; set; }
+
+        public int getYearComment { get; set; }
     }
 }

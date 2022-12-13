@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Officeb.Services
+namespace OfficeBusiness.Services
 {
     public class CommentService
     {
@@ -13,6 +13,9 @@ namespace Officeb.Services
         {
             _commentRepository = commentRepository;
         }
+
+        // CRUD Service Operations for Comment:
+
         public void AddComment(Comment comment)
         {
             _commentRepository.AddComment(comment);
@@ -21,23 +24,20 @@ namespace Officeb.Services
         {
             _commentRepository.UpdateComment(comment);
         }
-        public void DeleteComment(int CommentId)
+        public void DeleteComment(int commentId)
         {
-            _commentRepository.DeleteComment(CommentId);
+            _commentRepository.DeleteComment(commentId);
         }
         //get movie by id
-        public Comment GetCommentById(int CommentId)
+        public Comment GetCommentById(int commentId)
         {
-            return _commentRepository.GetCommentById(CommentId);
+            return _commentRepository.GetCommentById(commentId);
         }
         //get movies
         public IEnumerable<Comment> GetComments()
         {
             return _commentRepository.GetComments();
         }
-        //public Tasks GetCommentsByTaskId(int taskId)
-        //{
-        //    return _commentRepository.GetCommentsByTaskId(taskId);
-        //}
+      
     }
 }

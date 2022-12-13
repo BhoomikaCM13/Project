@@ -19,12 +19,15 @@ namespace OfficeUI.Controllers
             _configuration = configuration;
         }
         
+        //Getting Profile Details by ProfileId 
         [HttpGet]
         public async Task<IActionResult> ShowAllProfiles()
         {
             Profile profile = null;
             using (HttpClient client = new HttpClient())
             {
+                //Fetching temporary ProfileId from  tempdata
+
                 int Id = Convert.ToInt32(TempData["LoginID"]);
                 TempData.Keep();
                 string endpoint = _configuration["WebApiBasedUrl"] + "Profile/GetProfileById?profileId="+Id;
@@ -40,17 +43,18 @@ namespace OfficeUI.Controllers
             return View(profile);
 
         }
-        public IActionResult Index2()
-        {
-            return View();
-        }
+
+        //Creating View to Register
         public IActionResult Register()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(Profile profile)
         {
+            //Creating new Profile by Registering
+
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
@@ -72,13 +76,17 @@ namespace OfficeUI.Controllers
             }
             return View();
         }
+
+        //Creating View to Login
         public IActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Login(Profile profile)
         {
+            //Login Page
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
@@ -97,6 +105,8 @@ namespace OfficeUI.Controllers
                         }
                         else
                         {
+                            //Creating temporary ProfileId from  tempdata
+
                             TempData["LoginID"] = loginID.ToString();
                             TempData.Keep();
                             return RedirectToAction("GetFullCount", "Count");
@@ -108,11 +118,15 @@ namespace OfficeUI.Controllers
             
             return View();
         }
-        public async Task<IActionResult> EditOffice()
+
+        public async Task<IActionResult> EditProfile()
         {
+            //Edit Profile: To display the Profile ie related to ProfileId
             Profile profile = new Profile();
             using (HttpClient client = new HttpClient())
             {
+                //Fetching temporary ProfileId from  tempdata
+
                 int Id = Convert.ToInt32(TempData["LoginID"]);
                 TempData.Keep();
                 string endpoint = _configuration["WebApiBasedUrl"] + "Profile/GetProfileById?profileId=" + Id;
@@ -130,16 +144,16 @@ namespace OfficeUI.Controllers
         }
 
 
-
-
         [HttpPost]
-        public async Task<IActionResult> EditOffice(Profile profiles)
+        public async Task<IActionResult> EditProfile(Profile profiles)
         {
             ViewBag.status = "";
 
             Profile profile=new Profile();
             using (HttpClient client = new HttpClient())
             {
+                //Fetching temporary ProfileId from  tempdata
+
                 int Id = Convert.ToInt32(TempData["LoginID"]);
                 TempData.Keep();
                 string endpoint = _configuration["WebApiBasedUrl"] + "Profile/GetProfileById?profileId=" + Id;
@@ -152,12 +166,14 @@ namespace OfficeUI.Controllers
                     }
                 }
             }
-            profiles.Id = profile.Id;
-            profiles.UserName = profile.UserName;
-            profiles.Password = profile.Password;
-            profiles.Email = profile.Email;
-            
 
+            profiles.id = profile.id;
+            profiles.userName = profile.userName;
+            profiles.password = profile.password;
+            profiles.email = profile.email;
+
+
+            //Editing the message using PUT request 
 
             using (HttpClient client = new HttpClient())
             {
@@ -179,10 +195,7 @@ namespace OfficeUI.Controllers
                     }
                 }
             }
-            
-
-            return View(profile);
-        
+            return View(profile);       
         }
     }
 }

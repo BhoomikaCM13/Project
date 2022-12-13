@@ -2,19 +2,21 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
+
+<!-- Begin Page Content -->
 <nav>
     <div class="header text-uppercase" style="color:White ; text-decoration-style:solid">
         <h1>Message Board</h1>
     </div>
 </nav>
-<asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
+
 
 @using (Html.BeginForm())
 {
     <p>
         <form method="post">
             Title &nbsp;@Html.TextBox("searchtitle")
-            <button asp-action="Index" asp-controller="Message" asp-route-searchtitle=@Html.TextBox("searchtitle")>Search</button>
+            <button asp-action="Index" asp-controller="Messagew" asp-route-searchtitle=@Html.TextBox("searchtitle")>Search</button>
            
         </form>
     </p>
@@ -27,48 +29,45 @@
             <div class="card shadow mb-4">
                 <div class="card-header">
                     <div class="card-title">
-
-                        <h6 class="m-0 font-weight-bold text-primary" style="display: inline;">@message.Title</h6>
+                        <h6 class="m-0 font-weight-bold text-primary" style="display: inline;">@message.title</h6>
                         &nbsp;
                         <!-- Circle Buttons (Small) -->
                         <div style="display: inline;">
-                            <a asp-controller="Message" asp-action="Edit" asp-route-Id=@message.Id><i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a>&nbsp;
-                            <a asp-controller="Message" onclick="MyDelete()" asp-action="Delete" asp-route-Id=@message.Id><i class="fa-solid fa-trash" style="color:red"></i></a>
+                            @if (message.pId == Convert.ToInt32(TempData["LoginID"]))
+                            {
+                                TempData.Keep();
+                            <a asp-controller="Message" asp-action="Edit" asp-route-Id=@message.id><i class="fa-solid fa-pen-to-square" style="color:mediumorchid" title="Edit"></i></a>
+                            <a asp-controller="Message" onclick="MyDelete()" asp-action="Delete" asp-route-Id=@message.id><i class="fa-solid fa-trash" style="color:darkmagenta" title="Delete"></i></a>
+                            }
                         </div>
                     </div>
                 </div>
 
                 <div class="card-body">
-                    <div [innerHTML]="message.content"></div>@message.Content
+                    <div [innerHTML]="message.content"></div>@message.content
                     <hr>
                     <p>
                         <small class="text-muted">
-                            Created On: <strong>
-                                @message.CreatedOn
+                            Created On: 
+                            <strong>
+                                @message.createdOn
                             </strong>
                         </small> |
                         <small class="text-muted">
                             Author:
-                            <a><strong>@message.Profile.Name</strong></a>
+                            <a><strong>@message.Profile.name</strong></a>
                         </small>
                     </p>
                 </div>
             </div>
         </div>
-
     </div>
 }
-@*<div class="mb-4 ml-4">
-    <form method="post">
-        <a>
-            <input type="submit" value="load more" />
-        </a>
-    </form>
-</div>*@
+
 <div class="mb-4 ml-4">
     <form method="post">
         <a>
-            <a asp-controller="Message" asp-action="Index" class="btn btn-danger">Load Less</a>
+            <a asp-controller="Message" asp-action="Index" class="btn" style="background-color:mediumslateblue; color:white">Load Less</a>
         </a>
     </form>
 </div>
@@ -82,5 +81,4 @@
             return event.preventDefault();
         }
     }
-
 </script>

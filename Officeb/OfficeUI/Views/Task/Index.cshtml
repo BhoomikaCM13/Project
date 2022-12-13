@@ -3,20 +3,15 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-@*
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-    <script src="https://kit.fontawesome.com/bf21391385.js" crossorigin="anonymous"></script>
-<!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between m-4">
-    <h1 class="h3 mb-0 text-primary"><strong>Tasks Board</strong></h1>
-</div>
-</nav>*@
+
+<!--  Topbar -->
 <nav>
     <div class="header text-uppercase" style="color:White ; text-decoration-style:solid">
         <h1>Task Board</h1>
     </div>
 </nav>
 <!-- End of Topbar -->
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Content Row -->
@@ -31,36 +26,36 @@
                 </div>
                 @foreach(var items in Model)
                 {
-                    @if (items.Status.ToString() == "ToDo")
+                    @if (items.status.ToString() == "ToDo")
                     {
-                        <div class="card-body" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="toDoTasks"
-                     [cdkDropListConnectedTo]="[secondList, thirdList]" #firstList="cdkDropList"
-                     (cdkDropListDropped)="drop($event, 0)">
-                    
-                    <div class="card mb-4 py-3 border-left-primary pop" cdkDrag *ngFor="let task of toDoTasks">
-                        <textarea hidden id="taskId">@items.Id</textarea>
-                        <div class="card-body text-center">
-                            <p><a routerLink="tasks/task.title"><strong>@items.Title</strong></a></p>
-                            <p>
-                                <small class="text-muted">
-                                    Created On:
-                                    <strong>@items.CreatedOn</strong>
-                                </small> |
-                                <small class="text-muted">
-                                    Created By:
-                                        <a routerLink="/profile/user/@items.profile.Name"><strong>@items.profile.Name</strong></a>
-                                </small> <br>
-                            </p>
-                                    <div *ngIf="currentUser.id == message.userId" style="display: inline;">
-                                        <a asp-controller="TaskBoard" asp-action="Index" asp-route-taskId=@items.Id><i class="fa-solid fa-circle-info" style="color:gray; height:2px "> </i> </a>
-                                        <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@items.Id> <i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a>&nbsp;
-                                        <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@items.Id> <i class="fa-solid fa-trash" style="color:red"></i></a>
-                                      
-
-                        </div></div>
-                    </div>
-                </div>
-                }
+                       <div class="card-body">                    
+                            <div class="card mb-4 py-3 border-left-primary pop">
+                               <textarea hidden id="taskId">@items.id</textarea>
+                                <div class="card-body text-center">
+                                   <p><a routerLink="tasks/task.title"><strong>@items.title</strong></a></p>
+                                   <p>
+                                      <small class="text-muted">
+                                             Created On:
+                                         <strong>@items.createdOn</strong>
+                                      </small> |
+                                      <small class="text-muted">
+                                             Created By:
+                                             <a routerLink="/profile/user/@items.profile.name"><strong>@items.profile.name</strong></a>
+                                      </small> <br>
+                                   </p>
+                                   <div  style="display: inline;">
+                                        <a asp-controller="TaskBoard" asp-action="Index" asp-route-taskId=@items.id><i class="fa-solid fa-circle-info" style="color:mediumslateblue; height:2px "> </i> </a>&nbsp;
+                                        @if (items.profileId == Convert.ToInt32(TempData["LoginID"]))
+                                        {
+                                            TempData.Keep();
+                                            <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@items.id> <i class="fa-solid fa-pen-to-square" style="color:mediumorchid"></i></a>  
+                                            <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@items.id> <i class="fa-solid fa-trash" style="color:darkmagenta"></i></a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                       </div>
+                    }
                 }
             </div>
         </div>
@@ -74,38 +69,40 @@
                 </div>
                   @foreach(var second in Model)
                 {
-                    @if (second.Status.ToString() == "Doing")
+                    @if (second.status.ToString() == "Doing")
                     {
-                <div class="card-body" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="doingTasks"
-                     [cdkDropListConnectedTo]="[firstList, thirdList]" #secondList="cdkDropList"
-                     (cdkDropListDropped)="drop($event, 1)">
-                    <div class="card mb-4 py-3 border-left-warning pop" cdkDrag *ngFor="let task of doingTasks">
-                        <textarea hidden id="taskId">@second.Id</textarea>
-                        <div class="card-body text-center">
-                            <p><a routerLink="/tasks/{{task.id}}"><strong>@second.Title</strong></a></p>
-                            <p>
-                                <small class="text-muted">
-                                    Created On:
-                                    <strong>@second.CreatedOn</strong>
-                                </small> |
-                                <small class="text-muted">
-                                    Created By:
-                                        <a routerLink="/profile/user/@second.profile.Name"><strong>@second.profile.Name</strong></a>
-                                </small> <br>
+                           <div class="card-body">
+                               <div class="card mb-4 py-3 border-left-warning pop">
+                                   <textarea hidden id="taskId">@second.id</textarea>
+                                   <div class="card-body text-center">
+                                     <p><a routerLink="/tasks/{{task.id}}"><strong>@second.title</strong></a></p>
+                                     <p>
+                                        <small class="text-muted">
+                                               Created On:
+                                               <strong>@second.createdOn</strong>
+                                        </small> |
+                                        <small class="text-muted">
+                                               Created By:
+                                               <a routerLink="/profile/user/@second.profile.name"><strong>@second.profile.name</strong></a>
+                                        </small> <br>
                              
-                            </p>
-                            <!-- Circle Buttons (Small) -->
+                                     </p>
 
-                                    <div *ngIf="currentUser.id == message.userId" style="display: inline;">
-                                        <a asp-controller="TaskBoard" asp-action="Index" asp-route-taskId=@second.Id><i class="fa-solid fa-circle-info" style="color:gray; height:2px "> </i> </a>
-                                        <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@second.Id> <i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a> &nbsp;
-                                        <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@second.Id> <i class="fa-solid fa-trash" style="color:red"></i></a>
+                                     <div *ngIf="currentUser.id == message.userId" style="display: inline;">
+                                        <a asp-controller="TaskBoard" asp-action="Index" asp-route-taskId=@second.id><i class="fa-solid fa-circle-info" style="color:mediumslateblue; height:2px "> </i> </a>&nbsp;
+                                        @if (second.profileId == Convert.ToInt32(TempData["LoginID"]))
+                                        {
+                                            TempData.Keep();
+                                            <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@second.id> <i class="fa-solid fa-pen-to-square" style="color:mediumorchid"></i></a>
+
+                                            <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@second.id> <i class="fa-solid fa-trash" style="color:darkmagenta"></i></a>
+                                        } 
                                     </div>
                            
-                        </div>
-                    </div>
-                </div>
-                }
+                                   </div>
+                                </div>
+                           </div>
+                    }
                 }
             </div>
         </div>
@@ -120,42 +117,44 @@
                 </div>
                @foreach(var third in Model)
                {
-                    @if (third.Status.ToString() == "Done")
+                    @if (third.status.ToString() == "Done")
                     {
                
-                <div class="card-body" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="doneTasks"
-                     [cdkDropListConnectedTo]="[firstList, secondList]" #thirdList="cdkDropList"
-                     (cdkDropListDropped)="drop($event, 2)">
-                    <div class="card mb-4 py-3 border-left-success pop" cdkDrag *ngFor="let task of doneTasks">
-                        <textarea hidden id="taskId">@third.Id</textarea>
-                        <div class="card-body text-center">
-                            <p><a routerLink="/tasks/{{task.id}}"><strong>@third.Title</strong></a></p>
-                            <p>
-                                <small class="text-muted">
-                                    Created On:
-                                    <strong>@third.CreatedOn</strong>
-                                </small> |
-                                <small class="text-muted">
-                                    Created By:
-                                        <a routerLink="/profile/user/@third.profile.Name"><strong>@third.profile.Name</strong></a>
-                                </small> <br>
-                             
-                            </p>
-                            <!-- Circle Buttons (Small) -->
+                        <div class="card-body">
+                              <div class="card mb-4 py-3 border-left-success pop">
+                                    <textarea hidden id="taskId">@third.id</textarea>
+                                 <div class="card-body text-center">
+                                      <p><a routerLink="/tasks/{{task.id}}"><strong>@third.title</strong></a></p>
+                                    <p>
+                                       <small class="text-muted">
+                                              Created On:
+                                              <strong>@third.createdOn</strong>
+                                       </small> |
+                                       <small class="text-muted">
+                                              Created By:
+                                              <a routerLink="/profile/user/@third.profile.name"><strong>@third.profile.name</strong></a>
+                                       </small> <br>                             
+                                    </p>
 
-                                    <div *ngIf="currentUser.id == message.userId" style="display: inline;">
-                                        <a asp-controller="TaskBoard" asp-action="Index" asp-route-taskId=@third.Id><i class="fa-solid fa-circle-info" style="color:gray; height:2px "> </i> </a>
-                                        <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@third.Id> <i class="fa-solid fa-pen-to-square" style="color:seagreen"></i></a>&nbsp;
-                                         
-                                        <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@third.Id> <i class="fa-solid fa-trash" style="color:red"></i></a>
-                               </div>
+                                    <div style="display: inline;">
+                                       
+                                        <a asp-controller="TaskBoard" asp-action="Index" asp-route-taskId=@third.id><i class="fa-solid fa-circle-info" style="color:mediumslateblue; height:2px "> </i> </a>&nbsp;
+                                        @if (third.profileId == Convert.ToInt32(TempData["LoginID"]))
+                                        {
+                                            TempData.Keep();
+                                            <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@third.id> <i class="fa-solid fa-pen-to-square" style="color:mediumorchid"></i></a>
+
+
+                                            <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@third.id> <i class="fa-solid fa-trash" style="color:darkmagenta"></i></a>
+                                        } 
+                                    </div>
                           
-                            </div>
-                        </div>
-                    </div>
+                                 </div>
+                              </div>
+                         </div>
                
-                }
-                }
+                    }
+               }
             </div>
         </div>
     </div>
@@ -168,7 +167,6 @@
         let val = confirm("Do you want to delete the task?");
         if (val == false) {
             return event.preventDefault();
-        }
-   
+        }   
     }
 </script>

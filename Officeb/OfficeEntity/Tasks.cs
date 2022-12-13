@@ -13,28 +13,27 @@ namespace OfficeEntity
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int id { get; set; }
 
         [Required]
         [MaxLength(50, ErrorMessage = "MaxTitleLength")]
-        public string Title { get; set; }
+        public string title { get; set; }
 
         [Required]
-        [MaxLength(100, ErrorMessage = "MaxDescriptionLength")]
-        public string Description { get; set; }
+        public string description { get; set; }
 
-        public TaskStatus Status { get; set; }
+        public TaskStatus status { get; set; }
 
 
-        public DateTime CreatedOn { get; set; }
+        public DateTime createdOn { get; set; }
 
  
         [ForeignKey("Profile")]
-        public int ProfileId { get; set; }
+        public int profileId { get; set; }
 
         public Profile profile { get; set; }
 
 
-        //public ICollection<Comment> comments { get; set; }
+        
     }
 }

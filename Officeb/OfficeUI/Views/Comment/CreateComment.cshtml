@@ -2,45 +2,15 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
+
+
 <div>
     <hr />
     <a asp-controller="Comment" asp-action="Index" >Comments</a>
     <hr />
 </div>
-@*<form method="post" enctype="multipart/form-data">
-  
-    <div class=" form-group">
-        <label>Content</label>
-        <input type="text" asp-for="Content" class="form-control" required />
-    </div>
-    <div class=" form-group">
-        <label>Created On</label>
-        <input type="date" asp-for="CreatedOn" class="form-control" required />
-    </div>
-    <div class=" form-group">
-        <label>TaskID</label>
-        <input type="text" asp-for="TaskId" class="form-control" required />
-    </div>
-    <div class=" form-group">
-        <label>PID</label>
-        <input type="text" asp-for="PId" class="form-control" required />
-    </div>
-    <input type="submit" value="Save" class="btn btn-outline-success" />
-    <input type="button" value="Reset" class="btn btn-outline-secondary" />
-    <hr />
-    @if (ViewBag.status == "Ok")
-    {
-        <div class="alert alert-success">
-            @ViewBag.message
-        </div>
-    }
-    else if (ViewBag.status == "Error")
-    {
-        <div class="alert alert-danger">
-            @ViewBag.message
-        </div>
-    }
-</form>*@
+
+<!-- Begin Page Content -->
 <div class="container-fluid mt-4">
     <div class="card o-hidden border-0 shadow-lg my-4">
         <div class="card-body p-0">
@@ -54,26 +24,14 @@
                         <form method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label>Content</label>
-                                <textarea class="form-control" asp-for="Content" rows="8" placeholder="Enter Content"></textarea>
-                            </div>
-                            @*<div class="form-group">
-                                <label>CreatedOn</label>
-                                <input type="date" asp-for="CreatedOn" class="form-control" placeholder="Enter CreatedOn" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Task Id</label>
-                                <input type="text" asp-for="taskId" class="form-control" placeholder="Enter Task Id" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Profile Id</label>
-                                <input type="text" asp-for="PId" class="form-control" placeholder="Enter Profile Id" required />
-                            </div>*@
+                                <textarea class="form-control" asp-for="content" rows="8" placeholder="Enter Content"></textarea>
+                            </div>                           
                             <div class="form-group">
                                 <input hidden type="number" class="form-control" formControlName="TaskId">
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <input type="submit" value="Create" class="btn btn-success btn-user btn-block my-4" />
+                                    <input type="submit" value="Create" class="btn  btn-user btn-block my-4" style="background-color:mediumslateblue; color:white" />
 
                                 </div>
                                 <div class="col-6">
@@ -84,15 +42,15 @@
                             </div>
                             @if (ViewBag.status == "Ok")
                             {
-            <div class="alert alert-success">
+                            <div class="alert alert-success">
                                     @ViewBag.message
-            </div>
+                            </div>
                             }
                             else if (ViewBag.status == "Error")
                             {
-            <div class="alert alert-danger">
+                            <div class="alert alert-danger">
                                     @ViewBag.message
-            </div>
+                            </div>
                             }
                         </form>
                     </div>

@@ -8,11 +8,12 @@ namespace OfficeDL.Repository
 {
     public interface ICommentRepository
     {
+        //Method Definition's for CommentEntity
         void AddComment(Comment comment);
         void UpdateComment(Comment comment);
-        void DeleteComment(int commentid);
-        Comment GetCommentById(int commentid);
+        void DeleteComment(int commentId);
+        Comment GetCommentById(int commentId);
         IEnumerable<Comment> GetComments();
-        //Tasks GetCommentsByTaskId(int taskId);
+      
     }
 }

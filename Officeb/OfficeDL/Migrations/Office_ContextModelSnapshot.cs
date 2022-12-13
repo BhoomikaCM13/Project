@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OfficeDL;
 
-namespace OfficeDL.Migrations
+namespace OfficeData.Migrations
 {
     [DbContext(typeof(Office_Context))]
     partial class Office_ContextModelSnapshot : ModelSnapshot
@@ -21,211 +21,235 @@ namespace OfficeDL.Migrations
 
             modelBuilder.Entity("OfficeEntity.Comment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Content")
+                    b.Property<int?>("TaskBoardid")
+                        .HasColumnType("int");
+
+                    b.Property<string>("content")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("createdOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TaskBoardId")
+                    b.Property<int>("profileId")
                         .HasColumnType("int");
 
                     b.Property<int>("taskId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.HasIndex("PId");
+                    b.HasIndex("TaskBoardid");
 
-                    b.HasIndex("TaskBoardId");
+                    b.HasIndex("profileId");
 
                     b.HasIndex("taskId");
 
                     b.ToTable("comments");
                 });
 
-            modelBuilder.Entity("OfficeEntity.Dashboard", b =>
+            modelBuilder.Entity("OfficeEntity.Contactus", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("GetMonthTask")
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("phone")
                         .HasColumnType("int");
 
-                    b.Property<int>("GetMonthcomment")
+                    b.HasKey("id");
+
+                    b.ToTable("contact");
+                });
+
+            modelBuilder.Entity("OfficeEntity.Dashboard", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("getMonthComment")
                         .HasColumnType("int");
 
-                    b.Property<int>("GetMonthmsg")
+                    b.Property<int>("getMonthMessage")
                         .HasColumnType("int");
 
-                    b.Property<int>("GetTodayTask")
+                    b.Property<int>("getMonthTask")
                         .HasColumnType("int");
 
-                    b.Property<int>("GetTodaycomment")
+                    b.Property<int>("getTodayComment")
                         .HasColumnType("int");
 
-                    b.Property<int>("GetTodaymsg")
+                    b.Property<int>("getTodayMessage")
                         .HasColumnType("int");
 
-                    b.Property<int>("GetYearTask")
+                    b.Property<int>("getTodayTask")
                         .HasColumnType("int");
 
-                    b.Property<int>("GetYearcomment")
+                    b.Property<int>("getYearComment")
                         .HasColumnType("int");
 
-                    b.Property<int>("GetYearmsg")
+                    b.Property<int>("getYearMessage")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("getYearTask")
+                        .HasColumnType("int");
 
-                    b.ToTable("dashboards");
+                    b.HasKey("id");
+
+                    b.ToTable("dashBoards");
                 });
 
             modelBuilder.Entity("OfficeEntity.Message", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Content")
+                    b.Property<string>("content")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("createdOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PId")
+                    b.Property<int>("pId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("title")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.HasIndex("PId");
+                    b.HasIndex("pId");
 
                     b.ToTable("messages");
                 });
 
             modelBuilder.Entity("OfficeEntity.Profile", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Department")
+                    b.Property<string>("department")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Position")
+                    b.Property<string>("position")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("userName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("profile");
                 });
 
             modelBuilder.Entity("OfficeEntity.TaskBoard", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("_comment")
+                    b.Property<string>("comment")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("_taskId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("comment_Id")
+                    b.Property<int?>("commentsid")
                         .HasColumnType("int");
 
                     b.Property<int>("countMessage")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("taskid")
+                        .HasColumnType("int");
 
-                    b.HasIndex("_taskId");
+                    b.HasKey("id");
 
-                    b.HasIndex("comment_Id");
+                    b.HasIndex("commentsid");
 
-                    b.ToTable("taskboards");
+                    b.HasIndex("taskid");
+
+                    b.ToTable("taskBoards");
                 });
 
             modelBuilder.Entity("OfficeEntity.Tasks", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("createdOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("description")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProfileId")
+                    b.Property<int>("profileId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
+                    b.Property<int>("status")
                         .HasColumnType("int");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("title")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.HasIndex("ProfileId");
+                    b.HasIndex("profileId");
 
                     b.ToTable("tasks");
                 });
 
             modelBuilder.Entity("OfficeEntity.Comment", b =>
                 {
-                    b.HasOne("OfficeEntity.Profile", "Profile")
+                    b.HasOne("OfficeEntity.TaskBoard", null)
+                        .WithMany("commentsList")
+                        .HasForeignKey("TaskBoardid");
+
+                    b.HasOne("OfficeEntity.Profile", "profile")
                         .WithMany()
-                        .HasForeignKey("PId")
+                        .HasForeignKey("profileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("OfficeEntity.TaskBoard", null)
-                        .WithMany("comments")
-                        .HasForeignKey("TaskBoardId");
 
                     b.HasOne("OfficeEntity.Tasks", "task")
                         .WithMany()
@@ -233,7 +257,7 @@ namespace OfficeDL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Profile");
+                    b.Navigation("profile");
 
                     b.Navigation("task");
                 });
@@ -242,7 +266,7 @@ namespace OfficeDL.Migrations
                 {
                     b.HasOne("OfficeEntity.Profile", "Profile")
                         .WithMany()
-                        .HasForeignKey("PId")
+                        .HasForeignKey("pId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -251,24 +275,24 @@ namespace OfficeDL.Migrations
 
             modelBuilder.Entity("OfficeEntity.TaskBoard", b =>
                 {
-                    b.HasOne("OfficeEntity.Tasks", "_task")
+                    b.HasOne("OfficeEntity.Comment", "comments")
                         .WithMany()
-                        .HasForeignKey("_taskId");
+                        .HasForeignKey("commentsid");
 
-                    b.HasOne("OfficeEntity.Comment", "comment_")
+                    b.HasOne("OfficeEntity.Tasks", "task")
                         .WithMany()
-                        .HasForeignKey("comment_Id");
+                        .HasForeignKey("taskid");
 
-                    b.Navigation("_task");
+                    b.Navigation("comments");
 
-                    b.Navigation("comment_");
+                    b.Navigation("task");
                 });
 
             modelBuilder.Entity("OfficeEntity.Tasks", b =>
                 {
                     b.HasOne("OfficeEntity.Profile", "profile")
                         .WithMany()
-                        .HasForeignKey("ProfileId")
+                        .HasForeignKey("profileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -277,7 +301,7 @@ namespace OfficeDL.Migrations
 
             modelBuilder.Entity("OfficeEntity.TaskBoard", b =>
                 {
-                    b.Navigation("comments");
+                    b.Navigation("commentsList");
                 });
 #pragma warning restore 612, 618
         }

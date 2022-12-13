@@ -1,0 +1,81 @@
+﻿@model OfficeEntity.Profile
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<!-- Topbar -->
+<nav>
+    <div class="header text-uppercase" style="color:White ; text-decoration-style:solid">
+        <h1>Edit Profile</h1>
+    </div>
+</nav>
+<!-- End of Topbar -->
+
+<!-- Begin Page Content -->
+<div class="container-fluid mt-4">
+    <div class="row ">
+        <div class="col-lg-12">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900">
+                    <fa-icon [icon]="faUserEdit"></fa-icon>
+                </h1>
+            </div>
+            <hr>
+            <div class="form-group row mt-3">
+                <label class="col-sm-3 col-form-label text-left">UserName</label>
+                <div class="col-sm-9 text-left">
+                    <div class="mt-2"><strong>@Model.userName</strong></div>
+                </div>
+                <label class="col-sm-3 col-form-label text-left">Email</label>
+                <div class="col-sm-9 text-left">
+                    <div class="mt-2"><strong>@Model.email</strong></div>
+                </div>
+            </div>
+            <hr>
+            <center>
+            <div class="btn btn-outline-light"><a asp-controller="Profile" asp-action="ShowAllProfiles"><i class="fa-solid fa-eye" title="View Profile" style="color:mediumpurple"></i></a></div>
+            </center>
+            <hr>
+            <form method="post" class="user" [formGroup]='profileForm'>
+                <div class=" =form-group">
+                    <hr color="white" /><label>Position</label>
+                    <input type="text" asp-for="position" class="form-control" placeholder="enter position" required />
+                </div>
+
+                <div class=" =form-group">
+                    <label>Name</label>
+                    <input type="text" asp-for="name" class="form-control" placeholder="enter name" required />
+                </div>
+              <div class=" =form-group">
+                    <label>Department</label>
+                        <select class="form-control" asp-for="department">
+                            <option disabled>Choose</option>
+                         <option value="Production">Production</option>
+                        <option value="Research and Development">Research and Development</option>
+                        <option value="Testing and Maintainance">Testing and Maintainance</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Human Resources">Human Resources</option>
+                        <option value="Accounting">Accounting</option>
+                         <option value="Others" >Others</option>
+                        </select>
+              </div>
+              <br />
+                <input type="submit" value="SaveChanges" class="btn  btn-user btn-block my-4" style="background-color:mediumslateblue; color:white" />              
+            </form>           
+        </div>
+    </div>
+</div>
+
+@if (ViewBag.status == "Ok")
+{
+    <div class="alert alert-success">
+        @ViewBag.message
+    </div>
+}
+else if (ViewBag.status == "Error")
+{
+    <div class="alert alert-danger">
+        @ViewBag.message
+    </div>
+}

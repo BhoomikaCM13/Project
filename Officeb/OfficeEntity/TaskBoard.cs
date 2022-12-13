@@ -11,19 +11,19 @@ namespace OfficeEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int id { get; set; }
 
         [Required]
-        public Tasks _task { get; set; }
+        public Tasks task { get; set; }
 
         [Required]
-        public string _comment { get; set; }
+        public string comment { get; set; }
 
         [Required]
-        public List<Comment> comments { get; set; } 
+        public List<Comment> commentsList { get; set; } 
 
         public int countMessage { get; set; }
 
-        public Comment comment_ { get; set; }
+        public Comment comments { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using OfficeDL;
 using OfficeEntity;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+//using Message = OfficeEntity.Message;
 
 namespace OfficeUI.Controllers
 {
@@ -13,91 +15,72 @@ namespace OfficeUI.Controllers
     {
         Office_Context db=new Office_Context();
 
-        public ActionResult GetFullCount()
+        public IActionResult GetFullCount()
         {
-            List<Message> msg3 = new List<Message>();
             List<Tasks> tasks = new List<Tasks>();
             List<Dashboard> dashboards = new List<Dashboard>();
-            msg3 = db.messages.ToList();
+            List<Comment> comment = new List<Comment>();
 
-            
+            //Getting Message Count For Today,Month & Year:
 
-            var Messages = (from row in msg3
-                            where row.CreatedOn.Month == System.DateTime.UtcNow.Month
-                            select row).Count();
+            var Messages2 = (from row in db.messages
+                             where row.createdOn.Date == System.DateTime.Today
+                             select row).Count();
             Dashboard message1 = new Dashboard();
-            message1.GetMonthmsg = Messages;
+            message1.getTodayMessage = Messages2;
 
-            var Messages2 = (from row in msg3
-                            where row.CreatedOn.Date == System.DateTime.Today
+
+            var Messages = (from row in db.messages
+                            where row.createdOn.Month == System.DateTime.UtcNow.Month
                             select row).Count();
-            message1.GetTodaymsg = Messages2;
+            message1.getMonthMessage = Messages;
+
+            var Messages3 = (from row in db.messages
+                             where row.createdOn.Year == System.DateTime.UtcNow.Year
+                             select row).Count();
+            message1.getYearMessage = Messages3;
 
 
-            var Messages3 = (from row in msg3
-                            where row.CreatedOn.Year == System.DateTime.UtcNow.Year
-                            select row).Count();
-            message1.GetYearmsg = Messages3;
-           
+            //Geting Task Count For Today,Month & Year:
 
-            //Geting task count
-       
 
             tasks = db.tasks.ToList();
 
             var tasks0 = (from row in tasks
-                             where row.CreatedOn.Date == System.DateTime.Today
-                             select row).Count();
-            message1.GetTodayTask = tasks0;
-
+                          where row.createdOn.Date == System.DateTime.Today
+                          select row).Count();
+            message1.getTodayTask = tasks0;
 
             var tasks1 = (from row in tasks
-                            where row.CreatedOn.Month == System.DateTime.UtcNow.Month
-                            select row).Count();
-            message1.GetMonthTask = tasks1;
-
-            
-
+                          where row.createdOn.Month == System.DateTime.UtcNow.Month
+                          select row).Count();
+            message1.getMonthTask = tasks1;
 
             var tasks2 = (from row in tasks
-                             where row.CreatedOn.Year == System.DateTime.UtcNow.Year
-                             select row).Count();
-            message1.GetYearTask = tasks2;
+                          where row.createdOn.Year == System.DateTime.UtcNow.Year
+                          select row).Count();
+            message1.getYearTask = tasks2;
 
 
-
-            List<Comment> comment = new List<Comment>();
-
+            //Getting Comment Count For Today,Month & Year:
             comment = db.comments.ToList();
-
-
-
             var commentMonth = (from row in comment
-                                where row.CreatedOn.Month == System.DateTime.UtcNow.Month
+                                where row.createdOn.Month == System.DateTime.UtcNow.Month
                                 select row).Count();
-            message1.GetMonthcomment = commentMonth;
+            message1.getMonthComment = commentMonth;
 
             var commentToday = (from row in comment
-                                where row.CreatedOn.Date == System.DateTime.Today
+                                where row.createdOn.Date == System.DateTime.Today
                                 select row).Count();
-            message1.GetTodaycomment = commentToday;
+            message1.getTodayComment = commentToday;
 
 
             var commentYear = (from row in comment
-                               where row.CreatedOn.Year == System.DateTime.UtcNow.Year
+                               where row.createdOn.Year == System.DateTime.UtcNow.Year
                                select row).Count();
-            message1.GetYearcomment = commentYear;
+            message1.getYearComment = commentYear;
 
             return View(message1);
         }
-
-
-
-
-        
-       
-
- 
-
     }
 }

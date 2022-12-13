@@ -5,10 +5,14 @@
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
-
-
+<div class="row responsive">
+    <div style="align-items:end" class="col-2" >
+        <a asp-controller="Message" asp-action="Index" class="btn  btn-user btn-block my-4"><i class="fa-solid fa-arrow-left" style="color:darkslateblue">&nbsp back</i></a>
+       
+    </div>
+</div>
 <form method="post" enctype="multipart/form-data">
-
+<!-- Begin Page Content -->
 <div class="container-fluid mt-4">
     <div class="card o-hidden border-0 shadow-lg">
         <div class="card-body p-0">
@@ -22,23 +26,22 @@
                         <form class="user" method="post" [formGroup]='messageForm' (ngSubmit)='create()'>
                             <div class="form-group">
                                 <label>Title</label>
-                                    <input type="text" asp-for="Title" class="form-control" placeholder="Enter Title" required />
+                                    <input type="text" asp-for="title" class="form-control" placeholder="Enter Title" required />
                             </div>                                                  
                                 <div class="form-group">
                                     <label>Content</label>
-                                    <textarea class="form-control" asp-for="Content" rows="12" placeholder="Enter Content"></textarea>
+                                    <textarea class="form-control" asp-for="content" rows="12" placeholder="Enter Content"></textarea>
                                 </div>
 
                            
                             <div class="row">
                                 <div class="col-6">
-                                        <input type="submit" value="Create" class="btn btn-success btn-user btn-block my-4" />
-                                     
+                                        <input type="submit" value="Create" class="btn  btn-user btn-block my-4" style="background-color:mediumslateblue; color:white"/>                                     
                                 </div>
-                                    <div class="col-6">
+                                <div class="col-6">
                                        
                                         <input type="reset" value="Cancel" class="btn btn-outline-danger btn-user btn-block my-4" />
-                                    </div>
+                                </div>
                                
                             </div>
                         </form>
@@ -61,3 +64,13 @@
         </div>
     }
 </form>
+@*
+<script>
+    function Sweetalert()
+    {
+        swal("Click on either the button or outside the modal.")
+            .then((value) => {
+                swal(`The returned value is: ${value}`);
+            });
+    }
+</script>*@

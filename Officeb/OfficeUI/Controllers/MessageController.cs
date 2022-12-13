@@ -31,18 +31,17 @@ namespace OfficeUI.Controllers
         [HttpPost]
         public ActionResult Index(string searchtitle)
         {
+            //MessageBoard Search Bar by message title 
 
             var projects = from pr in db.messages.
                            Include(obj => obj.Profile
-                           )/*.Take(2)*/
+                           )
                            select pr;
 
             if (!String.IsNullOrEmpty(searchtitle))
             {
-                projects = projects.Where(c => c.Title.Contains(searchtitle));
+                projects = projects.Where(c => c.title.Contains(searchtitle));
             }
-
-
             return View(projects); 
 
         }
@@ -50,11 +49,15 @@ namespace OfficeUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            Profile a = new Profile();
+            
            
             IEnumerable<Message> messageresult = null;
             
             using (HttpClient client = new HttpClient())
             {
+                // Created a view to get Message:
+
                 string endPoint = _configuration["WebApiBasedUrl"] + "Message/GetMessages";
                 using (var response = await client.GetAsync(endPoint))
                 {
@@ -64,9 +67,13 @@ namespace OfficeUI.Controllers
                         messageresult = JsonConvert.DeserializeObject<IEnumerable<Message>>(result);
                     }
                     TempData["countofmessage"] = messageresult.Count();
+                    TempData.Keep();
 
                 }
             }
+
+            // Displaying first two Messages
+
             List<Message> messages = new List<Message>();
 
             int i = 0;
@@ -79,37 +86,63 @@ namespace OfficeUI.Controllers
                     messages.Add(message);
                 }
             }
+            
             return View(messages);
         }
-        //[HttpPost]
-        public ActionResult Index1(int a)
+
+        //Used for getting the LoadAll Implementation
+        public async Task<IActionResult> Index1(int a)
         {
-            TempData["load"] = 2;
-            int num = Convert.ToInt32(TempData["load"]) + Convert.ToInt32(TempData["countofmessage"])-2;
-            TempData.Keep();
-            var projects = from pr in db.messages.
-                           Include(obj => obj.Profile
-                           ).Take(num)
-                           select pr;
-            TempData["load"] = num;
-            return View(projects);
+
+            IEnumerable<Message> messageresult = null;
+
+            using (HttpClient client = new HttpClient())
+            {
+                // Created a view to get Message:
+
+                string endPoint = _configuration["WebApiBasedUrl"] + "Message/GetMessages";
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        messageresult = JsonConvert.DeserializeObject<IEnumerable<Message>>(result);
+                    }
+
+                }
+            }
+            //TempData["load"] = 2;
+            //int num = Convert.ToInt32(TempData["load"]) + Convert.ToInt32(TempData["countofmessage"]) - 2;
+            //TempData.Keep();
+            //var projects = from pr in db.messages.
+            //               Include(obj => obj.Profile
+            //               ).Take(num)
+            //               select pr;
+            //TempData["load"] = num;
+            return View(messageresult);
         }
+
+        //Creating a View to Add Message
         public IActionResult Create()
         {
             return View();
         }
 
+        
         [HttpPost]
         public async Task<IActionResult> Create(Message message)
         {
-           
+            //Get temporary Profile from  tempdata
+
             int Id = Convert.ToInt32(TempData["LoginID"]);
             TempData.Keep();
-            message.PId= Id;
-            message.CreatedOn= DateTime.Now;
+            message.pId= Id;
+            message.createdOn= DateTime.Now;
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
+                //Add Messages 
+
                 StringContent content = new StringContent(JsonConvert.SerializeObject(message), Encoding.UTF8, "application/json");
                 string endPoint = _configuration["WebApiBasedUrl"] + "Message/AddMessage";
                 using (var response = await client.PostAsync(endPoint, content))
@@ -128,45 +161,54 @@ namespace OfficeUI.Controllers
             }
             return View();
         }
-        public async Task<IActionResult> Edit(int Id)
+        public async Task<IActionResult> Edit(int id)
         {
+
+            int Id = Convert.ToInt32(TempData["LoginID"]);
+            TempData.Keep();
             Message message = null;
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBasedUrl"] + "Message/GetMessageById?MessageId=" + Id;
+                //Edit Message: To display the Message ie related to MessageId
+
+                string endPoint = _configuration["WebApiBasedUrl"] + "Message/GetMessageById?MessageId=" + id;
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         message = JsonConvert.DeserializeObject<Message>(result);
-                        int MESSAGEID = message.Id;
+
+                        //Storing temporary messageId from  tempdata
+
+                        int MESSAGEID = message.id;
                         TempData["messageId"] = MESSAGEID;
                         TempData.Keep();
                     }
                 }
             }
+            
             return View(message);
-
-
-
         }
 
         [HttpPost]
         public async Task<IActionResult> Edit(Message message)
         {
+            //For auto generating values using TempData:
 
             int Id = Convert.ToInt32(TempData["LoginID"]);
             TempData.Keep();
             int messageId_ = Convert.ToInt32(TempData["messageId"]);
             TempData.Keep();
-            message.PId = Id;
-            message.CreatedOn = DateTime.Now;
-            message.Id = messageId_;
+            message.pId = Id;
+            message.createdOn = DateTime.Now;
+            message.id = messageId_;
 
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
+                //Editing the message using PUT request 
+
                 StringContent content = new StringContent(JsonConvert.SerializeObject(message), Encoding.UTF8, "application/json");
                 string endPoint = _configuration["WebApiBasedUrl"] + "Message/UpdateMessage";
                 using (var response = await client.PutAsync(endPoint, content))
@@ -185,34 +227,14 @@ namespace OfficeUI.Controllers
             }
             return View();
         }
-        //public async Task<IActionResult> Delete(int Id)
-        //{
-        //    Message message = null;
-        //    using (HttpClient client = new HttpClient())
-        //    {
-        //        string endPoint = _configuration["WebApiBasedUrl"] + "Message/GetMessageById?MessageId=" + Id;
-        //        using (var response = await client.GetAsync(endPoint))
-        //        {
-        //            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-        //            {
-        //                var result = await response.Content.ReadAsStringAsync();
-        //                message = JsonConvert.DeserializeObject<Message>(result);
-        //            }
-        //        }
-        //    }
-        //    return View(message);
-        //}
 
 
-
-        public async Task<IActionResult> Delete(int Id)
+        //Fetching messageId to deleting the message
+        public async Task<IActionResult> Delete(int id)
         {
-            //ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBasedUrl"] + "Message/DeleteMessage?MessageId=" + Id;
-
-
+                string endPoint = _configuration["WebApiBasedUrl"] + "Message/DeleteMessage?MessageId=" + id;
 
                 using (var response = await client.DeleteAsync(endPoint))
                 {
@@ -231,10 +253,6 @@ namespace OfficeUI.Controllers
             }
             return View();
         }
-
-      
-
-
 
     }
 }

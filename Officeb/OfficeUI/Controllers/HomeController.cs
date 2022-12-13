@@ -25,85 +25,89 @@ namespace OfficeUI.Controllers
             List<Message> msg3 = new List<Message>();
             List<Tasks> tasks = new List<Tasks>();
             List<Dashboard> dashboards = new List<Dashboard>();
+            List<Comment> comment = new List<Comment>();
             msg3 = db.messages.ToList();
 
-
+            //Getting Message Count For Today,Month & Year:
+            var Messages2 = (from row in msg3
+                             where row.createdOn.Date == System.DateTime.Today
+                             select row).Count();
+            Dashboard message1 = new Dashboard();
+            message1.getTodayMessage = Messages2;
 
             var Messages = (from row in msg3
-                            where row.CreatedOn.Month == System.DateTime.UtcNow.Month
+                            where row.createdOn.Month == System.DateTime.UtcNow.Month
                             select row).Count();
-            Dashboard message1 = new Dashboard();
-            message1.GetMonthmsg = Messages;
-
-            var Messages2 = (from row in msg3
-                             where row.CreatedOn.Date == System.DateTime.Today
-                             select row).Count();
-            message1.GetTodaymsg = Messages2;
-
+            message1.getMonthMessage = Messages;
 
             var Messages3 = (from row in msg3
-                             where row.CreatedOn.Year == System.DateTime.UtcNow.Year
+                             where row.createdOn.Year == System.DateTime.UtcNow.Year
                              select row).Count();
-            message1.GetYearmsg = Messages3;
+            message1.getYearMessage = Messages3;
 
 
-            //Geting task count
+            //Getting task Count For Today,Month & Year:
 
 
             tasks = db.tasks.ToList();
 
             var tasks0 = (from row in tasks
-                          where row.CreatedOn.Date == System.DateTime.Today
+                          where row.createdOn.Date == System.DateTime.Today
                           select row).Count();
-            message1.GetTodayTask = tasks0;
+            message1.getTodayTask = tasks0;
 
 
             var tasks1 = (from row in tasks
-                          where row.CreatedOn.Month == System.DateTime.UtcNow.Month
+                          where row.createdOn.Month == System.DateTime.UtcNow.Month
                           select row).Count();
-            message1.GetMonthTask = tasks1;
+            message1.getMonthTask = tasks1;
 
 
 
 
             var tasks2 = (from row in tasks
-                          where row.CreatedOn.Year == System.DateTime.UtcNow.Year
+                          where row.createdOn.Year == System.DateTime.UtcNow.Year
                           select row).Count();
-            message1.GetYearTask = tasks2;
+            message1.getYearTask = tasks2;
 
 
-            List<Comment> comment = new List<Comment>();
+            //Getting Comment Count For Today,Month & Year:
 
             comment = db.comments.ToList();
 
 
-
             var commentMonth = (from row in comment
-                                where row.CreatedOn.Month == System.DateTime.UtcNow.Month
+                                where row.createdOn.Month == System.DateTime.UtcNow.Month
                                 select row).Count();
-            message1.GetMonthcomment = commentMonth;
+            message1.getMonthComment = commentMonth;
 
             var commentToday = (from row in comment
-                                where row.CreatedOn.Date == System.DateTime.Today
+                                where row.createdOn.Date == System.DateTime.Today
                                 select row).Count();
-            message1.GetTodaycomment = commentToday;
+            message1.getTodayComment = commentToday;
 
 
             var commentYear = (from row in comment
-                               where row.CreatedOn.Year == System.DateTime.UtcNow.Year
+                               where row.createdOn.Year == System.DateTime.UtcNow.Year
                                select row).Count();
-            message1.GetYearcomment = commentYear;
+            message1.getYearComment = commentYear;
 
 
             return View(message1);
         }
 
+    //OfficeBoard Policy:
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult Privacy1()
         {
             return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

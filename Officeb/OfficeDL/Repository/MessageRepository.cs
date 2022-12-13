@@ -16,31 +16,50 @@ namespace OfficeDL.Repository
         {
             _OfficeDbcontext = context;
         }
-        public void AddMessage(Message Message)
+
+      
+        public void AddMessage(Message message)
         {
-            _OfficeDbcontext.messages.Add(Message);
+            #region ADD MESSAGE
+            _OfficeDbcontext.messages.Add(message);
             _OfficeDbcontext.SaveChanges();
+            #endregion
         }
-        public void DeleteMessage(int MessageId)
+
+
+       
+        public void DeleteMessage(int messageId)
         {
-            var movie = _OfficeDbcontext.messages.Find(MessageId);
-            _OfficeDbcontext.messages.Remove(movie);
+            #region DELETE MESSAGE
+            var message = _OfficeDbcontext.messages.Find(messageId);
+            _OfficeDbcontext.messages.Remove(message);
             _OfficeDbcontext.SaveChanges();
+            #endregion
         }
-        public IEnumerable<Message> GetMessage()
+
+     
+        public IEnumerable<Message> GetMessages()
         {
-            return _OfficeDbcontext.messages.Include(obj => obj.Profile).ToList();
+            #region GET ALL MESSAGE WITH PROFILE PROPERTY
+            return _OfficeDbcontext.messages.Include(obj=>obj.Profile).ToList();
+            #endregion
         }
-        public Message GetMessageById(int Messageid)
+   
+        public Message GetMessageById(int messageId)
         {
-            return _OfficeDbcontext.messages.Find(Messageid);
-        }
-        public void UpdateMessage(Message Message)
-        {
-            _OfficeDbcontext.Entry(Message).State = EntityState.Modified;
-            _OfficeDbcontext.SaveChanges();
+            #region GET MESSAGE BY ID
+            return _OfficeDbcontext.messages.Find(messageId);
+            #endregion
         }
 
        
+        public void UpdateMessage(Message message)
+        {
+            #region EDIT MESSAGE
+            _OfficeDbcontext.Entry(message).State = EntityState.Modified;
+            _OfficeDbcontext.SaveChanges();
+            #endregion
+        }
+
     }
 }

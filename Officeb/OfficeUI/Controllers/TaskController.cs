@@ -26,12 +26,14 @@ namespace OfficeUI.Controllers
         {
             _configuration = configuration;
         }
+
+        // Get Task details
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             IEnumerable<Tasks> taskresult = null;
             using (HttpClient client = new HttpClient())
-            { 
+            {
                 string endPoint = _configuration["WebApiBasedUrl"] + "Task/GetTask";
                 using (var response = await client.GetAsync(endPoint))
                 {
@@ -46,6 +48,8 @@ namespace OfficeUI.Controllers
             }
             return View(taskresult);
         }
+
+        // Created a view to add Task:
         public async Task<IActionResult> TasksCreate()
         {
             return View( );
@@ -56,13 +60,16 @@ namespace OfficeUI.Controllers
 
         public async Task<IActionResult> TasksCreate(Tasks Tasks)
         {
+            //Get temporary Profile from  tempdata
 
             int Id = Convert.ToInt32(TempData["LoginID"]);
             TempData.Keep();
-            Tasks.ProfileId = Id;
-            Tasks.CreatedOn = DateTime.Now;
+            Tasks.profileId = Id;
+            Tasks.createdOn = DateTime.Now;
             using (HttpClient client = new HttpClient())
             {
+                //Add Task
+
                 StringContent content = new StringContent(JsonConvert.SerializeObject(Tasks), Encoding.UTF8, "application/json");
                 string endPoint = _configuration["WebApiBasedUrl"] + "Task/AddTask";
                 using (var response = await client.PostAsync(endPoint, content))
@@ -92,7 +99,9 @@ namespace OfficeUI.Controllers
           
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBasedUrl"] + "Task/GetTaskById?tid=" + taskId;
+                //Edit Task: To display the Task ie related to TaskId
+
+                string endPoint = _configuration["WebApiBasedUrl"] + "Task/GetTaskById?taskId=" + taskId;
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -101,7 +110,8 @@ namespace OfficeUI.Controllers
                         tasks = JsonConvert.DeserializeObject<Tasks>(result);
 
                         //Get temporary taskid from  tempdata
-                        int TASKID = tasks.Id;
+
+                        int TASKID = tasks.id;
                         TempData["TaskId"] = TASKID;
                         TempData.Keep();
                     }
@@ -113,14 +123,15 @@ namespace OfficeUI.Controllers
         [HttpPost]
         public async Task<IActionResult> EditTasks(Tasks task)
         {
+            //Get temporary Profile and Task from  tempdata
 
             int Id = Convert.ToInt32(TempData["LoginID"]);
             TempData.Keep();
             int taskId_ = Convert.ToInt32(TempData["TaskId"]);
             TempData.Keep();
-            task.ProfileId = Id;
-            task.CreatedOn = DateTime.Now;
-            task.Id = taskId_;
+            task.profileId = Id;
+            task.createdOn = DateTime.Now;
+            task.id = taskId_;
 
             using (HttpClient client = new HttpClient())
             {
@@ -144,12 +155,11 @@ namespace OfficeUI.Controllers
         }
         public async Task<IActionResult> DeleteTasks(int taskId)
         {
-            /*int taskId_ = Convert.ToInt32(TempData["TaskId_"]);
-            TempData.Keep();
-            task.Id = taskId_;*/
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBasedUrl"] + "Task/DeleteTask?tid="+ taskId;
+                //Editing the Task using PUT request 
+
+                string endPoint = _configuration["WebApiBasedUrl"] + "Task/DeleteTask?taskId=" + taskId;
                 using (var response = await client.DeleteAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)

@@ -15,53 +15,53 @@ namespace OfficeDL.Repository
         {
             _OfficeDbcontext = context;
         }
+
+        public CommentRepository()
+        {
+        }
+
         public void AddComment(Comment comment)
         {
+            #region ADD COMMENT
             _OfficeDbcontext.comments.Add(comment);
             _OfficeDbcontext.SaveChanges();
+            #endregion
         }
+
+
+
         public void DeleteComment(int commentId)
         {
-            var movie = _OfficeDbcontext.comments.Find(commentId);
-            _OfficeDbcontext.comments.Remove(movie);
+            #region DELETE COMMENT
+            var comment = _OfficeDbcontext.comments.Find(commentId);
+            _OfficeDbcontext.comments.Remove(comment);
             _OfficeDbcontext.SaveChanges();
+            #endregion
         }
+  
         public IEnumerable<Comment> GetComments()
         {
-            return _OfficeDbcontext.comments.Include(obj => obj.Profile).ToList();
+            #region GET ALL COMMENTS WITH PROFILE PROPERTY
+            return _OfficeDbcontext.comments.Include(obj => obj.profile).ToList();
+            #endregion
         }
-        public Comment GetCommentById(int commentid)
+
+      
+        public Comment GetCommentById(int commentId)
         {
-            return _OfficeDbcontext.comments.Find(commentid);
+            #region GET COMMENT BY ID 
+            return _OfficeDbcontext.comments.Find(commentId);
+            #endregion
         }
+
         public void UpdateComment(Comment comment)
         {
+            #region EDIT COMMENT
             _OfficeDbcontext.Entry(comment).State = EntityState.Modified;
             _OfficeDbcontext.SaveChanges();
+            #endregion
         }
 
-        //public Tasks GetCommentsByTaskId(int taskId)
-        //{
-
-        //    //var result = _OfficeDbcontext.tasks.Include(obj => obj.comments).Where(obj => obj.Id == taskId).ToList();
-
-        //    //////var result1 = _OfficeDbcontext.tasks.ToList().Where(obj => obj.Id == taskId).ToList();
-        //    ////var result2 = _OfficeDbcontext.comments.ToList().Where(obj => obj.TaskId == taskId).ToList();
-        //    ////List<Tasks> tasks = _OfficeDbcontext.tasks.Include(obj => obj.Comment).Include(obj => obj.profile).ToList();
-        //    ////List<Tasks> result = new List<Tasks>();
-        //    ////foreach (var comment in tasks)
-
-        //    ////{
-        //    ////    if (comment.commentId==_commentId)
-        //    ////    {
-        //    ////        result.Add(comment);
-        //    ////    }
-        //    ////}
-        //    //if (result.Count == 0)
-        //    //    return null;
-        //    //return result[0];
-
-        //}
     }
 }
  

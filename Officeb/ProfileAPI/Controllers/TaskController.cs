@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Officeb.Services;
+using OfficeBusiness.Services;
 using OfficeEntity;
 using System.Collections.Generic;
 
-namespace ProfileAPI.Controllers
+namespace OfficeAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -20,34 +20,44 @@ namespace ProfileAPI.Controllers
         [HttpGet("GetTask")]
         public IEnumerable<Tasks> GetTask()
         {
+            #region Get Task
             return taskService.GetTasks();
+            #endregion 
         }
 
         [HttpPost("AddTask")]
         public IActionResult AddTask([FromBody] Tasks tasks)
         {
+            #region Add Task 
             taskService.AddTasks(tasks);
             return Ok("Task Added Successfully");
+            #endregion
         }
 
         [HttpDelete("DeleteTask")]
-        public IActionResult DeleteTask(int tid)
+        public IActionResult DeleteTask(int taskId)
         {
-            taskService.DeleteTasks(tid);
+            #region Delete Task
+            taskService.DeleteTasks(taskId);
             return Ok("Tasks Deleted Successfully");
+            #endregion
         }
 
         [HttpPut("UpdateTask")]
         public IActionResult UpdateTask(Tasks task)
         {
+            #region Edit Task 
             taskService.UpdateTasks(task);
             return Ok("task updated successfully");
+            #endregion 
         }
 
         [HttpGet("GetTaskById")]
-        public Tasks GetTaskById(int tid)
+        public Tasks GetTaskById(int taskId)
         {
-            return taskService.GetTaskById(tid);
+            #region Get Task By Id
+            return taskService.GetTaskById(taskId);
+            #endregion
         }
     }
 }

@@ -37,43 +37,48 @@ namespace OfficeUI.Controllers
 
 
             var _tasks = (from a in db.tasks.Include(obj => obj.profile)
-                          where a.Id == Convert.ToInt32(TempData["taskId_"])
+                          where a.id == Convert.ToInt32(TempData["taskId_"])
                           select a).FirstOrDefault();
 
             TempData.Keep();
 
             //Get temp taskid from temp data
  
-            var _result = (from a in db.comments.Include(obj => obj.Profile)
+            var _result = (from a in db.comments.Include(obj => obj.profile)
                            where a.taskId == Convert.ToInt32(TempData["taskId_"])
                            select a).ToList();
             TempData.Keep();
+
             //Get Comment count per task
+
             var _count = _result.Count();
 
-            //Output set to ViewModel  
-            var model = new TaskBoard { _task =_tasks , comments = _result, countMessage=_count };
+            //Output set to ViewModel
+            
+            var model = new TaskBoard { task =_tasks , commentsList = _result, countMessage=_count };
             return View(model);
         }
 
         [HttpPost]
         public async Task<IActionResult> Index(TaskBoard task)
         {
-            Comment comment = new Comment();
-            comment.Content = task._comment;
+            //For auto generating values using TempData:
+
+            Comment commentobj = new Comment();
+            commentobj.content = task.comment;
             int ProfileId = Convert.ToInt32(TempData["LoginID"]);
             TempData.Keep();
-            comment.PId = ProfileId;
-            comment.CreatedOn = DateTime.UtcNow;
-            int taskId_ = Convert.ToInt32(TempData["taskId_"]);
+            commentobj.profileId = ProfileId;
+            commentobj.createdOn = DateTime.UtcNow;
+            int task_Id = Convert.ToInt32(TempData["taskId_"]);
             TempData.Keep();
-           /* TempData["thedata"] = taskId_;
-            TempData.Keep();*/
-            comment.taskId = taskId_;
+            commentobj.taskId = task_Id;
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(comment), Encoding.UTF8, "application/json");
+                //Add Comment for Particular Task
+
+                StringContent content = new StringContent(JsonConvert.SerializeObject(commentobj), Encoding.UTF8, "application/json");
                 string endPoint = configuration["WebApiBasedUrl"] + "Comment/AddComment";
                 using (var response = await client.PostAsync(endPoint, content))
                 {
@@ -91,21 +96,8 @@ namespace OfficeUI.Controllers
                     }
                 }
             }
-            //TaskBoard taskBoard = new TaskBoard();
 
             return View( );
-        }
-        [HttpPost]
-        public ActionResult Index1()
-        {
-            var db = new Office_Context();
-            TempData["load"] = 3;
-            int num = Convert.ToInt32(TempData["load"]) + 3;
-            var projects = from pr in db.comments.
-                           Include(obj => obj.Profile).Include(obj=>obj.task).Take(num)
-                           select pr;
-            TempData["load"] = num;
-            return View(projects);
         }
     }
 }

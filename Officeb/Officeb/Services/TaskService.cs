@@ -4,7 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Officeb.Services
+
+namespace OfficeBusiness.Services
 {
     public class TaskService
     {
@@ -14,6 +15,7 @@ namespace Officeb.Services
             this.taskRepository = taskRepository;
         }
 
+        // CRUD Service Operations for Tasks:
         public void AddTasks(Tasks task)
         {
             taskRepository.AddTask(task);
@@ -23,13 +25,13 @@ namespace Officeb.Services
         {
             taskRepository.UpdateTask(task);
         }
-        public void DeleteTasks(int tid)
+        public void DeleteTasks(int taskId)
         {
-            taskRepository.DeleteTask(tid);
+            taskRepository.DeleteTask(taskId);
         }
-        public Tasks GetTaskById(int tid)
+        public Tasks GetTaskById(int taskId)
         {
-            return taskRepository.GetTaskById(tid);
+            return taskRepository.GetTaskById(taskId);
         }
         public IEnumerable<Tasks> GetTasks()
         {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Officeb.Services;
+using OfficeBusiness.Services;
 using OfficeEntity;
 using System.Collections.Generic;
 
@@ -9,42 +9,48 @@ namespace ProfileAPI.Controllers
     [ApiController]
     public class ProfileController : ControllerBase
     {
-        private Profileser _editprofileservice;
-        public ProfileController(Profileser editprofileservice)
+        private Profileservice _editProfileService;
+        public ProfileController(Profileservice editProfileService)
         {
-            _editprofileservice = editprofileservice;
+            _editProfileService = editProfileService;
         }
         [HttpPut("UpdateProfile")]
         public IActionResult UpdateProfile([FromBody] Profile profile)
         {
-            _editprofileservice.UpdateProfile(profile);
+            #region Edit Profile:
+            _editProfileService.UpdateProfile(profile);
             return Ok("profile updated successfully");
+            #endregion
         }
         [HttpPost("Register")]
         public IActionResult Register([FromBody] Profile profile)
         {
-            _editprofileservice.Register(profile);
+            #region Register
+            _editProfileService.Register(profile);
             return Ok("Register successfully!!");
+            #endregion
         }
         [HttpPost("Login")]
         public int Login([FromBody] Profile profile)
         {
-            int profiles = _editprofileservice.Login(profile);
+            #region Login
+            int profiles = _editProfileService.Login(profile);
             return profiles;
-/*            if (profiles != null)
-                return Ok("Login success!!");
-            else
-                return NotFound();*/
+            #endregion
         }
         [HttpGet("GetProfileById")]
         public Profile GetProfileById(int profileId)
         {
-            return _editprofileservice.GetProfileById(profileId);
+            #region Get Profile By Id
+            return _editProfileService.GetProfileById(profileId);
+            #endregion
         }
         [HttpGet("GetProfiles")]
         public IEnumerable<Profile> GetProfiles()
         {
-            return _editprofileservice.GetProfiles();
+            #region Get Profile:
+            return _editProfileService.GetProfiles();
+            #endregion
         }
     }
 }

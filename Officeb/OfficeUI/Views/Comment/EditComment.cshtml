@@ -2,30 +2,42 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-
-
 <form method="post" enctype="multipart/form-data">
-    <h2>Comments</h2>
-    <div class=" form-group">
-        <label>Content</label>
-        <input type="text" asp-for="Content" class="form-control" placeholder="enter" required />
+    <!-- Begin Page Content -->
+    <div class="container-fluid mt-4">
+        <div class="card o-hidden border-0 shadow-lg">
+            <div class="card-body p-0">
+                <!-- nested row within card body -->
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4" style="color:black"><b>Edit Comment</b></h1>
+                            </div>
+                            <form class="user" method="post" [formgroup]='messageform' (ngsubmit)='create()'>
+
+                                <div class="form-group">
+                                    <label>Content</label>
+                                    <textarea class="form-control" asp-for="content" rows="12" placeholder="Enter Content"></textarea>
+                                </div>
+                                <input type="submit" value="Edit" class="btn  btn-user btn-block my-4" style="background-color:mediumslateblue; color:white" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
- 
-
-    <input type="submit" value="Save" class="btn btn-outline-success" />
-    <input type="button" value="Reset" class="btn btn-outline-secondary" />
-    <hr />
     @if (ViewBag.status == "Ok")
     {
-        <div class="alert alert-success">
+            <div class="alert alert-success">
             @ViewBag.message
-        </div>
+            </div>
     }
     else if (ViewBag.status == "Error")
     {
-        <div class="alert alert-danger">
+            <div class="alert alert-danger">
             @ViewBag.message
-        </div>
+            </div>
     }
 </form>

@@ -2,8 +2,17 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-<form method="post" enctype="multipart/form-data">
 
+
+<div class="row responsive">
+    <div style="align-items:end" class="col-2">
+        <a asp-controller="Message" asp-action="Index" class="btn  btn-user btn-block my-4"><i class="fa-solid fa-arrow-left" style="color:darkslateblue">&nbsp back</i></a>
+
+    </div>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <!-- Begin Page Content -->
     <div class="container-fluid mt-4">
         <div class="card o-hidden border-0 shadow-lg">
             <div class="card-body p-0">
@@ -12,26 +21,19 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4" style="color:lightskyblue"><b>Edit Message</b></h1>
+                                <h1 class="h4 text-gray-900 mb-4" style="color:black"><b>Edit Message</b></h1>
                             </div>
                             <form class="user" method="post" [formgroup]='messageform' (ngsubmit)='create()'>
                               
                                 <div class="form-group">
-                                    <label>title</label>
-                                    <input type="text" asp-for="Title" class="form-control" placeholder="Enter Title" required />
+                                    <label>Title</label>
+                                    <input type="text" asp-for="title" class="form-control" placeholder="Enter Title" required />
                                 </div>
                                 <div class="form-group">
-                                    <label>content</label>
-                                    <textarea class="form-control" asp-for="Content" rows="12" placeholder="Enter Content"></textarea>
+                                    <label>Content</label>
+                                    <textarea class="form-control" asp-for="content" rows="12" placeholder="Enter Content"></textarea>
                                 </div>
-                               <div class="row">
-                                    <div class="col-6">
-                                       <input type="submit" value="Edit" class="btn btn-success btn-user btn-block my-4" />
-
-                                        </div>
-                               
-                                    </div>
-                               
+                                <input type="submit" value="Edit" class="btn  btn-user btn-block my-4" style="background-color:mediumslateblue; color:white" />                               
                             </form>
                         </div>
                     </div>

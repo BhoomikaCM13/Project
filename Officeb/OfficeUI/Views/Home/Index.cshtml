@@ -1,206 +1,103 @@
 ﻿@model OfficeEntity.Dashboard;
 @{
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!-- Topbar -->
-@*<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between m-4">
-        <h1 class="h3 mb-0 text-primary header"><strong>Dashboard</strong></h1>
-    </div>
-</nav>*@
-<nav>
-    <div class="header text-uppercase" style="color:White ; text-decoration-style:solid">
-        <h1>Dashboard</h1>
-    </div>
-</nav>
 
-<!-- End of Topbar -->
-<!-- Begin Page Content -->
-<div class="container-fluid mt-4">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Office</title>
+    <link rel="stylesheet" href="assets/vendors/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
 
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between ml-4 mb-3">
-        <h1 class="h3 mb-0 text-gray-800">Today</h1>
+<body>
+
+    <div class="row responsive">
+        <div class="col-7">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg navbar-light foi-navbar">
+                    <img src="https://gifimage.net/wp-content/uploads/2017/10/business-gif-10.gif" alt="The Office" width="50" height="50">
+                    <h1 style="color:rebeccapurple"><b>The Office</b></h1>
+                </nav>
+            </div>
+        </div>  
+        <div class="col-2">
+            <pre></pre>
+            <ul class="navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item mr-2 mb-3 mb-lg-0">
+                    <a class="btn btn-primary" asp-controller="Contact" asp-action="CreateContact">Contact Us</a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="col-1"></div>
+        <div class="col-2">
+            <pre></pre>
+            <ul class="navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item mr-2 mb-3 mb-lg-0">
+                    <a class="btn btn-primary" asp-controller="Profile" asp-action="Login">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+                </li>
+            </ul>
+
+        </div>
     </div>
-    <div class="row">
-        <!-- Messages Card -->
-        <div class="col-xl-4  col-md-6 ml-12 mb-4">
-            <div class="card border-left-info  h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
-                <a routerLink="/messages">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:rebeccapurple">Messages &nbsp;<i class="fa-solid fa-message" style="color:mediumslateblue"></i></div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetTodaymsg</div>
-                            </div>
-                            <div class="col-auto">
-                                <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
-                            </div>
+    <br />
+    <br />
+    <main class="page-about">
+        <div class="container">
+            <section class="foi-page-section pt-0">
+                <div class="row">
+                    <div class="col-md-6 mb-4 mb-md-0 pr-lg-0">
+                        <h2 class="about-section-one-title">
+                            Be Focused,Fast and First @*<span class="font-weight-normal">Everything you need to organize your work. Easy-to-use from Entrepreneur to Enterprise.</span>*@
+                        </h2>
+                        <div class="about-section-one-content">
+                            <p>
+                                Streamline your work for
+                                maximum productivity
+                                Centralize all your work, processes, tools. Connect teams and maintain one source of truth across your organization.
+                            </p>
+
+                            <p>
+                                Stay on track to
+                                reach your goals, faster
+                                Get a high-level overview of your organization with customizable dashboards. Make confident decisions and easily scale workflows for your evolving needs.
+                            </p>
                         </div>
                     </div>
-                </a>
-            </div>
-        </div>
-        <!-- Tasks Card -->
-        <div class="col-xl-4  col-md-6 ml-12 mb-4">
-            <div class="card border-left-primary  h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
-                <a routerLink="/tasks">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:rebeccapurple">Tasks &nbsp;<i class="fa-solid fa-list-check" style="color:mediumslateblue"></i></div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetTodayTask</div>
-                            </div>
-                            <div class="col-auto">
-                                <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
-                            </div>
-                        </div>
+                    <div class="col-md-6 pl-lg-0 d-flex align-items-center align-items-lg-end">
+                        <img src="https://bootstrapdash.com/demo/foi-app-landing-page/assets/images/about_img_1.png" alt="about" class="img-fluid" width="448">
                     </div>
-                </a>
-            </div>
-        </div>
-        <!-- Comments Card -->
-        <div class="col-xl-4  col-md-6 ml-12 mb-4">
-            <div class="card border-left-secondary  h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:rebeccapurple">
-                                Task Comments
-                                <i class="fa-solid fa-comments" style="color:mediumslateblue"></i>
-                            </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetTodaycomment</div>
-                        </div>
-                        <div class="col-auto">
-                            <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>
+                </div>
+            </section>
+            <section class="foi-page-section">
+                <div class="row">
+                    <div class="col-md-6 mb-5 mb-md-0">
+                        <img src="https://th.bing.com/th/id/OIP.mt4upJ4WqkmDGgyR2NycLAHaE7?pid=ImgDet&rs=1" alt="about 2" class="w-100 img-fluid pr-md-5" width="437">
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="about-section-two-title">We create the best <span class="font-weight-normal">solution for you and your business.</span></h2>
+                        <div class="about-section-two-content">
+                            <p>
+                                Bring teams together to
+                                drive business impact
+                                Collaborate effectively org
+                            anization-wide to get a clear picture of all your work. Stay in the loop with easy-to-use automations and real-time notifications.</p>                   
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </div>
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between ml-4 mb-3">
-        <h1 class="h3 mb-0 text-gray-800">This Month</h1>
-    </div>
-    <div class="row">
-        <!-- Messages Card -->
-        <div class="col-xl-4 col-md-6 ml-12 mb-4">
-            <div class="card border-left-info  h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
-                <a routerLink="/messages">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:rebeccapurple">Messages &nbsp;<i class="fa-solid fa-message" style="color:mediumslateblue"></i></div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetMonthmsg</div>
-                            </div>
-                            <div class="col-auto">
-                                <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <!-- Tasks Card -->
-        <div class="col-xl-4 col-md-6 ml-12 mb-4">
-            <div class="card border-left-primary h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
-                <a routerLink="/tasks">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:rebeccapurple">Tasks &nbsp;<i class="fa-solid fa-list-check" style="color:mediumslateblue"></i></div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetMonthTask</div>
-                            </div>
-                            <div class="col-auto">
-                                <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <!-- Comments Card -->
-        <div class="col-xl-4 col-md-6 ml-12 mb-4">
-            <div class="card border-left-secondary h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:rebeccapurple">
-                                Tasks Comments
-                                <i class="fa-solid fa-comments" style="color:mediumslateblue"></i>
-                            </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetMonthcomment</div>
-                        </div>
-                        <div class="col-auto">
-                            <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between ml-4 mb-3">
-        <h1 class="h3 mb-0 text-gray-800">This Year</h1>
-    </div>
-    <div class="row">
-        <!-- Messages Card -->
-        <div class="col-xl-4 col-md-6 ml-12 mb-4">
-            <div class="card border-left-info h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
-                <a routerLink="/messages">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:rebeccapurple">Messages &nbsp;<i class="fa-solid fa-message" style="color:mediumslateblue"></i></div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetYearmsg</div>
-                            </div>
-                            <div class="col-auto">
-                                <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <!-- Tasks Card -->
-        <div class="col-xl-4 col-md-6 ml-12 mb-4">
-            <div class="card border-left-primary h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
-                <a routerLink="/tasks">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center" style="text-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:rebeccapurple">Tasks &nbsp;<i class="fa-solid fa-list-check" style="color:mediumslateblue"></i></div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetYearTask</div>
-                            </div>
-                            <div class="col-auto">
-                                <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <!-- Comments Card -->
-        <div class="col-xl-4 col-md-6 ml-12 mb-4">
-            <div class="card border-left-secondary h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:rebeccapurple">
-                                Tasks Comments
-                                <i class="fa-solid fa-comments" style="color:mediumslateblue"></i>
-                            </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.GetYearcomment</div>
-                        </div>
-                        <div class="col-auto">
-                            <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    </main>
+   
+    <script src="assets/vendors/jquery/jquery.min.js"></script>
+    <script src="assets/vendors/popper.js/popper.min.js"></script>
+    <script src="assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

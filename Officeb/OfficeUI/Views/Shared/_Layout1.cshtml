@@ -8,103 +8,82 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="https://kit.fontawesome.com/bf21391385.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css" integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body style="background-color:lavender">
 
 
-    @*<div class="col-4">
-        <div class="text-center">
-            <img src="~/css/R.jfif" class="mx-auto img-responsive img-thumbnail" alt="...">
-    @*<div class="card-body">
-        <h5 class="card-title ">thupakki</h5>
-        <button type="button" class="btn btn-info">click here!</button>
-        </div>
-    </div>*@
-
-    <div >
-    
-    <div class="dashboard-nav" style="background-color:rebeccapurple">
-
-        <header>
-            <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#"
-                                                                               class="brand-logo"><br/>
-                    <i class="fa-solid fa-briefcase" style="color:white"></i>  <span>The Office</span>
-            </a>
-        </header>
-        <div class="nav-item-divider"></div>
-
-        <nav class="dashboard-nav-list">
-                
-            <div class="navbar-collapse collapse d-sm-inline-flex">
-                <a class="navbar-nav "> </a>
-                    <a class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Count" asp-action="GetFullCount"><i class="fa-solid fa-gauge-high" style="color:floralwhite"></i>&nbsp;<span style="color:white">DashBoard</span></a><hr color="white" />
-                    </a>
-               
-
-
-            </div>
-            <div class="nav-item-divider"></div>
-            <div class='dashboard-nav-dropdown'>
-                <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
-                    <i class="fa-solid fa-message" style="color:whitesmoke"></i> Messages
+    <div class='dashboard'>
+        <div class="dashboard-nav" style="background-color:rebeccapurple">
+            <header>
+                <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+                <a href="#" class="brand-logo">
+                    <div class="nav-item-divider"></div>
+                    <i class="fa-solid fa-briefcase" style="color:white"></i><span>The Office</span>
                 </a>
-                <div class='dashboard-nav-dropdown-menu'>
-                    <a class="dashboard-nav-dropdown-item">
+            </header>
+            <nav class="dashboard-nav-list">
+                <div class="navbar-collapse collapse d-sm-inline-flex">
+                    <a class="navbar-nav "></a>
+                    <a class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Count" asp-action="GetFullCount"><i class="fa-solid fa-gauge-high" style="color:floralwhite"></i>&nbsp;<span style="color:white">DashBoard</span></a><hr color="white" />
+                    </a>
+                </div>
+                <div class="nav-item-divider"></div>
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                        <i class="fa-solid fa-message" style="color:whitesmoke"></i> Messages
+                    </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a class="dashboard-nav-dropdown-item">
                             <a class="nav-link text-dark " asp-area="" asp-controller="Message" asp-action="Index"><i class="fa-solid fa-bars-staggered" style="color:white"></i>&nbsp;<span style="color:white">Messages Board</span></a>
                         </a>
-                       <a class="nav-item">
+                        <a class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Message" asp-action="Create"><i class="fa-solid fa-circle-plus" style="color:white"></i>&nbsp;<span style="color:white">Create Messages</span></a>
                             <hr color="white" />
                         </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class='dashboard-nav-dropdown'>
-                <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
-                    <i class="fa-solid fa-list-check" style="color:whitesmoke"></i> Task
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                        <i class="fa-solid fa-list-check" style="color:whitesmoke"></i> Task
+                    </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a class="dashboard-nav-dropdown-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="Index"><i class="fa-solid fa-bars-staggered" style="color:white"></i>&nbsp;<span style="color:white">Tasks Board</span></a>
+                        </a>
+                        <a class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="TasksCreate"><i class="fa-solid fa-circle-plus" style="color:white"></i>&nbsp;<span style="color:white">Create Task</span></a><hr color="white" />
+                            <hr color="white" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-item-divider"></div>
+                <div class="nav-item">
+                    <i class="fa-regular fa-address-card" style="color:whitesmoke"></i> <span style="color:azure">  Account</span>
+                </div>
+                <a class="nav-item">
+                    <a class="nav-link text-dark " asp-area="" asp-controller="Profile" asp-action="EditProfile"><i class="fa-sharp fa-solid fa-user-pen" style="color:floralwhite"></i><i class="fa-light fa-list-timeline" style="color:floralwhite"></i>&nbsp;<span style="color:white">Edit</span></a>
                 </a>
-                <div class='dashboard-nav-dropdown-menu'>
-                    <a class="dashboard-nav-dropdown-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="Index"><i class="fa-solid fa-bars-staggered" style="color:white"></i>&nbsp;<span style="color:white">Tasks Board</span></a>
-                    </a>
-                    <a class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="TasksCreate"><i class="fa-solid fa-circle-plus" style="color:white"></i>&nbsp;<span style="color:white">Create Task</span></a><hr color="white" />
-                        <hr color="white" />
-                    </a>
-                </div>
-            </div>
-           
-            <div class="nav-item-divider"></div>
-            <div class="nav-item">
-                    <span style="color:azure"><i class="fa-regular fa-address-card" style="color:whitesmoke"></i>    Account</span>
-                </div>
-            <a class="nav-item">
-                        <a class="nav-link text-dark " asp-area="" asp-controller="Profile" asp-action="EditOffice"><i class="fa-sharp fa-solid fa-user-pen" style="color:floralwhite"></i><i class="fa-light fa-list-timeline" style="color:floralwhite"></i>&nbsp;<span style="color:white">Edit</span></a>
-            </a>
-                    <a class="nav-item">
+                <a class="nav-item">
                     <a class="nav-link text-dark " asp-area="" onclick="Logout()" asp-controller="Home" asp-action="Index"><i class=" fa-solid fa-right-to-bracket" style="color:floralwhite"></i>&nbsp;<span style="color:white">Logout</span></a><hr color="white" />
-                        <hr color="white" />
-                    </a>
-         
-           
-        </nav>
-    </div>
-   
-    <div class='dashboard-app'>
+                    <hr color="white" />
+                </a>
+        
+            </nav>
+        </div>
+        <div class='dashboard-app'>
             <header class='dashboard-toolbar' style="background-color:lavender"><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
 
-        <div class="container">
-           
-        <main role="main" class="pb-3">
+
+       <div class="container">           
+          <main role="main" class="pb-3">
             @RenderBody()
-        </main>
+          </main>
+       </div>
     </div>
-
-
-    </div>
-
 
 
     <footer class="border-top footer text-muted">
@@ -115,9 +94,11 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+       
     @RenderSection("Scripts", required: false)
  
-    </div>
+  </div>
 </body>
 </html>
 <script>
@@ -128,4 +109,4 @@
             return event.preventDefault();
         }
     }
-    </script>
+</script>
