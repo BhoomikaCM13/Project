@@ -126,6 +126,11 @@ namespace OfficeAPI.Controllers.Tests
                 var result = controller.GetTaskById(task.id);
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
                 Assert.AreEqual(task, result);
 
 

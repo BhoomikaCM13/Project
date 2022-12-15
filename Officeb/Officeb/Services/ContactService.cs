@@ -18,5 +18,12 @@ namespace OfficeBusiness.Services
         {
             _contactRepository.AddContact(contact);
         }
+<<<<<<< HEAD
+=======
+        public IEnumerable<Contactus> GetContacts()
+        {
+            return _contactRepository.GetContact();
+        }
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
     }
 }

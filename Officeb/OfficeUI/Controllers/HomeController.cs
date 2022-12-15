@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+<<<<<<< HEAD
+=======
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
 using OfficeDL;
 using OfficeEntity;
 using OfficeUI.Models;
@@ -19,6 +23,7 @@ namespace OfficeUI.Controllers
         {
             _logger = logger;
         }
+<<<<<<< HEAD
         Office_Context db = new Office_Context();
         public IActionResult Index()
         {
@@ -97,6 +102,15 @@ namespace OfficeUI.Controllers
         }
 
     //OfficeBoard Policy:
+=======
+        //Home page controller
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+         //OfficeBoard Policy:
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
         public IActionResult Privacy()
         {
             return View();

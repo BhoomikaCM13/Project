@@ -18,10 +18,19 @@ namespace OfficeAPI.Controllers
         [HttpGet("GetMessages")]
         public IEnumerable<Message> GetMessages()
         {
+<<<<<<< HEAD
             #region Get Message
             return _messageService.GetMessages();
             #endregion
         }
+=======
+
+                #region Get Message
+                return _messageService.GetMessages();
+                #endregion
+            }
+        
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
         [HttpGet("GetMessageById")]
         public Message GetMessageById(int messageId)
         {
@@ -32,26 +41,68 @@ namespace OfficeAPI.Controllers
         [HttpPost("AddMessage")]
         public IActionResult AddMessage([FromBody] Message message)
         {
+<<<<<<< HEAD
             #region Add Message:
             _messageService.AddMessage(message);
             return Ok("Message created successfully");
             #endregion
+=======
+            try
+            {
+                #region Add Message:
+                _messageService.AddMessage(message);
+                return Ok("Message created successfully");
+                #endregion
+            }
+            catch
+            {
+                return BadRequest(400);
+            }
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
         }
         [HttpDelete("DeleteMessage")]
         public IActionResult DeleteMessage(int messageId)
         {
+<<<<<<< HEAD
             #region Delete Message
             _messageService.DeleteMessage(messageId);
             return Ok("Message deleted successfully!!!");
             #endregion
+=======
+            try
+            {
+                #region Delete Message
+                _messageService.DeleteMessage(messageId);
+                return Ok("Message deleted successfully!!!");
+                #endregion
+            }
+            catch
+            {
+                return BadRequest(400);
+            }
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
         }
         [HttpPut("UpdateMessage")]
         public IActionResult UpdateMessage([FromBody] Message message)
         {
+<<<<<<< HEAD
             #region Edit Message
             _messageService.UpdateMessage(message);
             return Ok("Message updated successfully");
             #endregion
+=======
+            try
+            {
+                #region Edit Message
+                _messageService.UpdateMessage(message);
+            return Ok("Message updated successfully");
+                #endregion
+            }
+            catch
+            {
+                return BadRequest(400);
+            }
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
         }
 
 
