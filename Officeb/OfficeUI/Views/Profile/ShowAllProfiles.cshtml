@@ -1,0 +1,34 @@
+﻿@model OfficeEntity.Profile
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<!-- Begin Page Content -->
+ <div class="container mt-4 mb-4 p-3 d-flex justify-content-center" >
+    <div class="card p-4" style="background-color:lavender; box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .1)">
+         <div class=" image d-flex flex-column justify-content-center align-items-center">
+             <img src="https://cdn0.iconfinder.com/data/icons/office-and-employment-vol-2-1/32/222_office_employee_man_woman_lady_team_person_people-512.png" height="100" width="100" />
+                <br />
+                       <strong>User Profile</strong>
+                 <hr />
+                <span style="color:black">@Model.name</span>
+            <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                <span style="color:cadetblue">User Name:</span>
+                <span style="color:black">@Model.userName</span>
+            </div>
+            <div class="d-flex flex-row justify-content-center align-items-center mt-3">
+                <span style="color:cadetblue">Email: </span>
+                <span style="color:black">@Model.email</span>
+            </div>
+            <div class="text mt-3">
+                <span style="color:cadetblue">Position:</span>
+                <span style="color:black">@Model.position</span>
+            </div>
+            <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
+                <span style="color:cadetblue">Department:</span>
+                <span style="color:black">@Model.department</span>
+            </div>
+            <div><a asp-controller="Profile" asp-action="EditProfile"><i class="fa-solid fa-pen-to-square" title="Edit Profile" style="color:purple"></i></a></div>
+         </div>
+    </div>
+</div>

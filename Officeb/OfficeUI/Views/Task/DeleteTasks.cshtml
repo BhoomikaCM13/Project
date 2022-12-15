@@ -1,0 +1,24 @@
+﻿@model OfficeEntity.Tasks;
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<form enctype="multipart/form-data">
+    <h2>Delete Task</h2><hr />
+ 
+    <hr />
+    @if (ViewBag.Status == "Ok")
+    {
+        <div class="alert alert-success">
+            @ViewBag.message;
+        </div>
+    }
+
+    else if (ViewBag.Status == "Error")
+    {
+        <div class="alert alert-danger">
+            @ViewBag.message;
+        </div>
+    }
+</form>
