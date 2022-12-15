@@ -21,7 +21,7 @@ namespace OfficeUI.Controllers
         {
             this.configuration = configuration;
         }
-<<<<<<< HEAD
+
        
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -48,10 +48,6 @@ namespace OfficeUI.Controllers
         {     
             return View();
         }
-=======
-
-
->>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
 
         public async Task<IActionResult> EditComment(int id)
         {
@@ -59,7 +55,7 @@ namespace OfficeUI.Controllers
             using (HttpClient client = new HttpClient())
             {
                 //Edit Comment: To display the comments ie related to commentId
-                string endPoint = configuration["WebApiBasedUrl"] + "Comment/GetCommentById?commentId=" + id;
+                string endPoint = configuration["WebApiBasedUrl"] + "Comment/GetCommentById?commentid" + id;
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -67,11 +63,8 @@ namespace OfficeUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         comment = JsonConvert.DeserializeObject<Comment>(result);
 
-<<<<<<< HEAD
+
                         //Get temporary coomentid from  tempdata
-=======
-                        //Get temporary commentid from  tempdata
->>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
                         int commentId = comment.id;
                         TempData["_commentid"] = commentId;
                         TempData.Keep();
@@ -141,7 +134,7 @@ namespace OfficeUI.Controllers
                         }
                     }
             }
-                return View();
+            return View();
         }
     }
 }
