@@ -1,0 +1,21 @@
+﻿@model OfficeEntity.Comment
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<form method="post" enctype="multipart/form-data">
+    <hr />
+    @if (ViewBag.status == "Ok")
+    {
+        <div class="alert alert-success">
+            @ViewBag.message
+        </div>
+    }
+    else if (ViewBag.status == "Error")
+    {
+        <div class="alert alert-danger">
+            @ViewBag.message
+        </div>
+    }
+</form>

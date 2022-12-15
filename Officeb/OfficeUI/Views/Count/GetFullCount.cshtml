@@ -1,0 +1,202 @@
+﻿@model OfficeEntity.Dashboard;
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<!-- Topbar -->
+<nav>
+    <div class="header text-uppercase" style="color:White ; text-decoration-style:solid">
+        <h1>Dashboard</h1>
+    </div>
+</nav>
+<!-- End of Topbar -->
+
+
+<!-- Begin Page Content -->
+<div class="container-fluid mt-4">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between ml-4 mb-3">
+        <h1 class="h3 mb-0 text-gray-800">Today</h1>
+    </div>
+    <div class="row">
+        <!-- Messages Card -->
+        <div class="col-xl-4  col-md-6 ml-12 mb-4">
+            <div class="card border-left-info  h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
+                <a routerLink="/messages">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:rebeccapurple">Messages &nbsp;<i class="fa-solid fa-message" style="color:mediumslateblue"></i></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getTodayMessage</div>
+                            </div>
+                            <div class="col-auto">
+                                <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- Tasks Card -->
+        <div class="col-xl-4  col-md-6 ml-12 mb-4">
+            <div class="card border-left-primary  h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
+                <a routerLink="/tasks">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:rebeccapurple">Tasks &nbsp;<i class="fa-solid fa-list-check" style="color:mediumslateblue"></i></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getTodayTask</div>
+                            </div>
+                            <div class="col-auto">
+                                <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- Comments Card -->
+        <div class="col-xl-4  col-md-6 ml-12 mb-4">
+            <div class="card border-left-secondary  h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:rebeccapurple">
+                                Task Comments
+                                <i class="fa-solid fa-comments" style="color:mediumslateblue"></i>
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getTodayComment</div>
+                        </div>
+                        <div class="col-auto">
+                            <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between ml-4 mb-3">
+        <h1 class="h3 mb-0 text-gray-800">This Month</h1>
+    </div>
+    <div class="row">
+        <!-- Messages Card -->
+        <div class="col-xl-4 col-md-6 ml-12 mb-4">
+            <div class="card border-left-info  h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
+                <a routerLink="/messages">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:rebeccapurple">Messages &nbsp;<i class="fa-solid fa-message" style="color:mediumslateblue"></i></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getMonthMessage</div>
+                            </div>
+                            <div class="col-auto">
+                                <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- Tasks Card -->
+        <div class="col-xl-4 col-md-6 ml-12 mb-4">
+            <div class="card border-left-primary h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
+                <a routerLink="/tasks">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:rebeccapurple">Tasks &nbsp;<i class="fa-solid fa-list-check" style="color:mediumslateblue"></i></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getMonthTask</div>
+                            </div>
+                            <div class="col-auto">
+                                <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- Comments Card -->
+        <div class="col-xl-4 col-md-6 ml-12 mb-4">
+            <div class="card border-left-secondary h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:rebeccapurple">
+                                Tasks Comments
+                                <i class="fa-solid fa-comments" style="color:mediumslateblue"></i>
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getMonthComment</div>
+                        </div>
+                        <div class="col-auto">
+                            <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between ml-4 mb-3">
+        <h1 class="h3 mb-0 text-gray-800">This Year</h1>
+    </div>
+    <div class="row">
+        <!-- Messages Card -->
+        <div class="col-xl-4 col-md-6 ml-12 mb-4">
+            <div class="card border-left-info h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
+                <a routerLink="/messages">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:rebeccapurple">Messages &nbsp;<i class="fa-solid fa-message" style="color:mediumslateblue"></i></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getYearMessage</div>
+                            </div>
+                            <div class="col-auto">
+                                <fa-icon [icon]="faList" class="fa-2x text-gray-300"></fa-icon>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- Tasks Card -->
+        <div class="col-xl-4 col-md-6 ml-12 mb-4">
+            <div class="card border-left-primary h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
+                <a routerLink="/tasks">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center" style="text-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
+                            <div class="col mr-2" >
+                                <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:rebeccapurple">Tasks &nbsp;<i class="fa-solid fa-list-check" style="color:mediumslateblue"></i></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getYearTask</div>
+                            </div>
+                            <div class="col-auto">
+                                <fa-icon [icon]="faTasks" class="fa-2x text-gray-300"></fa-icon>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- Comments Card -->
+        <div class="col-xl-4 col-md-6 ml-12 mb-4">
+            <div class="card border-left-secondary h-100 py-2" style="box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:rebeccapurple">
+                                Tasks Comments
+                                <i class="fa-solid fa-comments" style="color:mediumslateblue"></i>
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:black">@Model.getYearComment</div>
+                        </div>
+                        <div class="col-auto">
+                            <fa-icon [icon]="faComments" class="fa-2x text-gray-300"></fa-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

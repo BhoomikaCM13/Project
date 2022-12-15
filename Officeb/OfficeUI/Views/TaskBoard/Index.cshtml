@@ -1,0 +1,165 @@
+﻿@model OfficeEntity.TaskBoard;
+
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<div class="row responsive">
+    <div style="align-items:end" class="col-2" >
+        <a asp-controller="Task" asp-action="Index" class="btn  btn-user btn-block my-4"><i class="fa-solid fa-arrow-left" style="color:darkslateblue">&nbsp back</i></a>
+       
+    </div>
+</div>
+
+<!-- Topbar -->
+<nav>
+    <div class="header text-uppercase" style="color:White ; text-decoration-style:solid">
+        <h1>TASK DETAILS</h1>
+    </div>
+</nav>
+<!-- End of Topbar -->
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Content Row -->
+    <div class="row">
+        <div class="card col-xxl-12 col-xl-12 col-lg-12  border-primary">
+              <div class="card-header">
+                    <p class="text-lg" style="display: inline;"><strong>@Model.task.title</strong></p>
+                    <!-- Circle Buttons (Small) -->
+                  @*  <div  style="display: inline;">
+                        
+                        <a asp-controller="Task" asp-action="EditTasks" asp-route-Id="@Model.task.id"><i class="fa-solid fa-pen-to-square" style="color:mediumorchid" title="Edit"></i></a>
+                        <a asp-controller="Task" asp-action="DeleteTasks" asp-route-Id="@Model.task.id"><i class="fa-solid fa-trash" style="color:red" title="Delete"></i></a>
+                    </div>*@
+              </div>
+                <div class="card-body">
+                    <p class="text-lg" style="display: inline;"><strong>@Model.task.description</strong></p>
+                    <hr>
+                    <p>
+                        <small class="text-muted">
+                            Status:
+                            <strong>@Model.task.status</strong>
+                        </small>
+                    </p>
+                    <p>
+                        <small class="text-muted">
+                            Created On:
+                            <strong>@Model.task.createdOn</strong>
+                        </small> |
+                        <small class="text-muted">
+                            Created By:
+                            <a routerLink="/profile/user/{{task?.userId}}"><strong>@Model.task.profile.name</strong></a>
+                        </small> <br>
+                        <small class="text-muted">Comments: <strong>@Model.countMessage</strong></small>
+                        <br /> 
+                        Add Comments:
+                        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal" >
+                          <i class="fa-solid fa-circle-plus" style="color:mediumslateblue" title="Add Comments"></i>
+                        </button>
+                    </p>
+                </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="container-fluid comments" >
+    <!-- Content Row -->
+    <div class="col-lg-3 text-center">
+        <h1 class="h3 " style="color:mediumpurple"><strong>Comments:</strong></h1>
+    </div>
+    <div class="row">
+
+        @foreach (var item in Model.commentsList)
+        {
+            <!-- Border Left Utilities -->
+            <div class="col-lg-8">
+                <div>
+                    <div class="card mb-4 py-3 border-left-primary">
+                        <div class="card-body">
+                            <p>@item.content</p>
+                            <p>
+                                <small class="text-muted">
+                                    Author:
+                                    <a><strong>@item.profile.name</strong></a>
+                                </small> |
+                                <small class="text-muted">
+                                    Created On:
+                                    <strong>@item.createdOn</strong>
+                                </small>                                
+                            </p>
+                            @if (item.profileId == Convert.ToInt32(TempData["LoginID"]))
+                            {
+                                TempData.Keep();
+                                <a asp-controller="Comment" asp-action="EditComment" asp-route-Id="@item.id"><i class="fa-solid fa-pen-to-square" style="color:mediumorchid" title="Edit"></i></a>
+                                <a asp-controller="Comment" onclick="Myfunction()" asp-action="DeleteComment" asp-route-commentid="@item.id"><i class="fa-solid fa-trash" style="color:darkmagenta" title="Delete"></i></a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }     
+    </div>
+    
+</div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Comments
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Content</label>
+                            <textarea class="form-control" asp-for="comment" rows="8" placeholder="Enter Content"></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="submit" value="Create" onclick="Myfunction2()" class="btn btn-user btn-block my-4"  style="background-color:mediumslateblue; color:white" >
+                            </div>
+                            <div class="col-6">
+                                <input type="reset" value="Cancel" class="btn btn-outline-danger btn-user btn-block my-4" />
+                            </div>
+                        </div>
+                        @if (ViewBag.status == "Ok")
+                        {
+                            <div class="alert alert-success">
+                                @ViewBag.message
+                            </div>
+                        }
+                        else if (ViewBag.status == "Error")
+                        {
+                            <div class="alert alert-danger">
+                                @ViewBag.message
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    function Myfunction() {
+        let val = confirm("Do you want to delete the comment?");
+        if (val == false) {
+            return event.preventDefault();
+        }
+    }
+    function Myfunction2(){
+        alert("Comment added successfully!!");
+    }
+</script>
