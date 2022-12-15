@@ -21,8 +21,37 @@ namespace OfficeUI.Controllers
         {
             this.configuration = configuration;
         }
+<<<<<<< HEAD
+       
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            IEnumerable<Comment> result = null;
+            using (HttpClient client = new HttpClient())
+            {
+                #region Created a view to get comments in the Index page:
+                string endPoint = configuration["WebApiBasedUrl"] + "Comment/GetComments";
+                    using (var response = await client.GetAsync(endPoint))
+                    {
+                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                        {
+                            var result1 = await response.Content.ReadAsStringAsync();
+                            result = JsonConvert.DeserializeObject<IEnumerable<Comment>>(result1);
+                        }
+                    }
+                #endregion
+            }
+            return View(result);
+        }
+
+        public IActionResult CreateComment()
+        {     
+            return View();
+        }
+=======
 
 
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
 
         public async Task<IActionResult> EditComment(int id)
         {
@@ -38,7 +67,11 @@ namespace OfficeUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         comment = JsonConvert.DeserializeObject<Comment>(result);
 
+<<<<<<< HEAD
+                        //Get temporary coomentid from  tempdata
+=======
                         //Get temporary commentid from  tempdata
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
                         int commentId = comment.id;
                         TempData["_commentid"] = commentId;
                         TempData.Keep();

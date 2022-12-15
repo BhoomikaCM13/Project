@@ -39,6 +39,9 @@
                                     <p class="mb-5 pb-lg-2" style="color:black">
                                         Don't have an account? <a asp-controller="Profile" asp-action="Register" style="color:mediumslateblue">Register</a>
                                     </p>
+<<<<<<< HEAD
+                                   </center>                                   
+=======
                                    </center>
                                     @if (ViewBag.status == "Ok")
                                     {
@@ -52,6 +55,7 @@
                                             @ViewBag.message
                                         </div>
                                     }
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
                                 </form>
                             </div>
                         </div>
@@ -60,7 +64,22 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+    @if (ViewBag.status == "Ok")
+    {
+        <div class="alert alert-success">
+            @ViewBag.message
+        </div>
+    }
+    else if (ViewBag.status == "Error")
+    {
+        <div class="alert alert-danger">
+            @ViewBag.message
+        </div>
+    }
+=======
     
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
 </section>
 
 

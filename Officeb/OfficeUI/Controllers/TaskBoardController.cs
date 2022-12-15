@@ -44,11 +44,17 @@ namespace OfficeUI.Controllers
 
             //Get temp taskid from temp data
  
+<<<<<<< HEAD
+            var _result = (from a in db.comments.Include(obj => obj.profile)
+                           where a.taskId == Convert.ToInt32(TempData["taskId_"])
+                           select a).ToList();
+=======
             var _result = (from a in db.comments.Include(obj => obj.profile).OrderByDescending(obj=>obj.createdOn)
                            where a.taskId == Convert.ToInt32(TempData["taskId_"])
                            select a).ToList();
             
             
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
             TempData.Keep();
 
             //Get Comment count per task
@@ -71,7 +77,11 @@ namespace OfficeUI.Controllers
             int ProfileId = Convert.ToInt32(TempData["LoginID"]);
             TempData.Keep();
             commentobj.profileId = ProfileId;
+<<<<<<< HEAD
+            commentobj.createdOn = DateTime.UtcNow;
+=======
             commentobj.createdOn = DateTime.Now;
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
             int task_Id = Convert.ToInt32(TempData["taskId_"]);
             TempData.Keep();
             commentobj.taskId = task_Id;

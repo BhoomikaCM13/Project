@@ -33,7 +33,11 @@ namespace OfficeUI.Controllers
         {
             //MessageBoard Search Bar by message title 
 
+<<<<<<< HEAD
+            var projects = from pr in db.messages.
+=======
             var projects = from pr in db.messages.OrderByDescending(obj=>obj.createdOn).
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
                            Include(obj => obj.Profile
                            )
                            select pr;
@@ -65,7 +69,10 @@ namespace OfficeUI.Controllers
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         messageresult = JsonConvert.DeserializeObject<IEnumerable<Message>>(result);
+<<<<<<< HEAD
+=======
                         messageresult=messageresult.Reverse();
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
                     }
                     TempData["countofmessage"] = messageresult.Count();
                     TempData.Keep();
@@ -108,12 +115,26 @@ namespace OfficeUI.Controllers
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         messageresult = JsonConvert.DeserializeObject<IEnumerable<Message>>(result);
+<<<<<<< HEAD
+=======
                         messageresult = messageresult.Reverse();
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
                     }
 
                 }
             }
+<<<<<<< HEAD
+            //TempData["load"] = 2;
+            //int num = Convert.ToInt32(TempData["load"]) + Convert.ToInt32(TempData["countofmessage"]) - 2;
+            //TempData.Keep();
+            //var projects = from pr in db.messages.
+            //               Include(obj => obj.Profile
+            //               ).Take(num)
+            //               select pr;
+            //TempData["load"] = num;
+=======
           
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
             return View(messageresult);
         }
 
@@ -224,7 +245,11 @@ namespace OfficeUI.Controllers
         }
 
 
+<<<<<<< HEAD
+        //Fetching messageId to deleting the message
+=======
         //Fetching messageId to delete the message
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
         public async Task<IActionResult> Delete(int id)
         {
             using (HttpClient client = new HttpClient())

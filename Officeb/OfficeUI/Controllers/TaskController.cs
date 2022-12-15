@@ -41,7 +41,11 @@ namespace OfficeUI.Controllers
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         taskresult = JsonConvert.DeserializeObject<IEnumerable<Tasks>>(result);
+<<<<<<< HEAD
+
+=======
                         taskresult = taskresult.Reverse();
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
 
                     }
                 }
