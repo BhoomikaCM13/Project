@@ -10,20 +10,20 @@ namespace OfficeEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(50, ErrorMessage = "MaxTtileLength")]
-        public string title { get; set; }
+        public string Title { get; set; }
 
         [Required]
         [MaxLength(500, ErrorMessage = "MaxContentLength")]
-        public string content { get; set; }
+        public string Content { get; set; }
 
-        public DateTime createdOn { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         [ForeignKey("Profile")]
-        public int pId { get; set; }
+        public int PId { get; set; }
 
         public Profile Profile { get; set; }
     }
