@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OfficeData.Migrations
 {
-    public partial class theoffice1 : Migration
+    public partial class office : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

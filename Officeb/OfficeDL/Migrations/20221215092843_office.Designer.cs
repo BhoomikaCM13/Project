@@ -10,8 +10,8 @@ using OfficeDL;
 namespace OfficeData.Migrations
 {
     [DbContext(typeof(Office_Context))]
-    [Migration("20221209085939_theoffice1")]
-    partial class theoffice1
+    [Migration("20221215092843_office")]
+    partial class office
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
