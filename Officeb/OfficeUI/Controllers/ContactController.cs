@@ -24,8 +24,18 @@ namespace OfficeUI.Controllers
         }
 
 
+
         [HttpPost]
         public async Task<IActionResult> CreateContact(Contactus message)
+        {
+            return View(message);   
+        }
+
+       
+        [HttpPost]
+        public async Task<IActionResult> CreateContact(Contactus contact)
+       
+
         {
             
             ViewBag.status = "";
@@ -33,7 +43,11 @@ namespace OfficeUI.Controllers
             {
                 //Add Messages 
 
+
                 StringContent content = new StringContent(JsonConvert.SerializeObject(message), Encoding.UTF8, "application/json");
+
+          
+
                 string endPoint = _configuration["WebApiBasedUrl"] + "Contact/AddContact";
                 using (var response = await client.PostAsync(endPoint, content))
                 {
@@ -42,6 +56,7 @@ namespace OfficeUI.Controllers
                         ViewBag.status = "Ok";
                         ViewBag.message = "success";
                         return RedirectToAction("Index", "Home");
+
                     }
                     else
                     {

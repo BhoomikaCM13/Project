@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using OfficeBusiness.Services;
 using OfficeEntity;
+<<<<<<< HEAD
+=======
+using System.Collections.Generic;
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
 
 namespace OfficeAPI.Controllers
 {
@@ -22,5 +26,16 @@ namespace OfficeAPI.Controllers
             return Ok("Thank you for your Response.we will get back soon");
             #endregion
         }
+<<<<<<< HEAD
+=======
+
+        [HttpGet("GetContacts")]
+        public IEnumerable<Contactus> GetContacts()
+        {
+            #region Get Contact :
+            return _contactService.GetContacts();
+            #endregion
+        }
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
     }
 }

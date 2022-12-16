@@ -22,7 +22,11 @@
 @foreach (var message in Model)
 {
 <div class="row">
+<<<<<<< HEAD
     <div class="col-lg-12" *ngFor="let message of (messages|filter:filterTerm).slice(0, show)">
+=======
+    <div class="col-lg-12" >
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
         <!-- Basic Card Example -->
         <div class="card shadow mb-4">
             <div class="card-header">
@@ -80,7 +84,11 @@
 <script>
     function MyDelete() {
 
+<<<<<<< HEAD
+        let val = confirm("Are you sure you want to delete the message?");
+=======
         let val = confirm("Do you want to delete the message?");
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
         if (val == false) {
             return event.preventDefault();
         }

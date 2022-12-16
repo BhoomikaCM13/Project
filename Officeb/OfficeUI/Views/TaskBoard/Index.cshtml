@@ -26,11 +26,20 @@
               <div class="card-header">
                     <p class="text-lg" style="display: inline;"><strong>@Model.task.title</strong></p>
                     <!-- Circle Buttons (Small) -->
+<<<<<<< HEAD
                   @*  <div  style="display: inline;">
                         
                         <a asp-controller="Task" asp-action="EditTasks" asp-route-Id="@Model.task.id"><i class="fa-solid fa-pen-to-square" style="color:mediumorchid" title="Edit"></i></a>
                         <a asp-controller="Task" asp-action="DeleteTasks" asp-route-Id="@Model.task.id"><i class="fa-solid fa-trash" style="color:red" title="Delete"></i></a>
                     </div>*@
+=======
+
+
+
+
+
+
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
               </div>
                 <div class="card-body">
                     <p class="text-lg" style="display: inline;"><strong>@Model.task.description</strong></p>
@@ -48,7 +57,11 @@
                         </small> |
                         <small class="text-muted">
                             Created By:
+<<<<<<< HEAD
                             <a routerLink="/profile/user/{{task?.userId}}"><strong>@Model.task.profile.name</strong></a>
+=======
+                          <strong>@Model.task.profile.name</strong>
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
                         </small> <br>
                         <small class="text-muted">Comments: <strong>@Model.countMessage</strong></small>
                         <br /> 
@@ -82,7 +95,11 @@
                             <p>
                                 <small class="text-muted">
                                     Author:
+<<<<<<< HEAD
                                     <a><strong>@item.profile.name</strong></a>
+=======
+                                   <strong>@item.profile.name</strong>
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
                                 </small> |
                                 <small class="text-muted">
                                     Created On:
@@ -106,9 +123,15 @@
 
 
 
+<<<<<<< HEAD
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+=======
+    <!-- Modal -->
+        <!--To Add new Comments-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -123,7 +146,11 @@
                     <form method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Content</label>
+<<<<<<< HEAD
                             <textarea class="form-control" asp-for="comment" rows="8" placeholder="Enter Content"></textarea>
+=======
+                            <textarea class="form-control" asp-for="comment" rows="8" placeholder="Enter Content" required></textarea>
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
                         </div>
 
                         <div class="row">
@@ -150,7 +177,11 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </div>
+=======
+   </div>
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
 
 <script>
     function Myfunction() {

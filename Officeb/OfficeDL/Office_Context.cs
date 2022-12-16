@@ -30,7 +30,14 @@ namespace OfficeDL
         // SQL Connection:
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
+<<<<<<< HEAD
             dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2013;Initial Catalog = TheOffice1;Integrated Security = True;");
+=======
+            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2235;Initial Catalog = TheOffice1;Integrated Security = True;");
+
+            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2235;Initial Catalog = TheOffice2;Integrated Security = True;");
+
+>>>>>>> 1a2607d9a4413822f7b9ca1d8adaf2a3331a5abc
         }
     }
 }

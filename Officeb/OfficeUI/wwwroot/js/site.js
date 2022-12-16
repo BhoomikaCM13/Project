@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+=======
+﻿
+>>>>>>> fb3f0d99ccdc41457d78ae7d68293daf3b347d3d
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
